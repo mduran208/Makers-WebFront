@@ -64,5 +64,22 @@ namespace WebFront.Controllers
                 return Json(ex);
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerNombreClientes(NombreClienteRequest nombreCliente)
+        {
+            try
+            {
+                var user = (UsuarioResult)Session["User"];
+                nombreCliente.Nombre = user.user;
+                nombreCliente.Rol = user.role;
+                var clienteResult = Post<NombreClienteRequest, List<NombreClienteResult>>(urlBase + "/api/v1/TirNoPer/ObtenerNombreClientes", nombreCliente, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
     }
 }

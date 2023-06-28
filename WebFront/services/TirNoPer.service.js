@@ -52,6 +52,41 @@ function ExceptionHandler(xhr){
 ---------------------------------------------------------------------------------------- 
 */
 
+function autocompletado_obtener_clientes() {
+
+    let term = $("#autocomplete-cliente").val();
+    let _CLIENTE_AUTOCOMPLETE = [];
+
+    if (term.length > 2) {
+
+
+        $.ajax({
+            url: "/TirNoPer/ObtenerNombreClientes",
+            data: JSON.stringify({
+                "Key": term,
+                "Nombre": "",
+                "Rol": ""
+            }),
+            type: "POST",
+            success: function (_data) {
+                _data.forEach(element => {
+                    _CLIENTE_AUTOCOMPLETE[element] = null;
+                });
+                $("#autocomplete-cliente").autocomplete({
+                    data: _CLIENTE_AUTOCOMPLETE,
+                    limit: 50
+                });
+                $("#autocomplete-nip").prop("disabled", true);
+                return _data;
+            },
+            error: function (xhr, status, error) {
+                console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                ExceptionHandler(xhr);
+            }
+        });
+    }
+}
+
 function obtener_reporte_informacion_del_cliente(_FECHA_INI, _FECHA_FIN, _CLIENTE_SELECTED, _OPCION_SELECTED) {
 
     let _CUENTA_SELECTED = "-1";
