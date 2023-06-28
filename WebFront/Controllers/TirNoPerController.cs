@@ -38,7 +38,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var clienteResult = Post<ClienteInfoRequest, List<ClienteInfoResult>>(urlBase + "/api/v1/TirNoPer/ObtenerNombreClientes", clienteInfo, (string)Session["token"]);
+                var clienteResult = Post<ClienteInfoRequest, List<ClienteInfoResult>>(urlBase + "/api/v1/TirNoPer/ObtenerReporteClientesInfo", clienteInfo, (string)Session["token"]);
                 return Json(clienteResult, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -100,6 +100,7 @@ namespace WebFront.Controllers
             }
         }
 
+        [AllowAnonymous]
         public JsonResult ObtenerCuentasPorCliente(CuentasPorClienteRequest cuentasPorCliente)
         {
             try

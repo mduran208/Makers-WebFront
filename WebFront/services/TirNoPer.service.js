@@ -18,7 +18,7 @@
 
 
 function separar_numero_en_comas(_VAL){
-    _VAL = _VAL.toFixed(2);
+    _VAL = parseFloat(_VAL).toFixed(2);
     while (/(\d+)(\d{3})/.test(_VAL.toString())){
         _VAL = _VAL.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
     }
@@ -165,6 +165,8 @@ function obtener_reporte_informacion_del_cliente(_FECHA_INI, _FECHA_FIN, _CLIENT
             "CUENTA_SELECTED": _CUENTA_SELECTED
         }),
         type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data) {
             _data.forEach(element => {
 
@@ -263,6 +265,8 @@ function obtener_reporte_movimientos_del_cliente(_FECHA_INI, _FECHA_FIN, _CLIENT
             "CUENTA_SELECTED": _CUENTA_SELECTED
         }),
         type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data) {
             _data.forEach(element => {
                 let date = element.fecha;
