@@ -1621,7 +1621,6 @@
     <Content Include="Scripts\shared\loader.js" />
     <Content Include="Scripts\shared\login.js" />
     <Content Include="Scripts\shared\sidebar.js" />
-    <Content Include="services\Auth.service.js" />
     <Content Include="services\TirNoPer.service.js" />
     <Content Include="services\TirNoPerPanelAdministrativo.service.js" />
     <Content Include="styles\assets\brand\bootstrap-logo-white.svg" />
