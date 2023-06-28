@@ -146,7 +146,6 @@
     <Compile Include="Models\Request\UsuarioRequest.cs" />
     <Compile Include="Models\Result\ClienteInfoResult.cs" />
     <Compile Include="Models\Result\ClienteMovimientoResult.cs" />
-    <Compile Include="Models\Result\NombreClienteResult.cs" />
     <Compile Include="Models\Result\UsuarioResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

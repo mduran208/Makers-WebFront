@@ -58,16 +58,14 @@ function autocompletado_obtener_clientes() {
     let _CLIENTE_AUTOCOMPLETE = [];
 
     if (term.length > 2) {
-
-
         $.ajax({
             url: "/TirNoPer/ObtenerNombreClientes",
             data: JSON.stringify({
-                "Key": term,
-                "Nombre": "",
-                "Rol": ""
+                "Key": term
             }),
             type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
             success: function (_data) {
                 _data.forEach(element => {
                     _CLIENTE_AUTOCOMPLETE[element] = null;

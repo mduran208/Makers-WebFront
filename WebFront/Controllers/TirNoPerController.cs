@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using static WebFront.HttpWebClient;
+using System.Web.Script.Serialization;
 
 namespace WebFront.Controllers
 {
@@ -73,7 +74,7 @@ namespace WebFront.Controllers
                 var user = (UsuarioResult)Session["User"];
                 nombreCliente.Nombre = user.user;
                 nombreCliente.Rol = user.role;
-                var clienteResult = Post<NombreClienteRequest, List<NombreClienteResult>>(urlBase + "/api/v1/TirNoPer/ObtenerNombreClientes", nombreCliente, (string)Session["token"]);
+                var clienteResult = Post<NombreClienteRequest, List<string>>(urlBase + "/api/v1/TirNoPer/ObtenerNombreClientes", nombreCliente, (string)Session["token"]);
                 return Json(clienteResult, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
