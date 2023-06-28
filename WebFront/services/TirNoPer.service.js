@@ -85,6 +85,72 @@ function autocompletado_obtener_clientes() {
     }
 }
 
+function autocompletado_obtener_nip() {
+
+    let term = $("#autocomplete-nip").val();
+    let _CLIENTE_AUTOCOMPLETE = {};
+
+
+    if (term.length > 2) {
+        $("#autocomplete-nip").attr('maxlength', 0);
+
+        $.ajax({
+            url: "/TirNoPer/ObtenerNIPClientes",
+            data: JSON.stringify({
+                "Key": term
+            }),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (_data) {
+                _data.forEach(element => {
+                    _CLIENTE_AUTOCOMPLETE[`${element.Nit} - ${element.Nombre}`] = null;
+                });
+                $("#autocomplete-nip").autocomplete({
+                    data: _CLIENTE_AUTOCOMPLETE
+                });
+                $("#autocomplete-nip").attr('maxlength', 15);
+                $("#autocomplete-cliente").prop("disabled", true);
+                return _data;
+            },
+            error: function (xhr, status, error) {
+                console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                ExceptionHandler(xhr);
+            }
+        });
+    }
+}
+
+function agregarOpcionCuenta(numero, cuenta, seleccionada) {
+    if (cuenta > 0) {
+        $("#select-cuentas-cliente").append('<option value="' + numero + '">' + cuenta + '</option>');
+    } else {
+        $('#select-cuentas-cliente').append('<option value="' + numero + '" ' + seleccionada + '>' + cuenta + '</option>');
+    }
+}
+
+function obtenerCuentasPorCliente(key, nombre) {
+    $.ajax({
+        url: "/TirNoPer/ObtenerCuentasPorCliente",
+        data: JSON.stringify({
+            "Key": key,
+            "Nombre": nombre
+        }),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: function (data) {
+            data.forEach(element => {
+                agregarOpcionCuenta(element.Numero, element.Cuenta, (element.Cuenta > 0 ? '' : 'selected'));
+            });
+            $("#select-cuentas-cliente").formSelect();
+        },
+        error: function (xhr, status, error) {
+            console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+            ExceptionHandler(xhr);
+        }
+    });
+}
 function obtener_reporte_informacion_del_cliente(_FECHA_INI, _FECHA_FIN, _CLIENTE_SELECTED, _OPCION_SELECTED) {
 
     let _CUENTA_SELECTED = "-1";

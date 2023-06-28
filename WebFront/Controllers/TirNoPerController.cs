@@ -82,5 +82,36 @@ namespace WebFront.Controllers
                 return Json(ex);
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerNIPClientes(NombreClienteRequest nombreCliente)
+        {
+            try
+            {
+                var user = (UsuarioResult)Session["User"];
+                nombreCliente.Nombre = user.user;
+                nombreCliente.Rol = user.role;
+                var clienteResult = Post<NombreClienteRequest, List<NipClientesResult>>(urlBase + "/api/v1/TirNoPer/ObtenerNIPClientes", nombreCliente, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        public JsonResult ObtenerCuentasPorCliente(CuentasPorClienteRequest cuentasPorCliente)
+        {
+            try
+            {
+                var user = (UsuarioResult)Session["User"];
+                var clienteResult = Post<CuentasPorClienteRequest, List<CuentasPorClienteResult>>(urlBase + "/api/v1/TirNoPer/ObtenerCuentasPorCliente", cuentasPorCliente, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
     }
 }
