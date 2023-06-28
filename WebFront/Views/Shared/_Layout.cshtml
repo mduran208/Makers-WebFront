@@ -1,0 +1,129 @@
+﻿@using WebFront.Models.Result;
+@{
+    UsuarioResult User = new UsuarioResult(); ;
+    try
+    {
+        User = ViewBag.User;
+    }
+    catch { }
+
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″ />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Admin Portal Credicorp Capital">
+    <meta name="keywords" content="Analytic Admin Dashboard">
+    <meta name="author" content="ThemeSelect">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/x-icon" href="resource/img/favicon.ico">
+    <link href="~/styles/assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/styles/css/site.css" rel="stylesheet">
+    <link href="~/styles/css/custom/personalizados.css" rel="stylesheet">
+    <link href="~/styles/css/custom/alertify.css" rel="stylesheet">
+    <link href="~/styles/css/custom/all.css" rel="stylesheet">
+    <link href="~/styles/css/custom/corev.css" rel="stylesheet">
+    <link href="~/styles/css/custom/desplegaWM.css" rel="stylesheet">
+    <link href="~/styles/css/custom/gestionActivos.css" rel="stylesheet">
+    <link href="~/styles/css/custom/tablaDocs.css" rel="stylesheet">
+    <link href="~/styles/css/custom/sidebar.css" rel="stylesheet">
+    <link href="~/styles/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>Credicorp Capital</title>
+</head>
+<body>
+    <script>var init = [];</script>
+    <header>
+        <nav class="navbar navbar-expand navbar-light topbar navbar-main">
+            <li class="navbar" href="/">
+                <img class="img-logo" src=".././resource/img/logo-blanco-header.svg" alt="credicorp capital logo" padding-top="10%">
+            </li>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <div class="navbar-content flex-column">
+                        <li><h6>@User.user</h6></li>
+                        <li><h6 style="font-family:Cabin ">@User.role</h6></li>
+                    </div>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    @RenderBody()
+
+    <script type="text/javascript">window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">' + "<" + "/script>");</script>
+    <script src="@Url.Content("~/Scripts/assets/javascripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/assets/javascripts/pixel-admin.js")"></script>
+    <script src="@Url.Content("~/Scripts/assets/javascripts/principal.js")"></script>
+
+    <!-- COMPONENTS SCRIPTS -->
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="~/styles/assets/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha384-S58meLBGKxIiQmJ/pJ8ilvFUcGcqgla+mWH9EEKGm6i6rKxSTA2kpXJQJ8n7XK4w" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js" integrity="sha384-cBRE6iZwT9o/buXdjHQ/TMfB7uovhk0R+i+mvd4V5Megxs9NuMohD10dapiJLXzK" crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" integrity="sha384-ZOED+d9HxogEQwD+jFvux96iGQR9TxfJO+mPF2ZS0TuKH6eWrmvPsDpO6I0OWdiX" crossorigin="anonymous"></script>
+
+    <!-- SHARED SCRIPTS -->
+    <script src="~/Scripts/shared/footer.js"></script>
+    <script src="~/Scripts/shared/loader.js" type="text/javascript" defer></script>
+    <script src="~/Scripts/shared/sidebar.js" type="text/javascript" defer></script>
+    <script src="~/Scripts/shared/header.js" type="text/javascript" defer></script>
+
+    <!-- MODULES SCRIPTS -->
+    <script src="~/modules/index.js"></script>
+    <script src="~/modules/Auth.js" type="text/javascript"></script>
+    <script src="~/services/Auth.service.js" type="text/javascript"></script>
+    <script src="~/resource/constants/env.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        init.push(function () {
+            var setEqHeight = function () {
+                $('#content-wrapper .row').each(function () {
+                    var $p = $(this).find('.stat-panel');
+                    if (!$p.length) return;
+                    $p.attr('style', '');
+                    var h = $p.first().height(), max_h = h;
+                    $p.each(function () {
+                        h = $(this).height();
+                        if (max_h < h) max_h = h;
+                    });
+                    $p.css('height', max_h);
+                });
+            };
+            $('#equal-height').click(function () {
+                if ($(this).hasClass('disabled')) return;
+                $(this).addClass('disabled');
+                setEqHeight();
+                $(window).on('pa.resize', setEqHeight);
+                $(window).resize();
+            });
+        });
+        window.PixelAdmin.start(init);
+
+
+        function bloquearPagina(estado) {
+            if (estado == true) {
+                $.blockUI({
+                    message: $('#domMessage'),
+                    css: {
+                        border: '0px',
+                        backgroundColor: 'transparent'
+                    },
+                    baseZ: 1050
+                });
+            }
+            else
+                $.unblockUI();
+        }
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

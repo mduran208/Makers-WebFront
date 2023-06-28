@@ -1,0 +1,232 @@
+﻿/* DivTable.com */
+.divTable{
+	display: table;
+	width: 100%;
+	/*margin-bottom:80px;*/
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableRow p {
+    text-align: left !important;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableCell, .divTableHead {
+	/*border: 1px solid #999999;*/
+	display: table-cell;
+	padding: 3px 10px;
+}
+
+
+
+	
+
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+   
+.contenido .divTableCell{
+	border-bottom: 1px solid #f2f2f2;
+    display: table-cell;
+    padding: 5px 5px;
+    text-align: left;
+    vertical-align: middle;
+    font-size:11pt;
+} 
+
+.cont-tab-infoG .divTableCell{
+    text-align: left;
+}   
+
+.cont-tab-infoG br{
+    display: none;
+}  
+
+.cont-tab-infoG br:first-of-type{
+    display: block;
+}
+
+.cell-1{
+	font-size: 11pt;
+    font-weight: bold;
+    color: #898989;
+}
+
+.espacio .divTableCell{
+	padding-top:40px;
+}
+
+.divTable h4{
+	font-size: 16px;
+    color: #898989;
+    font-weight: bold;
+}
+.divTable p{
+	color: #898989;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+
+.divTableCell input, .divTableCell textarea{
+	border:none;
+	width:100%;
+	text-align:center;
+	word-break: break-all;
+}
+
+.row-1 .divTableCell {
+    border-top: 4px solid #5a8084;
+}
+
+.cont-tab-infoG .tbl-4 .row-1 .divTableCell textarea {
+    color: #666;
+    font-weight: bold;
+}
+
+.tbl-2, .tbl-3, .tbl-4{
+	margin-top:20px;
+}
+.tbl-1, .tbl-2, .tbl-3, .tbl-4{
+	text-align:center;
+}
+.tbl-1 .row-1 .divTableCell, .tbl-2 .row-1 .divTableCell, .tbl-3 .row-1 .divTableCell, .tbl-4 .row-1 .divTableCell{
+	border-top:none;
+	border-bottom: 3px solid #e78400 !important
+}
+
+#txtDescrip{
+	width: 100%;
+    /*margin-bottom: 30px;*/
+    min-height: 100px;
+    resize: none;
+    }
+    
+.iva{
+    margin-bottom: 10px;
+    border:none;
+    min-width: 100%;
+    text-align: center;
+    white-space: normal;
+}
+
+.iva[disabled]{
+	color: #898989;
+    font-size: 11pt;
+    text-align: justify;
+    font-family: "Cabin", sans-serif;
+	
+    white-space: normal;    
+}
+#txtDescrip[disabled] {
+	background-color: transparent;
+	/*color: #666;*/
+	border: none;
+	color: #898989;
+	font-size: 11pt;
+	text-align: justify;
+	font-family: "Cabin", sans-serif;
+}
+.cell-1 textarea[disabled]{
+	font-weight: bold;
+	width:100% !important;
+}
+.divTableCell textarea[disabled]{
+	color:#666;
+	text-align:left;
+	width:100% !important;
+}
+.divTableCell {
+	width:10%;
+	max-width:100px;
+}
+
+.divTableCell a{
+	display: inline-block;
+}
+
+.divTableCell p {
+    text-align: center;
+}
+
+.d{
+	font-weight:normal;
+}
+
+.titulos .divTableCell{
+	display: table-cell;
+    padding: 5px 5px;
+    border-bottom: 3px solid #e78400 !important;
+    font-size: 11pt;
+    font-weight: bold;
+    max-width:7.5%;
+    color: #898989;
+    text-align:left;
+}
+
+.cont-tab-infoG .col-md-12{
+	padding:0 !important;
+}
+
+@media(max-width: 400px){
+	.ms-rtestate-field{
+		max-width: 260px;
+	}
+	.cont-tab-infoG{
+		max-width: 260px;
+	}	
+}
+.cont-tab-infoG textarea {
+    word-break: normal;
+}
+
+/* ScrollBar */
+/*
+ *  STYLE 6
+ */
+/*
+.cont-tablita-documenticos::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.cont-tablita-documenticos::-webkit-scrollbar
+{
+	height: 10px;
+	background-color: #F5F5F5;
+}
+
+.cont-tablita-documenticos::-webkit-scrollbar-thumb
+{
+	background-color: #F90;	
+	background-image: -webkit-linear-gradient(45deg,
+	                                          rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent)
+}*/
+
+.secciones .divTableCell,.secciones .divTableCell .col-md-3,.secciones .divTableCell .col-md-6 {
+	padding: 0 !important;
+	word-break: normal;
+	padding-right: 10px !important;
+	text-align:left;
+}
+
+
+.d p{
+	font-weight:100 !important;
+}

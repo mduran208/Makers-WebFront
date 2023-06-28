@@ -1,0 +1,379 @@
+/*================================================================================
+	Item Name: Materialize - Material Design Admin Template
+	Version: 4.0
+	Author: PIXINVENT
+	Author URL: https://themeforest.net/user/pixinvent/portfolio
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN CSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+@import './globals.css';
+
+header .brand-logo img {
+    height: 20px;
+}
+
+.img-logo {
+    min-width: 140px;
+    max-width: 200px;
+    padding: 3% 0% 0% 0%;
+}
+
+.navbar-full .brand-sidebar {
+    background: #ffffff !important;
+}
+
+nav {
+    color: var(--principal1) !important;
+    background-color: #ffffff !important;
+}
+
+    nav i {
+        color: var(--principal1) !important;
+    }
+
+.grey-text.text-darken-1 {
+    color: #55565a !important;
+}
+
+input {
+    color: #55565a !important;
+}
+
+.gris {
+    color: #55565a !important;
+}
+
+.in-line {
+    display: inline-block !important;
+}
+
+.pink.accent-2, .pink, .red {
+    background-color: #E56A54 !important;
+}
+
+.white {
+    color: #ffffff !important;
+}
+
+@media screen and (max-width: 992px) {
+
+    .brand-sidebar .logo-wrapper a.brand-logo img {
+        margin-left: 130px !important;
+    }
+
+    .tabs .tab a {
+        font-size: 11px;
+    }
+}
+
+.navbar .navbar-dark .header-search-wrapper input.header-search-input {
+    text-indent: 60px !important;
+}
+
+    .navbar .navbar-dark .header-search-wrapper input.header-search-input::-webkit-input-placeholder {
+        color: rgba(0, 0, 0, .42);
+    }
+
+.side-nav li > a > i, .side-nav li > a > [class^="mdi-"], .side-nav li > a li > a > [class*="mdi-"], .side-nav li > a > i.material-icons {
+    color: #E56A54 !important;
+}
+
+.side-nav li > a {
+    color: #55565a !important;
+}
+
+@media screen and (min-width: 900px) {
+    #display-avatar-card {
+        display: none;
+    }
+}
+
+.btn-floating:hover, .btn-floating {
+    background-color: #E56A54 !important;
+}
+
+ul.side-nav.leftside-navigation li:not(.no-padding).user-details {
+    background: none !important;
+    background-color: #E56A54 !important;
+}
+
+.gradient-45deg-light-blue-cyan {
+    background: none;
+    background-color: #E56A54 !important;
+}
+
+.page-footer .footer-copyright {
+    color: #55565a !important;
+    background-color: #ce685400 !important;
+}
+
+.page-footer {
+    background-color: #ce685400 !important;
+}
+
+.links {
+    color: #E56A54 !important;
+    text-decoration: underline !important;
+}
+
+.footer-copyright {
+    font-size: 11px !important;
+    text-align: center !important;
+}
+
+.profile-pic-mobile {
+    width: 70px !Important;
+}
+
+.centrado {
+    margin: 0 auto !important;
+}
+
+.container-reporte {
+    padding: 0 0 !important;
+    width: 100% !important;
+}
+
+.breadcrumb-actual {
+    color: #E56A54 !important;
+}
+
+.breadcrumb-no-actual {
+    color: #55565a !important;
+}
+
+.form-check-inline {
+    display: inline;
+}
+
+[type="checkbox"] + label {
+    padding-left: 25px !important;
+    padding-right: 45px !important;
+}
+
+.btn, .btn-large {
+    color: #ffffff !important;
+    background-color: #E56A54 !important;
+}
+
+.material-icons {
+    color: #E56A54 !important;
+}
+
+.titulo {
+    margin-top: 35px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #55565a !important;
+}
+
+#breadcrumbs-wrapper .breadcrumbs-title {
+    color: #55565a !important;
+}
+
+.select-wrapper input.select-dropdown {
+    background-color: transparent;
+    border-bottom: 1px solid #E56A54 !important;
+    color: #55565a !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    font-size: 16px;
+    color: #E56A54 !important;
+    display: block;
+    line-height: 22px;
+    padding: 14px 16px;
+}
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), textarea.materialize-textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--secundario2) !important;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+}
+
+    input[type=text]:not(.browser-default):focus:not([readonly]) {
+        box-shadow: 0 1px 0 0 #E56A54 !important;
+    }
+
+        input[type=text]:not(.browser-default):focus:not([readonly]) + label {
+            color: #E56A54 !important;
+        }
+
+[type="checkbox"]:checked + label:before {
+    border-right: 2px solid #E56A54 !important;
+    border-bottom: 2px solid #E56A54 !important;
+}
+
+[type="checkbox"].filled-in:checked + label:before {
+    border-right: 2px solid #fff !important;
+    border-bottom: 2px solid #fff !important;
+}
+
+[type="checkbox"].filled-in:checked + label:after {
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #E56A54 !important;
+    background-color: #E56A54 !important;
+    z-index: 0;
+}
+
+.btn .material-icons, #notifications-dropdown li > a > .material-icons {
+    color: #ffffff !important;
+}
+
+#breadcrumbs-wrapper {
+    background: #f9f9f9 !important;
+}
+
+.btn-floating i {
+    color: #fff !important;
+}
+
+.side-nav .collapsible-body, .side-nav.fixed .collapsible-body {
+    padding-left: 20px !important;
+    background-color: #f5f5f5;
+}
+
+.tabs {
+    background-color: #E56A54 !important;
+}
+
+.tabs .tab a:hover, .tabs {
+    background-color: transparent;
+    color: #ffffff !important;
+}
+
+.tabs .tab a {
+    color: rgb(255 255 255 / 70%) !important;
+}
+
+.tabs .indicator {
+    background-color: #55565a !Important;
+}
+
+.fondo-tab {
+    background-color: #919b9b !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-top-margin {
+    margin-top: 0 !important;
+    padding-top: 0px !important;
+}
+
+.divider-margin {
+    margin-left: 2% !important;
+    margin-right: 2% !important;
+}
+
+.top-bottom-margin-30 {
+    margin: 30px 0 30px 0;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+    background-color: #E56A54 !important;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after {
+    border: 2px solid #E56A54 !important;
+}
+
+input[type=text]:not(.browser-default):disabled {
+    color: rgba(0, 0, 0, 0.42) !important;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.42) !important;
+}
+
+.disabled-input-label {
+    transform: translateY(-14px) scale(0.8) !important;
+    transform-origin: 0 0 !important;
+}
+
+.picker__date-display {
+    background-color: #E56A54 !important;
+}
+
+.picker__close, .picker__today, .picker__clear {
+    color: #E56A54 !important;
+}
+
+.picker__day.picker__day--today {
+    color: #E56A54 !important;
+}
+
+.picker__nav--next {
+    right: -1.7em !important;
+}
+
+.picker__nav--prev {
+    left: -1.7em;
+    padding-right: 1.25em;
+}
+
+.picker__nav--next:before {
+    border-left: 0.75em solid #E56A54 !important;
+}
+
+.picker__nav--prev:before {
+    border-right: 0.75em solid #E56A54 !important;
+}
+
+.section-no-top-padding {
+    padding-top: 0 !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.input-field .prefix {
+    top: -20px !important;
+}
+
+.up-label {
+    transform: translateY(-14px) scale(0.8) !important;
+    transform-origin: 0 0 !important;
+}
+
+.bordered-table, .bordered-table td, .bordered-table th, .bordered-table tr {
+    border: 1px solid rgba(0,0,0,.12) !important;
+}
+
+.input-field label .active {
+    color: #E56A54 !important;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    background-color: #E56A54 !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    text-decoration: none !Important;
+    border-bottom: 8px solid #6A6F73;
+}
+
+.h2 {
+    font-family: "Cabin", sans-serif;
+}

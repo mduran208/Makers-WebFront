@@ -1,0 +1,161 @@
+/*--------------------Variables--------------------*/
+:root {
+    --bg-color: #ebebeb;
+    --input-placeholder: #d4d4d4;
+    --input-bg: #efefef;
+    --texto-destaque: #FFFF;
+    --azul-destaque: #2a7ae4;
+    --bg-contacto: #Eaf2fd;
+  }
+
+/*--------------------Normalize--------------------*/
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Releway', sans-serif;
+    background-color: var(--bg-color);
+}
+
+/*--------------------Patrón del proyecto--------------------*/
+textarea:focus, input:focus {
+    box-shadow:0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
+input::placeholder, textarea::placeholder{
+    color: var(--input-placeholder);
+    padding: 2%;
+}
+
+a {
+    text-decoration: none;
+    color: var(--azul-destaque);
+    font-weight: 800;
+}
+
+button{
+    cursor: pointer;
+}
+
+/*--------------------Header General--------------------*/
+header{
+  background-color: var(--texto-destaque);
+  padding: 32.5px 155px;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+}
+
+/*--------------------Divs del Header--------------------*/
+.logo-busqueda {
+    margin-left: 175px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    height: 30px;
+    width: 40px;
+}
+
+.logo p{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.logo .logo-azul{
+    margin-left: 10px;
+    color: var(--azul-destaque);
+}
+
+.logo-busqueda input{
+    margin-left: 10%;
+    width: 395px;
+    height: 40px;
+    border-radius: 30px;
+    padding: 1% 3%;
+    border: none;
+    background-color: var(--input-bg);
+    background-image: url(assets/lupa.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-position-x: 320px;
+}
+  
+form{
+    display: flex;
+    flex-direction: column;
+    background: #E56A54;
+    text-align: center;
+    padding: 20px 25px;
+    box-shadow: 0 5px 10px rgba(69, 64, 64, 0.7);
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+form .title{
+    color: #252525;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+#button{
+    margin: auto;
+}
+
+form label{
+    margin-bottom: 25px;
+}
+
+form .link{
+    color: #252525;
+    margin-bottom: 15px;
+}
+
+form button{
+    color: rgb(14, 13, 13);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+
+
+@media only screen and (max-width: 360px) {
+    header{
+        padding: 12px;
+        margin-left: -90px;
+      }
+
+    form{
+        margin-right: 16%;
+        margin-left: 20%;
+        padding: 0%;
+        }
+
+    }
+
+
+@media only screen and (max-width: 768px) {
+    .logo{
+        margin-left: -33px;
+    }
+
+    .logo-busqueda input{
+        display: none;
+    }
+        
+    }

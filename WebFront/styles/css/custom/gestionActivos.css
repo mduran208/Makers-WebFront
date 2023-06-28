@@ -1,0 +1,159 @@
+﻿.fondo-estatico{
+	min-height: 500px;
+	background-position: top;
+	background-attachment: fixed;
+	/*background-image: url('../img/RSE y Programas.jpg');*/
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 0px 25px;
+}
+.fondo-estatico div{
+	z-index:2;
+}
+.fondo-estatico::after {
+  content: "";
+  background-color: rgba(6, 37, 36, 0.6);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;   
+}
+
+#fondo h2 {
+    color: #fff ;
+    padding-top: 15px;
+}
+.btn , .cont-drop{
+	width:100%;
+}
+.fondo-estatico .btn-primary {
+    color: #666;
+    background-color: #efeff1;
+    border-color: #666;
+    padding-right:30px;
+}
+.fondo-estatico .btn-primary:hover {
+    color: #fff;
+    background-color: #597B7B;
+    border-color: #ffffff;
+}
+.fondo-estatico .btn-primary:active {
+    color: #fff;
+    background-color: #597B7B;
+    border-color: #ffffff;
+}
+
+.fondo-estatico .btn-primary:focus {
+    color: #fff;
+    background-color: #597B7B;
+    border-color: #ffffff;
+}
+
+.btn-primary.active.focus, 
+.btn-primary.active:focus, 
+.btn-primary.active:hover, 
+.btn-primary:active.focus, 
+.btn-primary:active:focus, 
+.btn-primary:active:hover, 
+.open>.dropdown-toggle.btn-primary.focus, 
+.open>.dropdown-toggle.btn-primary:focus, 
+.open>.dropdown-toggle.btn-primary:hover {
+    color: #fff;
+    background-color: #597B7B;
+    border-color: #ffffff;
+}
+
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+     color: #fff;
+    background-color: #597B7B;
+    border-color: #ffffff;
+}
+
+.btn-drop{
+	height: 70px;
+    border-radius: 0px;
+    white-space: normal;
+}
+.dropdown-menu>li {
+    padding: 0px 10px;
+    
+}
+
+.dropdown-menu>li>a {
+    padding: 3px 0px;
+    border-bottom:solid #877f7c 1px;
+    white-space:normal;
+}
+.fondo-estatico .dropdown-menu{
+	width:100%;
+	top:96%;
+	border-radius:0px;
+	position:relative;
+	    border: 1px solid #ccc;			
+}
+/*
+.dropdown .dropdown-menu {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;			
+    opacity: 0;	   
+}
+.btn-primary.active, .btn-primary:active, .open> .dropdown-menu {
+    opacity: 1;
+}*/
+
+.dropdown .dropdown-menu {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+    max-height: 0;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.open>.dropdown-menu {
+    max-height: 2000px;
+    opacity: 1;
+        margin-bottom: 10px;
+}
+
+.btn .caret {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    
+    position: absolute;
+    right: 20px;
+    top: 35px;
+}
+
+
+.open>.btn .caret {
+    transform: rotate(-180deg);				
+}
+
+ul.dropdown-menu li a:hover {
+    color: #ce6854;
+    background: none;
+}
+
+.title-dw{
+	background-color: #CCC;
+	cursor:default;
+	pointer-events:none;
+	text-decoration:none;
+}
+
+.fondo-estatico .col-md-12 .col-md-12{
+	padding:0px 0px;
+}

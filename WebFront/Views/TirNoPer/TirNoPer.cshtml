@@ -1,0 +1,504 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<body id="body-main" class="vertical-layout page-header-light vertical-menu-collapsible preload-transitions 2-columns" data-open="click" data-menu="vertical-menu-nav-dark" data-col="2-columns">
+    <!-- COMPONENTES COMPARTIDOS -->
+    <loader-component></loader-component>
+
+    <div>
+        <sidebar-component></sidebar-component>
+    </div>
+    <div id="main">
+
+
+        <div class="card-content">
+            <section id="content">
+
+                <div class="container">
+                    <div class="row container-form">
+                        <div class="col-md-8">
+                            <h5 id="titulo_tir">TIR | Cliente</h5>
+                        </div>
+                        <hr class="solid">
+                    </div>
+                </div>
+
+                <div class="container container-form">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a id='tab-cliente' class="nav-link active" href="#cliente" onclick="chgTitulo('TIR | Cliente')">Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id='tab-grupo-economico' class="nav-link" href="#grupo-economico" onclick="chgTitulo('TIR | Grupo Econ&oacute;mico')">Grupo Econ&oacute;mico </a>
+                        </li>
+                        <script>
+                            function chgTitulo(titulo) {
+                                document.title = titulo;
+                                console.log(titulo);
+                                if (titulo.indexOf("Cliente") > 0) {
+                                    $("#reporte-tir-cliente").hide(500)
+                                } else if (titulo.indexOf("Grupo") > 0) {
+                                    $("#reporte-tir-grupo-economico").hide(500);
+                                    $("#SelectModal > div > input").val('')
+                                }
+                                document.getElementById("titulo_tir").innerText = titulo;
+                            }
+                        </script>
+                    </ul>
+
+                    <!-- CLIENTE -->
+                    <div id="cliente">
+                        <div class="card-panel no-top-margin">
+                            <!-- Filtro B&uacute;squeda -->
+                            <br />
+                            <h5>Filtros de b&uacute;squeda:</h5>
+                            <br />
+                            <!-- Fin Filtro B&uacute;squeda -->
+                            <!-- Formularios -->
+                            <div class="row">
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="input-field col-md-6">
+                                            <em class="material-icons prefix">date_range</em>
+                                            <input type="date" id="filtro-fecha-inicial-cliente">
+                                            <label for="filtro-fecha-inicial-cliente" class="up-label">Fecha Inicial:</label>
+                                        </div>
+                                        <div class="input-field col-md-6">
+                                            <em class="material-icons prefix">date_range</em>
+                                            <input type="date" id="filtro-fecha-final-cliente">
+                                            <label for="filtro-fecha-final-cliente" class="up-label">Fecha Final:</label>
+                                        </div>
+                                        <div class="input-field col-md-6">
+                                            <input type="text" id="autocomplete-cliente" class="autocomplete" autocomplete="off">
+                                            <label for="autocomplete-cliente" class="up-label">Cliente:</label>
+                                            <span id="help" class="helper-text" data-error="wrong" data-success="right" style="font-size: 1rem;">M&iacutenimo 5 carecteres</span>
+                                        </div>
+                                        <div class="input-field col-md-6">
+                                            <input type="text" id="autocomplete-nip" class="autocomplete" maxlength="30" autocomplete="off">
+                                            <label for="autocomplete-nip" class="up-label">Nro. Documento:</label>
+                                            <span id="help" class="helper-text" data-error="wrong" data-success="right" style="font-size: 1rem;">M&iacutenimo 5 carecteres sin comas o puntos</span>
+
+                                        </div>
+
+                                        <div id="SelectModal" class="input-field col-md-6" style="display: none;">
+                                            <select id="select-cuentas-cliente" multiple="multiple" class="selectpicker"></select>
+                                            <label for="select-cuentas-cliente" class="up-label">Cuentas de Cliente:</label>
+                                        </div>
+
+
+                                    </div>
+                                    <a class="btn consultar-cliente">Consultar</a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Reporte -->
+                        <div class="row">
+                            <div class="input-field col s12 " id="reporte-tir-cliente">
+
+                                <!-- Encabezado -->
+                                <div class="input-field col s12" style="border:none" id="reporte-encabezado">
+                                    <ul class="d-flex flex-column">
+                                        <li>
+                                            <img src="resource/img/logo.svg" class="img-logo-reporte" alt="Logo" />
+                                        </li>
+                                        <li class=" color-ppal2">
+                                            <h5 style="font-weight: 600">Informe de Movimientos y Rentabilidad del Portafolio</h5>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- cuerpo del reporte-->
+                                <div class="input-field col s12 reporte-cliente">
+
+                                    <!-- Info del cliente -->
+                                    <div class="reporte-cliente-info" style="border:none">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-3 align-items-left "><h6>Identificaci&oacute;n:</h6></div>
+
+                                                <div id="cliente-identificacion" class="col-9 align-items-left"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 align-items-left"><h6>Nombre de Cliente:</h6></div>
+
+                                                <div id="cliente-nombre" class="col-9 align-items-left"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 align-items-left"><h6>Cuenta:</h6></div>
+
+                                                <div id='cliente-cuenta' class="col-9 align-items-left"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Info de la cuenta -->
+                                    <div class="report-resumen-info input-field col s12">
+
+                                        <!-- fECHAS DE CONSULTA -->
+                                        <div class="input-field col s12 m6 l4">
+
+                                            <table style="width: 100%;">
+                                                <caption style="display: none;">
+                                                    Resumen de saldos para el rango de fecha suministrado por el cliente.
+                                                </caption>
+                                                <tbody>
+                                                <th></th>
+                                                <tr>
+                                                    <td style="width: 50%; height: 35px;">Fecha Inicio</td>
+                                                    <td style="width: 50%; height: 35px; text-align: right;"><div id="cliente-fecha-inicial"></div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 50%; height: 35px; ">Fecha Final</td>
+                                                    <td style="width: 50%; height: 35px; text-align: right;">  <div id="cliente-fecha-final"></div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 50%; height: 35px; ">Saldo Inicial</td>
+                                                    <td style="width: 50%; height: 35px; text-align: right;">  <div id="cliente-saldo-inicial"></div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 50%; height: 35px; "> Saldo Final</td>
+                                                    <td style="width: 50%; height: 35px; text-align: right;">  <div id="cliente-saldo-final"></div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 50%; height: 35px; ">Total Entradas</td>
+                                                    <td style="width: 50%; height: 35px; text-align: right;">  <div id="cliente-total-entradas"></div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 50%; height: 35px; ">Total Salidas</td>
+                                                    <td style="width: 50%; height: 35px; text-align: right;">  <div id="cliente-total-salidas"></div></td>
+                                                </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- SALDOS DE LA CUENTA-->
+                                        <div class="input-field col s12 m6 l4"></div>
+                                        <!-- RENTABILIDAD -->
+                                        <div class="input-field col s15 m6 l4" style="text-align:center;">
+                                            <div class="card card-resumen background-secundario4-2 border-left-secondary">
+                                                <div class="s12 m8 l4">
+                                                    <h6>TIR (E.A.)</h6>
+                                                </div>
+                                                <div id="cliente-tir" style="color:#32cd32;" class="input-field s12 m8 l4"></div>
+                                            </div>
+                                            <div class="card background-secundario4-2 border-left-secondary">
+                                                <div class="s12 m8 l4">
+                                                    <h6>PyG</h6>
+                                                </div>
+                                                <div id="cliente-pyg" class="input-field s12 m8 l4"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <table id="table-cliente-tirnoper-resumen" class="responsive-table striped Highlight centered table-cliente-tirnoper">
+                                        <caption></caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col">Cuenta</th>
+                                                <th scope="col">Tipo Movimiento</th>
+                                                <th scope="col">Valor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <button id="btnAtras" type='button' class='btn btn-default' style="display: none;width: 10% !important;">Atras</button>
+                                    <table id="table-cliente-tirnoper-detalle" class="responsive-table striped Highlight centered table-cliente-tirnoper">
+                                        <caption></caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col">Nombre de Producto</th>
+                                                <th scope="col">Categoria</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Entradas</th>
+                                                <th scope="col">Salidas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GRUPO ECONOMICO -->
+                    <div id="grupo-economico">
+
+
+                        <div class="card-panel no-top-margin">
+
+                            <!-- Filtro B&uacute;squeda -->
+                            <br />
+                            <h5>Filtros de b&uacute;squeda:</h5>
+                            <br />
+                            <!-- Fin Filtro B&uacute;squeda -->
+                            <!-- Formularios -->
+                            <div class="row">
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="input-field col-md-6">
+                                            <em class="material-icons prefix">date_range</em>
+                                            <input type="date" id="filtro-fecha-inicial-grupo-economico">
+                                            <label for="filtro-fecha-inicial-grupo-economico" class="up-label" style="font-size: 1rem;">Fecha Inicial:</label>
+                                        </div>
+                                        <div class="input-field col-md-6">
+                                            <em class="material-icons prefix">date_range</em>
+                                            <input type="date" id="filtro-fecha-final-grupo-economico">
+                                            <label for="filtro-fecha-final-grupo-economico" class="up-label" style="font-size: 1rem;">Fecha Final:</label>
+                                        </div>
+                                        <div class="input-field col-md-6">
+                                            <input type="text" id="autocomplete-grupo-economico" class="autocomplete" autocomplete="off">
+                                            <label for="autocomplete-grupo-economico" class="up-label">Grupo:</label>
+                                            <span id="help2" class="helper-text" data-error="wrong" data-success="right" style="font-size: 1rem;">M&iacutenimo 5 carecteres</span>
+                                        </div>
+                                        <div id="SelectModal" class="input-field col-md-6">
+                                            <select class="selectpicker" multiple="multiple" id="select-cliente-grupo-economico"></select>
+                                            <label for="select-cliente-grupo-economico" class="up-label">Cliente:</label>
+                                            <span id="help2" class="helper-text" data-error="wrong" data-success="right" style="font-size: 1rem;">Seleccione los clientes a consultar</span>
+                                        </div>
+
+                                        <div id="SelectModal" class="input-field col-md-6" style="display: none;">
+                                            <select id="select-cuentas-grupo-economico" multiple="multiple"></select>
+                                            <label for="select-cuentas-grupo-economico" class="up-label">Cuentas de Cliente:</label>
+                                        </div>
+
+                                    </div>
+                                    <a class="btn consultar-grupo-economico">Consultar</a>
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12" style="overflow-x:auto;" id="reporte-tir-grupo-economico">
+
+                                <!-- Encabezado -->
+                                <div class="input-field col s12" style="border:none" id="reporte-encabezado">
+                                    <ul class="d-flex flex-column">
+                                        <li>
+                                            <img src="resource/img/logo.svg" class="img-logo-reporte" alt="Logo" />
+                                        </li>
+                                        <li class=" color-ppal2">
+                                            <h5 style="font-weight: 600">Informe de Movimientos y Rentabilidad del Portafolio</h5>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="input-field col s12 reporte-cliente">
+
+                                    <!-- Info del grupo -->
+                                    <div class="reporte-cliente-info" style="border:none">
+
+                                        <div class="col-12">
+
+                                            <div class="row">
+                                                <div class="col-3 align-items-left "><h6>Identificaci&oacute;n</h6></div>
+                                                <div id='grupo-economico-identificacion' class="col-9 align-items-left"></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-3 align-items-left"><h6>Nombre de Cliente</h6></div>
+                                                <div id='grupo-economico-nombre' class="col-9 align-items-left"></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-3 align-items-left"><h6>Cuenta</h6></div>
+                                                <div id='grupo-economico-cuenta' class="col-9 align-items-left"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Info de la cuenta -->
+                                <div class="report-resumen-info input-field col s12">
+
+                                    <!-- fECHAS DE CONSULTA -->
+                                    <div class="input-field col s12 m6 l4">
+
+                                        <table style="border-collapse: collapse; width: 100%;">
+                                            <caption style="display: none;">
+                                                Resumen de saldos para el rango de fecha suministrado por el cliente.
+                                            </caption>
+                                            <tbody>
+                                            <th></th>
+                                            <tr>
+                                                <td style="width: 50%; height: 35px;">Fecha Inicio</td>
+                                                <td style="width: 50%; height: 35px; text-align: right;"><div id='grupo-economico-fecha-inicial'></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 50%; height: 35px;">Fecha Final</td>
+                                                <td style="width: 50%; height: 35px; text-align: right;"> <div id='grupo-economico-fecha-final'></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 50%; height: 35px;">Saldo Inicial</td>
+                                                <td style="width: 50%; height: 35px; text-align: right;"> <div id='grupo-economico-saldo-inicial'></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 50%; height: 35px;">Saldo Final</td>
+                                                <td style="width: 50%; height: 35px; text-align: right;"> <div id='grupo-economico-saldo-final'></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 50%; height: 35px;">Total Entradas</td>
+                                                <td style="width: 50%; height: 35px; text-align: right;"> <div id='grupo-economico-total-entradas'></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 50%; height: 35px;">Total Salidas</td>
+                                                <td style="width: 50%; height: 35px; text-align: right;"> <div id='grupo-economico-total-salidas'></div></td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- SALDOS DE LA CUENTA -->
+                                    <div class="input-field col s12 m6 l4">
+                                    </div>
+
+                                    <!-- RENTABILIDAD -->
+                                    <div class="input-field col s15 m6 l4" style="text-align:center;">
+                                        <div class="card card-resumen background-secundario4-2 border-left-secondary">
+                                            <div class="s12 m8 l4">
+                                                <h6>TIR (E.A.)</h6>
+                                            </div>
+                                            <div id='grupo-economico-tir' style="color: #FF6347;" class="input-field s12 m8 l4"></div>
+                                        </div>
+                                        <div class="card background-secundario4-2 border-left-secondary">
+                                            <div class="s12 m8 l4">
+                                                <h6>PyG</h6>
+                                            </div>
+                                            <div id='grupo-economico-pyg' class="input-field s12 m8 l4"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table id="table-grupo-economico-tirnoper-resumen" class="responsive-table striped Highlight centered table-cliente-tirnoper">
+                                    <caption></caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cuenta</th>
+                                            <th scope="col">ID Cliente</th>
+
+
+                                            <th scope="col">Nombre</th>
+
+                                            <th scope="col">Tipo Movimiento</th>
+                                            <th scope="col">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                                <table id="table-grupo-economico-tirnoper-detalle" class="responsive-table striped Highlight centered table-cliente-tirnoper">
+                                    <caption></caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Nombre de Producto</th>
+                                            <th scope="col">Categoria</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Entradas</th>
+                                            <th scope="col">Salidas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer-component></footer-component>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="modal-loading"></div>
+
+    <div class="modal" id="modal-alert" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title">Informaci&oacute;n</p>
+                </div>
+                <div class="modal-body">
+                    <p id="message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-close-modal" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+    @section scripts{
+        <script src="~/modules/TirNoPer.js"></script>
+        <script src="~/services/TirNoPer.service.js"></script>
+
+        <script>
+            @*var urlObtenerNombreClientes = "@Url.Action("ObtenerNombreClientes", "TirNoPer")";*@
+
+        //init.push(function () {
+        //    tirnoper.inicio();
+        //});
+        //window.PixelAdmin.start(init);
+        //var tirnoper = {
+        //    inicio: function () {
+        //        $('#btnConsultar').click(tirnoper.consultarMovimiento);
+        //    },
+
+        //    consultarMovimiento: function () {
+        //        $.ajax({
+        //            type: "POST",
+        //            url: urlConsultar,
+        //            contentType: "application/json; charset=utf-8",
+        //            data: JSON.stringify({
+        //                "nombre": "variables"
+        //            }),
+        //            success: function (_data) {
+        //                //_data.forEach(element => {
+        //                //    let date = element.fecha;
+        //                //    let value_fecha = '<td>' + date + '</td>';
+        //                //    let value_producto = '<td>' + element.producto + '</td>';
+        //                //    let value_cuenta = '<td>' + element.cuenta + '</td>';
+        //                //    let value_tipo = '<td>' + element.tipo + '</td>';
+        //                //    let value_valor = '<td> $' + separar_numero_en_comas(element.valor) + '</td>';
+
+        //                //    let item = '<tr>' + value_fecha + value_producto + value_cuenta + value_tipo + value_valor + '</tr>';
+
+        //                //    $('#table-cliente-tirnoper-resumen').append(item);
+        //                //});
+
+        //                //let elementsShowDetalail = document.getElementsByClassName("cliente-detalle");
+        //                //for (let value of elementsShowDetalail) {
+        //                //    value.addEventListener('click', obtener_reporte_detalle_movimientos_del_cliente, false);
+        //                //}
+        //            },
+        //            error: function (xhr, status, error) {
+        //                console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+        //               // ExceptionHandler(xhr);
+        //            }
+        //        });
+        //    }
+        //}
+        </script>
+    }

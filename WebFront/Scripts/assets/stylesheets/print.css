@@ -1,0 +1,28 @@
+﻿.font-print {
+    font-family: Calibri;
+}
+
+.font-blue {
+    font-size: 22px;
+    color: dodgerblue;
+}
+
+.font-black {
+    font-size: 15px;
+    color: black;
+}
+
+.font-weight {
+    font-weight: bold;
+}
+
+.upper {
+    text-transform: uppercase !important
+}
+
+.page-print-medium{
+    max-width:600px;
+    margin-top:50px;
+    border:1px solid dodgerblue;
+    border-radius:15px;
+}

@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div id="load-main"></div>
+
+@*<header-component></header-component>*@
+
+<body id="body-main" class="vertical-layout page-header-light vertical-menu-collapsible preload-transitions 2-columns" data-open="click" data-menu="vertical-menu-nav-dark" data-col="2-columns">
+
+    <loader-component></loader-component>
+    <div>
+        <sidebar-component></sidebar-component>
+    </div>
+
+    <div id="main">
+
+
+        <div class="card-content">
+
+            <section id="content-index">
+                <div>
+                    <h2>Soluciones de Informaci&oacute;n Comercial</h2>
+                </div>
+
+            </section>
+
+            <footer-component></footer-component>
+
+        </div>
+    </div>
+
+    <div class="modal-loading"></div>
+
+    <div class="modal" id="modal-alert" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Informaci&oacute;n</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="message"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

@@ -1,0 +1,147 @@
+:root {
+  --principal1: #53565a !important;
+  --principal2: #E56A54 !important;
+  --secundario1: #28334a !important;
+  --secundario2: #7ba4d8 !important;
+  --secundario3: #3f2021 !important;
+  --secundario4: #919D9D !important;
+  --secundario4-1: #919d9d3d !important;
+  --secundario4-2: #919d9d1e !important;
+  --bs-table-striped-color: #212529;
+  --sidebar-margin: 15%;
+  --topbar-margin-height: 4rem;
+  --footer-margin-height: 25px;
+}
+
+.principal1{
+color: var(--principal1);
+}
+.principal2{
+color: var(--principal2);
+}
+.secundario1{
+color: var(--secundario1);
+}
+.secundario2{
+color: var(--secundario2);
+}
+.secundario3{
+color: var(--secundario3);
+}
+.secundario4{
+color: var(--secundario4);
+}
+.secundario4-1{
+color: var(--secundario4-1);
+}
+.secundario4-2{
+color: var(--secundario4-2);
+}
+/*JENEVERS*/
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Regular.otf");
+}
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Medium.otf");
+font-weight: 600;
+}
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Medium Italic.otf");
+font-style: italic;
+font-weight: 600;
+}
+@font-face {
+  font-family: 'Jenevers';
+  src: url("/styles/fonts/TypeType - TT Jenevers Light.otf");
+  font-weight: lighter;
+}  
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Light Italic.otf");
+font-weight: lighter;
+font-style: italic;
+} 
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Italic.otf");
+font-style: italic;
+} 
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers ExtraBold.otf");
+font-weight: bolder;
+} 
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers ExtraBold Italic.otf");
+font-weight: bolder;
+font-style: italic;
+}  
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Bold.otf");
+font-weight: bold;
+}
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Bold Italic.otf");
+font-weight: bold;
+font-style: italic;
+}
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Black.otf"); 
+font-weight: 900;
+}
+@font-face {
+font-family: 'Jenevers';
+src: url("/styles/fonts/TypeType - TT Jenevers Black Italic.otf");
+font-weight: 900;
+font-style: italic;
+}
+/*CABIN*/
+@font-face {
+    font-family: 'Cabin';
+    src: url("/styles/fonts/Cabin-Regular.ttf");
+}
+@font-face {
+  font-family: 'Cabin';
+  src: url("/styles/fonts/Cabin-Bold.ttf") format('truetype');
+  font-weight: bold;
+}
+@font-face {
+font-family: 'Cabin';
+src: url("/styles/fonts/Cabin-BoldItalic.ttf");
+font-weight: bold;
+font-style: italic;
+}
+@font-face {
+font-family: 'Cabin';
+src: url("/styles/fonts/Cabin-Italic.ttf");
+font-style: italic;
+}
+@font-face {
+font-family: 'Cabin';
+src: url("/styles/fonts/Cabin-Medium.ttf");
+font-weight: 300;
+}
+@font-face {
+font-family: 'Cabin';
+src: url("/styles/fonts/Cabin-MediumItalic.ttf");
+font-weight: 300;
+font-style: italic;
+}
+@font-face {
+font-family: 'Cabin';
+src: url("/styles/fonts/Cabin-SemiBold.ttf");
+font-weight: 600;
+}
+@font-face {
+font-family: 'Cabin';
+src: url("/styles/fonts/Cabin-SemiBoldItalic.ttf");
+font-weight: 600;
+font-style: italic;
+}

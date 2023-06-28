@@ -1,0 +1,43 @@
+﻿.formulario {
+    width: 100% !important;
+    top: 28px !important
+}
+
+    .formulario .ui-selectmenu-text {
+        margin-top: 0px !important;
+    }
+
+label.error {
+    color: red;
+    font-size: 10px;
+}
+
+.point-green {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+}
+
+.numero {
+    max-width: 32px;
+    min-height: 32px;
+    font-size: 16px;
+    text-align: center;
+    padding:0px;
+}
+
+
+.let {
+    text-transform: capitalize !important
+}
+
+.badge-stop {
+    background-color: red
+}
+
+.max-montos {
+    background-color: transparent !important;
+    border: none !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
