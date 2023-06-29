@@ -142,5 +142,48 @@ namespace WebFront.Controllers
                 return Json(ex);
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerCuentasPorGrupoEconomico(CuentasPorGrupoEconomicosRequest dataRequest)
+        {
+            try
+            {
+                var clienteResult = Post<CuentasPorGrupoEconomicosRequest, List<CuentasPorGrupoEconomicosResult>>(urlBase + "/api/v1/TirNoPer/ObtenerCuentasPorGrupoEconomico", dataRequest, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerReporteGrupoEconomicoInfo(ClienteInfoRequest dataRequest)
+        {
+            try
+            {
+                var clienteResult = Post<ClienteInfoRequest, List<GrupoEconomicoInfoResult>>(urlBase + "/api/v1/TirNoPer/ObtenerReporteGrupoEconomicoInfo", dataRequest, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerReporteGrupoEconomicoMovimientos(ClienteInfoRequest dataRequest)
+        {
+            try
+            {
+                var clienteResult = Post<ClienteInfoRequest, List<GrupoEconomicoMovimientosResult>>(urlBase + "/api/v1/TirNoPer/ObtenerReporteGrupoEconomicoMovimientos", dataRequest, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
     }
 }

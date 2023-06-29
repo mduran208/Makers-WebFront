@@ -144,6 +144,7 @@
     <Compile Include="Models\Request\ClienteInfoRequest.cs" />
     <Compile Include="Models\Request\ClientesPorGrupoEconomicoRequest.cs" />
     <Compile Include="Models\Request\CuentasPorClienteRequest.cs" />
+    <Compile Include="Models\Request\CuentasPorGrupoEconomicosRequest.cs" />
     <Compile Include="Models\Request\NIPClientesRequest.cs" />
     <Compile Include="Models\Request\NombreClienteRequest.cs" />
     <Compile Include="Models\Request\NombreGrupoEconomicoRequest.cs" />
@@ -152,6 +153,9 @@
     <Compile Include="Models\Result\ClienteMovimientoResult.cs" />
     <Compile Include="Models\Result\ClientesPorGrupoEconomicoResult.cs" />
     <Compile Include="Models\Result\CuentasPorClienteResult.cs" />
+    <Compile Include="Models\Result\CuentasPorGrupoEconomicosResult.cs" />
+    <Compile Include="Models\Result\GrupoEconomicoInfoResult.cs" />
+    <Compile Include="Models\Result\GrupoEconomicoMovimientosResult.cs" />
     <Compile Include="Models\Result\NipClientesResult.cs" />
     <Compile Include="Models\Result\NombreGrupoEconomicoResult.cs" />
     <Compile Include="Models\Result\UsuarioResult.cs" />
