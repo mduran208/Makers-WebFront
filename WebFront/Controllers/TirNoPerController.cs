@@ -128,5 +128,19 @@ namespace WebFront.Controllers
                 return Json(ex);
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerClientesPorGrupoEconomico(ClientesPorGrupoEconomicoRequest dataRequest)
+        {
+            try
+            {
+                var clienteResult = Post<ClientesPorGrupoEconomicoRequest, List<ClientesPorGrupoEconomicoResult>>(urlBase + "/api/v1/TirNoPer/ObtenerClientesPorGrupoEconomico", dataRequest, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
     }
 }

@@ -142,6 +142,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Request\ClienteInfoRequest.cs" />
+    <Compile Include="Models\Request\ClientesPorGrupoEconomicoRequest.cs" />
     <Compile Include="Models\Request\CuentasPorClienteRequest.cs" />
     <Compile Include="Models\Request\NIPClientesRequest.cs" />
     <Compile Include="Models\Request\NombreClienteRequest.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Models\Request\UsuarioRequest.cs" />
     <Compile Include="Models\Result\ClienteInfoResult.cs" />
     <Compile Include="Models\Result\ClienteMovimientoResult.cs" />
+    <Compile Include="Models\Result\ClientesPorGrupoEconomicoResult.cs" />
     <Compile Include="Models\Result\CuentasPorClienteResult.cs" />
     <Compile Include="Models\Result\NipClientesResult.cs" />
     <Compile Include="Models\Result\NombreGrupoEconomicoResult.cs" />

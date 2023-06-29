@@ -389,3 +389,26 @@ function autocomplete_obtener_grupo_economico() {
         });
     }
 }
+
+function autocomplete_obtener_clientes_grupo_economico(grupo_economico) {
+    $('#select-cliente-grupo-economico').empty();
+    $.ajax({
+        url: "/TirNoPer/ObtenerClientesPorGrupoEconomico",
+        data: JSON.stringify({
+            "Categoria": grupo_economico
+        }),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: function (_data) {
+            $('#select-cliente-grupo-economico').append('<option value="-1" selected>TODAS</option>');
+            _data.forEach(element => {
+                $('#select-cliente-grupo-economico').append('<option value="' + element.IdCliente + '">' + element.Nombre + '</option>');
+            });
+            $("#select-cliente-grupo-economico").formSelect();
+        },
+        error: function (xhr, status, error) {
+            error(xhr, status, error);
+        }
+    });
+}
