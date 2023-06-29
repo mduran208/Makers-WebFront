@@ -322,6 +322,8 @@ function obtener_reporte_detalle_movimientos_del_cliente() {
             "OPT_SELECTED": _OPCION_SELECTED,
             "CUENTA_SELECTED": _CUENTA_SELECTED
         }),
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data) {
             successClientesMovimientos(_data, '#table-cliente-tirnoper-detalle', element.valor == _VALOR)
         },
@@ -351,4 +353,39 @@ function successClientesMovimientos(_data, _table, condicion) {
 function error(xhr, status, error) {
     console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
     ExceptionHandler(xhr);
+}
+
+function autocomplete_obtener_grupo_economico() {
+
+    let term = $("#autocomplete-grupo-economico").val();
+    let _CLIENTE_AUTOCOMPLETE = [];
+
+    if (term.length > 2) {
+
+        $.ajax({
+            url:  "/TirNoPer/ObtenerNombreGrupoEconomico",
+            data: JSON.stringify({
+                "Term": term
+            }),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (_data) {
+                _data.forEach(element => {
+                    _CLIENTE_AUTOCOMPLETE[element] = null;
+                });
+                $("#autocomplete-grupo-economico").autocomplete({
+                    data: _CLIENTE_AUTOCOMPLETE,
+                    onAutocomplete: function (val) {
+                        autocomplete_obtener_clientes_grupo_economico(val);
+                    }
+                });
+                return _data;
+            },
+            error: function (xhr, status, error) {
+                console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                ExceptionHandler(xhr);
+            }
+        });
+    }
 }
