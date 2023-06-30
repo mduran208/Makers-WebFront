@@ -1,0 +1,508 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<body id="body-main" class="vertical-layout page-header-light vertical-menu-collapsible preload-transitions 2-columns" data-open="click" data-menu="vertical-menu-nav-dark" data-col="2-columns">
+    <!-- COMPONENTES COMPARTIDOS -->
+    <loader-component></loader-component>
+    <sidebar-component></sidebar-component>
+
+    <div id="main">
+
+        <input type="hidden" id="procesoFinalizado" value="false" />
+        <input type="hidden" id="procesoFinalizadoTEB" value="false" />
+        <input type="hidden" id="procesoFinalizadoFics" value="false" />
+        <input type="hidden" id="procesoFinalizadoCtaInv" value="false" />
+        <input type="hidden" id="procesoFinalizadoSaldos" value="false" />
+        <input type="hidden" id="procesoFinalizadoCargaCompleta" value="false" />
+
+        <div class="card-content">
+
+            <section id="content">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5>TIR | Panel Administrativo</h5>
+
+                        </div>
+                    </div>
+                    <hr class="solid">
+                </div>
+
+                <div class="container">
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item col m3">
+                            <a id='tab-procesamiento' class="nav-link active" href="#procesamiento">Procesamiento</a>
+                        </li>
+                        <li class="nav-item col m3">
+                            <a id='tab-informes' class="nav-link" href="#informes">Informes</a>
+                        </li>
+                        <li class="nav-item col m3">
+                            <a id='tab-bloqueos' class="nav-link" href="#bloqueos">Bloqueos</a>
+                        </li>
+                    </ul>
+
+                    <!-- INI PROCESAMIENTO -->
+                    <div id="procesamiento" class="col s12">
+
+                        <ul class="collapsible">
+                            <!-- INI PROCESAMIENTO CARGA - COMPLETA -->
+                            <li>
+                                <div class="collapsible-header">
+                                    <em class="material-icons">arrow_drop_down</em>
+                                    Secci&oacute;n de carga | Completa
+                                </div>
+
+                                <div class="collapsible-body">
+                                    <div id="contenedorComprobantes" class="card-body">
+                                        <div class="row">
+
+                                            <div class="card-panel no-top-margin">
+                                                <h5>Ejecutar carga</h5>
+                                                <br />
+                                                <div class="panel-body col-md-12">
+                                                    <div class="col-md-12 text-left">
+                                                        <h6>Procesar la informaci&oacute;n de carga para la siguiente fecha de corte:</h6>
+                                                        <br />
+                                                    </div>
+                                                    <div class="input-field col-md-6">
+                                                        <em class="material-icons prefix">date_range</em>
+                                                        <input type="date" id="fechaCargaCompleta">
+                                                        <label for="fechaCargaCompleta" class="up-label">Fecha de corte:</label>
+                                                        <a class="btn btnProcesarCargaCompleta">PROCESAR</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-panel no-top-margin">
+                                                <h5>Informe de ejecuci&oacute;n</h5>
+                                                <br />
+                                                <div class="panel-body col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4 text-left filaTexto">Estado de ejecuci&oacute;n:</div>
+                                                        <div class="col-md-8 text-left fila"><input type="text" id="txtEstadoEjecucionCargaCompleta" class="form-control" readonly /></div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-4 text-left filaTexto">Detalle:</div>
+                                                        <div class="col-md-8 text-left fila">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <textarea id="txtDetallesCargaCompleta" class="form-control col-md-12" readonly></textarea>
+                                                                </div>
+                                                                <div class="input-field" style="width:100% !important;">
+                                                                    <a class="btn btnObtenerDetallesCargaCompleta" style="width: 100% !important;">ACTUALIZAR</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- FIN PROCESAMIENTO CARGA - COMPLETA -->
+                            <!-- INI PROCESAMIENTO CARGA - T&iacute;tulos Extraburs&aacute;tiles -->
+                            <li>
+                                <div class="collapsible-header">
+                                    <em class="material-icons">arrow_drop_down</em>
+                                    Secci&oacute;n de carga | T&iacute;tulos extraburs&aacute;tiles
+                                </div>
+
+                                <div class="collapsible-body">
+                                    <div id="contenedorComprobantes" class="card-body">
+
+                                        <div class="row">
+                                            <div class="card-panel no-top-margin">
+                                                <h5>Ejecutar carga</h5>
+                                                <br />
+                                                <div class="panel-body col-md-12">
+                                                    <div class="col-md-12 text-left">
+                                                        <h6>Procesar la informaci&oacute;n de carga para una fecha de corte:</h6>
+                                                        <br />
+                                                    </div>
+                                                    <div class="input-field col-md-6">
+                                                        <em class="material-icons prefix">date_range</em>
+                                                        <input type="date" id="fechaCargaTEB">
+                                                        <label for="fechaCargaTEB" class="up-label">Fecha de corte:</label>
+                                                        <a class="btn btnProcesarCargaTEB">PROCESAR</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card-panel no-top-margin">
+                                            <h5>Informe de ejecuci&oacute;n</h5>
+                                            <br />
+                                            <div class="panel-body col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Estado de ejecuci&oacute;n:</div>
+                                                    <div class="col-md-8 text-left fila"><input type="text" id="txtEstadoEjecucionTEB" class="form-control" readonly /></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Detalle:</div>
+                                                    <div class="col-md-8 text-left fila">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <textarea id="txtDetallesTEB" class="form-control col-md-12" readonly></textarea>
+                                                            </div>
+                                                            <div class="input-field">
+                                                                <a class="btn btnObtenerDetallesTEB">ACTUALIZAR</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- FIN PROCESAMIENTO CARGA - T&iacute;tulos Extraburs&aacute;tiles -->
+                            <!-- INI PROCESAMIENTO CARGA - Fics -->
+                            <li>
+                                <div class="collapsible-header">
+                                    <em class="material-icons">arrow_drop_down</em>
+                                    Secci&oacute;n de carga | Fics
+                                </div>
+
+                                <div class="collapsible-body">
+                                    <div id="contenedorComprobantes" class="card-body">
+
+                                        <div class="row">
+                                            <div class="card-panel no-top-margin">
+                                                <h5>Ejecutar carga</h5>
+                                                <br />
+                                                <div class="panel-body col-md-12">
+                                                    <div class="col-md-12 text-left">
+                                                        <h6>Procesar la informaci&oacute;n de carga para una fecha de corte:</h6>
+                                                        <br />
+                                                    </div>
+                                                    <div class="input-field col-md-6">
+                                                        <em class="material-icons prefix">date_range</em>
+                                                        <input type="date" id="fechaCargaFics">
+                                                        <label for="fechaCargaFics" class="up-label">Fecha de corte:</label>
+                                                        <a class="btn btnProcesarCargaFics">PROCESAR</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card-panel no-top-margin">
+                                            <h5>Informe de ejecuci&oacute;n</h5>
+                                            <br />
+                                            <div class="panel-body col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Estado de ejecuci&oacute;n:</div>
+                                                    <div class="col-md-8 text-left fila"><input type="text" id="txtEstadoEjecucionCargaFics" class="form-control" readonly /></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Detalle:</div>
+                                                    <div class="col-md-8 text-left fila">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <textarea id="txtDetallesCargaFics" class="form-control col-md-12" readonly></textarea>
+                                                            </div>
+                                                            <div class="input-field">
+                                                                <a class="btn btnObtenerDetallesFics">ACTUALIZAR</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- FIN PROCESAMIENTO CARGA - Fic´s -->
+                            <!-- INI PROCESAMIENTO CARGA - Cuenta de Inversi&oacute;n -->
+                            <li>
+                                <div class="collapsible-header">
+                                    <em class="material-icons">arrow_drop_down</em>
+                                    Secci&oacute;n de carga | Cuentas de inversi&oacute;n
+                                </div>
+
+                                <div class="collapsible-body">
+                                    <div id="contenedorComprobantes" class="card-body">
+
+                                        <div class="row">
+                                            <div class="card-panel no-top-margin">
+                                                <h5>Ejecutar carga</h5>
+                                                <br />
+                                                <div class="panel-body col-md-12">
+                                                    <div class="col-md-12 text-left">
+                                                        <h6>Procesar la informaci&oacute;n de carga para una fecha de corte:</h6>
+                                                        <br />
+                                                    </div>
+                                                    <div class="input-field col-md-6">
+                                                        <em class="material-icons prefix">date_range</em>
+                                                        <input type="date" id="fechaCargaCuentaInv">
+                                                        <label for="fechaCargaCuentaInv" class="up-label">Fecha de corte:</label>
+                                                        <a class="btn btnProcesarCuentasInv">PROCESAR</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card-panel no-top-margin">
+                                            <h5>Informe de ejecuci&oacute;n</h5>
+                                            <br />
+                                            <div class="panel-body col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Estado de ejecuci&oacute;n:</div>
+                                                    <div class="col-md-8 text-left fila"><input type="text" id="txtEstadoEjecucionCargaCuentaInv" class="form-control" readonly /></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Detalle:</div>
+                                                    <div class="col-md-8 text-left fila">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <textarea id="txtDetallesCargaCuentaInv" class="form-control col-md-12" readonly></textarea>
+                                                            </div>
+                                                            <div>
+                                                                <a class="btn btnObtenerDetallesCuentasInv">ACTUALIZAR</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- FIN PROCESAMIENTO CARGA - Cuenta de Inversi&oacute;n -->
+                            <!-- INI PROCESAMIENTO CARGA - Saldos -->
+                            <li>
+                                <div class="collapsible-header">
+                                    <em class="material-icons">arrow_drop_down</em>
+                                    Secci&oacute;n de carga | Saldos
+                                </div>
+
+                                <div class="collapsible-body">
+                                    <div id="contenedorComprobantes" class="card-body">
+
+                                        <div class="row">
+                                            <div class="card-panel no-top-margin">
+                                                <h5>Ejecuci&oacute;n</h5>
+                                                <br />
+                                                <div class="panel-body col-md-12">
+                                                    <div class="col-md-12 text-left">
+                                                        <h6>Procesar la informaci&oacute;n de carga para una fecha de corte:</h6>
+                                                        <br />
+                                                    </div>
+                                                    <div class="input-field col-md-6">
+                                                        <em class="material-icons prefix">date_range</em>
+                                                        <input type="date" id="fechaCargaSaldos">
+                                                        <label for="fechaCargaSaldos" class="up-label">Fecha de corte:</label>
+                                                        <a class="btn btnProcesarSaldos">PROCESAR</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card-panel no-top-margin">
+                                            <h5>Informe de ejecuci&oacute;n</h5>
+                                            <br />
+                                            <div class="panel-body col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Estado de ejecuci&oacute;n:</div>
+                                                    <div class="col-md-8 text-left fila"><input type="text" id="txtEstadoEjecucionCargaSaldos" class="form-control" readonly /></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Detalle:</div>
+                                                    <div class="col-md-8 text-left fila">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <textarea id="txtDetallesCargaSaldos" class="form-control col-md-12" readonly></textarea>
+                                                            </div>
+                                                            <div>
+                                                                <a class="btn btnObtenerDetallesSaldos">ACTUALIZAR</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- FIN PROCESAMIENTO CARGA - Saldos -->
+                            <!-- INI PROCESAMIENTO EXTRACCIÓN SALESFORCE -->
+                            <li>
+                                <div class="collapsible-header">
+                                    <em class="material-icons">arrow_drop_down</em>
+                                    Secci&oacute;n de carga | Extracci&oacute;n Salesforce
+                                </div>
+
+                                <div class="collapsible-body">
+                                    <div id="contenedorComprobantes" class="card-body">
+
+                                        <div class="row">
+                                            <div class="card-panel no-top-margin">
+                                                <h5>Ejecutar extracci&oacute;n</h5>
+                                                <br />
+                                                <div class="panel-body col-md-12">
+                                                    <div class="input-field col-md-6">
+                                                        <a class="btn btnProcesarExtraccionSalesforce">PROCESAR</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card-panel no-top-margin">
+                                            <h5>Informe de ejecuci&oacute;n</h5>
+                                            <br />
+                                            <div class="panel-body col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Estado de ejecuci&oacute;n:</div>
+                                                    <div class="col-md-8 text-left fila"><input type="text" id="txtEstadoEjecucionExtraccionSalesforce" class="form-control" readonly /></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 text-left filaTexto">Detalle:</div>
+                                                    <div class="col-md-8 text-left fila">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <textarea id="txtDetallesExtraccionSalesforce" class="form-control col-md-12" readonly></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- FIN PROCESAMIENTO CARGA - Fic´s -->
+                    </div>
+
+                    <!-- FIN PROCESAMIENTO -->
+                    <!-- INI INFORMES -->
+                    <div id="informes">
+
+                        <div class="card-panel no-top-margin">
+                            <!-- Filtro B&uacute;squeda -->
+                            <br />
+                            <h5>Seleccionar informe:</h5>
+                            <br />
+                            <!-- Fin Filtro B&uacute;squeda -->
+                            <div class="row">
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="input-field col-md-12">
+                                            <em class="material-icons prefix">search</em>
+                                            <select type="text" class="selectpicker" id="categoriaInforme"></select>
+                                            <label for="categoriaInforme" class="up-label">Seleccionar categoria de informes:</label>
+                                        </div>
+                                        <br />
+                                        <div class="input-field col-md-12">
+                                            <em class="material-icons prefix">search</em>
+                                            <select type="text" class="selectpicker" id="listInformes"></select>
+                                            <label for="listInformes" class="up-label">Seleccionar informe:</label>
+                                        </div>
+                                    </div>
+                                </form>
+                                <br />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12" id="divReportes"></div>
+                        </div>
+
+                    </div>
+                    <!-- FIN INFORMES -->
+                    <!-- INI BLOQUEOS -->
+                    <div id="bloqueos">
+
+                        <div class="card-panel no-top-margin">
+                            <!-- Filtro B&uacute;squeda -->
+                            <br />
+                            <h5>Ingresar nuevo bloqueo</h5>
+                            <br />
+                            <!-- Fin Filtro B&uacute;squeda -->
+
+                            <div class="row">
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="input-field col-md-6">
+                                            <em id="search-cliente" class="material-icons prefix">search</em>
+                                            <input type="text" id="txtIdClienteBloqueo" class="autocomplete" maxlength="30">
+                                            <label for="txtIdClienteBloqueo" class="up-label">Identificaci&oacute;n:</label>
+                                        </div>
+                                        <div class="input-field col-md-6">
+                                            <em id="search-cliente" class="material-icons prefix">input</em>
+                                            <input type="text" id="txtObservacionBloqueo" class="autocomplete" maxlength="30">
+                                            <label for="txtObservacionBloqueo" class="up-label">Observaci&oacute;n:</label>
+                                        </div>
+
+                                    </div>
+                                    <a class="btn nuevo-bloqueo">INGRESAR</a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <table id="tabla-bloqueos" class="table table-striped table-bordered table-cliente-tirnoper">
+                            <caption></caption>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NIP</th>
+                                    <th>NOMBRE</th>
+                                    <th>OBSERVACI&Oacute;N</th>
+                                    <th>ELIMINAR BLOQUEO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- FIN BLOQUEOS -->
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <footer-component></footer-component>
+
+    </div>
+
+
+
+    <div class="modal-loading"></div>
+
+    <div class="modal fade" id="modal-alert" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title">Informaci&oacute;n</p>
+                </div>
+                <div class="modal-body">
+                    <p id="message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-close-modal" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section scripts{
+    <script src="~/modules/TirNoPerPanelAdministrativo.js"></script>
+    <script src="~/services/TirNoPerPanelAdministrativo.service.js"></script>
+
+}

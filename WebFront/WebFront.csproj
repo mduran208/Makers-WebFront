@@ -137,16 +137,33 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TirNoPerAdministrativoController.cs" />
     <Compile Include="Controllers\TirNoPerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Request\CargarVariosRequest.cs" />
+    <Compile Include="Models\Request\CategoriaRequest.cs" />
     <Compile Include="Models\Request\ClienteInfoRequest.cs" />
+    <Compile Include="Models\Request\CorreccionGuardarRequest.cs" />
+    <Compile Include="Models\Request\CorreccionRequest.cs" />
+    <Compile Include="Models\Request\DetalleProcesoRequest.cs" />
+    <Compile Include="Models\Request\FechaRequest.cs" />
+    <Compile Include="Models\Request\LoteRequest.cs" />
     <Compile Include="Models\Request\NombreClienteRequest.cs" />
     <Compile Include="Models\Request\UsuarioRequest.cs" />
+    <Compile Include="Models\Result\BloqueoResult.cs" />
+    <Compile Include="Models\Result\CategoriaResult.cs" />
     <Compile Include="Models\Result\ClienteInfoResult.cs" />
     <Compile Include="Models\Result\ClienteMovimientoResult.cs" />
+    <Compile Include="Models\Result\CorreccionGuardarResult.cs" />
+    <Compile Include="Models\Result\CorreccionResult.cs" />
+    <Compile Include="Models\Result\DetalleProcesoResult.cs" />
+    <Compile Include="Models\Result\EjecutaCargaResult.cs" />
+    <Compile Include="Models\Result\LoteResult.cs" />
+    <Compile Include="Models\Result\RolesResult.cs" />
     <Compile Include="Models\Result\UsuarioResult.cs" />
+    <Compile Include="Models\Result\VerificarEstadoTareaResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1716,6 +1733,7 @@
     <Content Include="styles\fonts\TypeType - TT Jenevers Medium.otf" />
     <Content Include="styles\fonts\TypeType - TT Jenevers Regular.otf" />
     <Content Include="Views\TirNoPer\TirNoPer.cshtml" />
+    <Content Include="Views\TirNoPerAdministrativo\TirNoPerAdministrativo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

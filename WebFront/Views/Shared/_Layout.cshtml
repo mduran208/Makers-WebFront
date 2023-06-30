@@ -1,9 +1,15 @@
 ﻿@using WebFront.Models.Result;
 @{
-    UsuarioResult User = new UsuarioResult(); ;
+    UsuarioResult User = new UsuarioResult(); 
     try
     {
         User = ViewBag.User;
+    }
+    catch { }
+    Boolean Panel = false;
+    try
+    {
+        Panel = ViewBag.Panel;
     }
     catch { }
 
@@ -102,6 +108,16 @@
                 $(window).on('pa.resize', setEqHeight);
                 $(window).resize();
             });
+            if ('@Panel' == 'True') {
+                if ($('#tirnoper-menu-pa').length === 0) {
+                    $("#tirnoper-menu").append('<li id="tirnoper-menu-pa"><a href="/TirNoPerAdministrativo/TirNoPerAdministrativo" class="link-dark rounded">Panel Administrativo</a></li>');
+                }
+            }
+            else {
+                if ($('#tirnoper-menu-pa').length > 0) {
+                    $("#tirnoper-menu-pa").remove();
+                }
+            }
         });
         window.PixelAdmin.start(init);
 
@@ -124,3 +140,7 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script>
+    
+</script> 

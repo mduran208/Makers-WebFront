@@ -31,6 +31,7 @@ namespace WebFront.Controllers
                 user = HttpWebClient.Post<UsuarioRequest, UsuarioResult>(urlBase + "/api/auth/validate", new UsuarioRequest() { }, token);
                 Session["User"] = user;
                 Session["Token"] = token;
+                GetRoles();
             }
             ViewBag.User = user;
             return View();
@@ -38,7 +39,20 @@ namespace WebFront.Controllers
 
         public void GetRoles()
         {
-            var rol = HttpWebClient.Post<UsuarioRequest, UsuarioResult>(urlBase + "/api/v1/TirNoPer/ObtenerPARoles", new UsuarioRequest() { }, (string)Session["Token"]);
+            var panel = false;
+            var roles = HttpWebClient.Post<UsuarioRequest, List<RolesResult>>(urlBase + "/api/v1/TirNoPer/ObtenerPARoles", new UsuarioRequest() { }, (string)Session["Token"]);
+            var acceso = HttpWebClient.Post<UsuarioRequest, string>(urlBase + "/api/auth/validate-access", new UsuarioRequest() { }, (string)Session["Token"]);
+            if(Convert.ToBoolean(acceso))
+            {
+                var user = (UsuarioResult)Session["User"];
+                roles.ForEach(r =>
+                {
+                    if (r.rol == user.role)
+                        panel = true;
+                });
+            }
+            Session["Panel"] = panel;
+            ViewBag.Panel = panel;
         }
     }
 }

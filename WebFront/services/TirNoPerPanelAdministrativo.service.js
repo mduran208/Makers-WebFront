@@ -146,15 +146,13 @@ function ConsultarCategoriasCorrecciones(){
     $("#cmbCategoria").empty();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerCategorias",
+        url: "/TirNoPerAdministrativo/ObtenerCategorias",
         data: JSON.stringify({
             "CATEGORIA": "CategoriaCorrecciones"
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             $.each(data, function (index, value) {
                 if(value.nombreCategoria.length > 0){
@@ -171,8 +169,6 @@ function ConsultarCategoriasCorrecciones(){
 }
 
 function ConsultarLote(fechaProceso) {
-
-
     $("#txtEstadoEjecucionValoracion").css("background-color", "");
     $("#txtEstadoEjecucionValoracion").val("");
 
@@ -180,15 +176,13 @@ function ConsultarLote(fechaProceso) {
     $("#txtDetallesValoracion").val("");
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerLotes",
+        url: "/TirNoPerAdministrativo/ObtenerLotes",
         data: JSON.stringify({
             "FECHA": fechaProceso
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             if (data.lote == 0) {
                 $("#btnEjecutarValoracion").prop("disabled", true);
@@ -202,17 +196,17 @@ function ConsultarLote(fechaProceso) {
                 $("#btnEjecutarValoracion").prop("disabled", true);
                 $("#idLote").val("");
                 
-                $.ajax({
-                    url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerCorreosError",
-                    data: JSON.stringify({ 
-                        "FECHA": fechaProceso 
-                    }),
-                    type: "POST",
-                    headers: {
-                        "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                        "Content-Type": "application/json"
-                    },
-                });
+                //$.ajax({
+                //    url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerCorreosError",
+                //    data: JSON.stringify({ 
+                //        "FECHA": fechaProceso 
+                //    }),
+                //    type: "POST",
+                //    headers: {
+                //        "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
+                //        "Content-Type": "application/json"
+                //    },
+                //});
                 
                 $(".modal-title").text("Alerta");
                 $("#message").html("Se encontraron mas de 1 lote en la fecha especicicada. Por favor comun&iacute;quese con el &aacute;rea de soporte");
@@ -228,8 +222,6 @@ function ConsultarLote(fechaProceso) {
             ExceptionHandler(xhr);
         }
     });
-
-
 }
 
 function CargarTitulosExtrabursatiles() {
@@ -243,15 +235,13 @@ function CargarTitulosExtrabursatiles() {
     let fechaCarga = $("#fechaCargaTEB").val();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/EjecutarCargaTEB",
+        url: "/TirNoPerAdministrativo/EjecutarCargaTEB",
         data: JSON.stringify({ 
             "FECHA": fechaCarga 
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             if (data.respuesta == "Proceso ocupado") {
                 $(".modal-title").text("Alerta");
@@ -259,8 +249,6 @@ function CargarTitulosExtrabursatiles() {
                 $("#modal-alert").modal("show");
             }
             else {
-                sessionStorage.setItem("CargaTEB", data.id_proceso);
-
                 limpiar_campos();
 
                 $("#txtEstadoEjecucionTEB").val("");
@@ -299,23 +287,18 @@ function EjecutarValoracion() {
     let  nroLote = $("#idLote").val();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerValoracionTEB",
+        url: "/TirNoPerAdministrativo/ObtenerValoracionTEB",
         data: JSON.stringify({ 
             "ID": nroLote 
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
-
             if (data.respuesta == "Proceso ocupado") {
                 MensajeModal("Alerta","En el momento hay un proceso en ejecuci&oacute;n. Por favor, int&eacute;ntelo mas tarde");
             }
             else {
-                sessionStorage.setItem("ValoracionTEB", data.id_proceso);  
-
                 limpiar_campos();
 
                 $("#txtEstadoEjecucionValoracion").val("");
@@ -392,22 +375,20 @@ function CargarVarios(cuenta) {
     let fechaCarga = $(fecha).val();
 
     $.ajax({
-        url: API_URL_BASE + url,
+        url: "/TirNoPerAdministrativo/CargarVarios",
         data: JSON.stringify({ 
-            "FECHA": fechaCarga 
+            "FECHA": fechaCarga,
+            "Url": url,
+            "IdSession": idSession,
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             if (data.respuesta == "Proceso ocupado") {
                 MensajeModal("Alerta","En el momento hay un proceso en ejecuci&oacute;n. Por favor, int&eacute;ntelo mas tarde");
             }
             else {
-                sessionStorage.setItem(idSession, data.id_proceso); 
-
                 switch(cuenta){
                     case "Fics":
                         limpiarCamposFics();
@@ -475,12 +456,10 @@ function CargarSaldos() {
 function ExtraccionSalesforce() {
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/EjecutarExtraccionSalesforce",
+        url: "/TirNoPerAdministrativo/EjecutarExtraccionSalesforce",
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             if (data.respuesta == "Proceso ocupado") {
                 MensajeModal("Alerta","En el momento hay un proceso en ejecuci&oacute;n. Por favor, int&eacute;ntelo mas tarde");
@@ -558,12 +537,14 @@ function VerificarEstadoTarea(tipo)
     }
 
     $.ajax({
-        url: API_URL_BASE + url,
+        url: "/TirNoPerAdministrativo/VerificarEstadoTarea",
+        data: JSON.stringify({
+            "Url": url,
+            "Tipo": tipo
+        }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data){
             if (data){
                 if($(proceso).val() === "true"){
@@ -626,56 +607,34 @@ function VerificarEstadoTareaCargaCompleta() {
 function ObtenerDetallesProcesoTEB(Proceso, Finalizado) {
 
     if (Proceso === "cargaTitulos") {
-
-        if (sessionStorage.getItem("CargaTEB") === null || sessionStorage.getItem("CargaTEB") === undefined) {
-            MensajeModal("<span style='font-weight:bold;'>Alerta</span>","No se ha ejecutado una carga de titulos");
+        if (Finalizado.GUID === null || Finalizado.GUID === undefined) {
+            MensajeModal("<span style='font-weight:bold;'>Alerta</span>", "No se ha ejecutado una carga de titulos");
             return;
         }
-
-        $.ajax({
-            url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerDetalleProceso",
-            data: JSON.stringify({
-                "GUID": sessionStorage.getItem("CargaTEB")
-            }),
-            type: "POST",
-            headers: {
-                "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                "Content-Type": "application/json"
-            },
-            success: function (data) {
-                //
-				VerificaFinalizado(Finalizado, data);
-            },
-            error: function (xhr, status, error) {
-                console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
-                ExceptionHandler(xhr);
-            }
-        });
     }
 
-    if (Proceso === "valoracionTitulos") {
-
-        $.ajax({
-            url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerDetalleProceso",
-            data: JSON.stringify({
-                "GUID": sessionStorage.getItem("ValoracionTEB")
-            }),
-            type: "POST",
-            headers: {
-                "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                "Content-Type": "application/json"
-            },
-            success: function (data) {
-
+    $.ajax({
+        url: "/TirNoPerAdministrativo/ObtenerDetalleProceso",
+        data: JSON.stringify({
+            "GUID": Finalizado.GUID
+        }),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: function (data) {
+            if (Proceso === "cargaTitulos") {
+                VerificaFinalizado(Finalizado, data);
+            }
+            else {
                 if (data.estado == "En Ejecucion...") {
                     $("#txtEstadoEjecucionValoracion").css("background-color", "orange");
                     $("#txtEstadoEjecucionValoracion").val(data.estado);
 
                     $("#txtDetallesValoracion").css("background-color", "orange");
-                    $("#txtDetallesValoracion").val("Hora Inicio: " + data.horaInicio 
-                                                + " | Hora Fin: " + data.horaFin 
-                                                + " | Tiempo transcurrido: " + data.tiempoEjecucion 
-                                                + " | Lote: " + data.lote);
+                    $("#txtDetallesValoracion").val("Hora Inicio: " + data.horaInicio
+                        + " | Hora Fin: " + data.horaFin
+                        + " | Tiempo transcurrido: " + data.tiempoEjecucion
+                        + " | Lote: " + data.lote);
                     $("#procesoFinalizado").val("false");
                 }
 
@@ -684,10 +643,10 @@ function ObtenerDetallesProcesoTEB(Proceso, Finalizado) {
                     $("#txtEstadoEjecucionValoracion").val("Finalizado correctamente");
 
                     $("#txtDetallesValoracion").css("background-color", "Chartreuse");
-                    $("#txtDetallesValoracion").val("Hora Inicio: " + data.horaInicio 
-                                                + " | Hora Fin: " + data.horaFin 
-                                                + " | Tiempo transcurrido: " + data.tiempoEjecucion 
-                                                + " | Lote: " + data.lote);
+                    $("#txtDetallesValoracion").val("Hora Inicio: " + data.horaInicio
+                        + " | Hora Fin: " + data.horaFin
+                        + " | Tiempo transcurrido: " + data.tiempoEjecucion
+                        + " | Lote: " + data.lote);
                     $("#btnEjecutarValoracion").prop("disabled", false);
                     $("#fechaCarga").prop("disabled", false);
                     $("#fechaValoracion").prop("disabled", false);
@@ -699,23 +658,24 @@ function ObtenerDetallesProcesoTEB(Proceso, Finalizado) {
                     $("#txtEstadoEjecucionValoracion").val(data.estado);
 
                     $("#txtDetallesValoracion").css("background-color", "red");
-                    $("#txtDetallesValoracion").val("Hora Inicio: " + data.horaInicio 
-                                                + " | Hora Fin: " + data.horaFin 
-                                                + " | Tiempo transcurrido: " + data.tiempoEjecucion 
-                                                + " | Lote: " + data.lote);
+                    $("#txtDetallesValoracion").val("Hora Inicio: " + data.horaInicio
+                        + " | Hora Fin: " + data.horaFin
+                        + " | Tiempo transcurrido: " + data.tiempoEjecucion
+                        + " | Lote: " + data.lote);
                     $("#btnEjecutarValoracion").prop("disabled", false);
                     $("#fechaCarga").prop("disabled", false);
                     $("#fechaValoracion").prop("disabled", false);
                     $("#procesoFinalizado").val("true");
                 }
-            },
-            error: function (xhr, status, error) {
-                console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
-                ExceptionHandler(xhr);
             }
-        });
-    }
-   }
+			
+        },
+        error: function (xhr, status, error) {
+            console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+            ExceptionHandler(xhr);
+        }
+    });
+}
 
 function VerificaFinalizado(Finalizado, data){
     AplicarEstilos(Finalizado, data, "#txtEstadoEjecucionTEB", "#txtDetallesTEB", "", "#fechaCargaTEB", "#procesoFinalizadoTEB");
@@ -751,9 +711,7 @@ function AplicarEstilos(Finalizado, data, estadoEjecucion, detalles, procesar, f
 }
 
 function ObtenerDetallesProceso(tipo, Finalizado) {
-    let carga = "";
     let mensaje = "";
-    let url = "/api/v1/TirNoPer/PA/ObtenerDetalleProceso";
     let estadoEjecucion = "";
     let detalle = "";
     let btnProcesar = "";
@@ -761,7 +719,6 @@ function ObtenerDetallesProceso(tipo, Finalizado) {
     let procesoFinal = "";
     switch(tipo) {
         case "Fics":
-            carga = "CargaFICS";
             mensaje = "No se ha ejecutado una carga de Fics";
             estadoEjecucion = "#txtEstadoEjecucionCargaFics";
             detalle = "#txtDetallesCargaFics";
@@ -770,7 +727,6 @@ function ObtenerDetallesProceso(tipo, Finalizado) {
             procesoFinal = "#procesoFinalizadoFics";
             break;
         case "CtaInv":
-            carga = "CargaCTAINV";
             mensaje = "No se ha ejecutado una carga de Cuentas Inversion";
             estadoEjecucion = "#txtEstadoEjecucionCargaCuentaInv";
             detalle = "#txtDetallesCargaCuentaInv";
@@ -779,7 +735,6 @@ function ObtenerDetallesProceso(tipo, Finalizado) {
             procesoFinal = "#procesoFinalizadoCtaInv";
             break;
         case "Saldos":
-            carga = "CargaSALDOS";
             mensaje = "No se ha ejecutado una carga de Saldos";
             estadoEjecucion = "#txtEstadoEjecucionCargaSaldos";
             detalle = "#txtDetallesCargaSaldos";
@@ -788,7 +743,6 @@ function ObtenerDetallesProceso(tipo, Finalizado) {
             procesoFinal = "#procesoFinalizadoSaldos";
             break;
         case "CargaCompleta":
-            carga = "CargaCOMPLETA";
             mensaje = "No se ha ejecutado una carga completa";
             estadoEjecucion = "#txtEstadoEjecucionCargaCompleta";
             detalle = "#txtDetallesCargaCompleta";
@@ -798,21 +752,19 @@ function ObtenerDetallesProceso(tipo, Finalizado) {
             break;
     }
 
-    if (sessionStorage.getItem(carga) === null || sessionStorage.getItem(carga) === undefined) {
+    if (Finalizado.GUID === null || Finalizado.GUID === undefined) {
         MensajeModal("<span style='font-weight:bold;'>Alerta</span>",mensaje);
         return;
     }
 
     $.ajax({
-        url: API_URL_BASE + url,
+        url: "/TirNoPerAdministrativo/ObtenerDetalleProceso",
         data: JSON.stringify({
-            "GUID": sessionStorage.getItem(carga)
+            "GUID": Finalizado.GUID
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             AplicarEstilos(Finalizado, data, estadoEjecucion, detalle, btnProcesar, fechaCarga, procesoFinal);
             if(tipo == "CargaCompleta") {
@@ -869,7 +821,7 @@ function BuscarDatosCorrecciones(_NroDePagina) {
     let _Cliente = $("#txtIdCliente").val();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerCorrecciones",
+        url: "/TirNoPerAdministrativo/ObtenerCorrecciones",
         data: JSON.stringify({ 
             "Categoria": _Categoria, 
             "FechaProceso": _FechaProceso, 
@@ -877,10 +829,8 @@ function BuscarDatosCorrecciones(_NroDePagina) {
             "NroDePagina":_NroDePagina 
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data){
             _data.forEach(element => {
                 let value_id = '<td>' + element.id + '</td>';
@@ -923,7 +873,7 @@ function GuardarCorreccion(id,idOperacion,tabla) {
     let empresa = $("#Empresa_" + id).val();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/GuardarCorrecciones",
+        url: "/TirNoPerAdministrativo/GuardarCorrecciones",
         data: JSON.stringify({ 
             "Categoria": categoria, 
             "Id": id,
@@ -934,10 +884,8 @@ function GuardarCorreccion(id,idOperacion,tabla) {
             "Tabla": tabla 
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             GuardarEliminarCorreccion(data);
         },
@@ -964,16 +912,14 @@ function EliminarCorreccion(id) {
     let categoria = $("#cmbCategoria").val();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/RemoverCorrecciones",
+        url: "/TirNoPerAdministrador/RemoverCorrecciones",
         data: JSON.stringify({ 
             "Categoria": categoria, 
             "Id": id
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             GuardarEliminarCorreccion(data);
         },
@@ -991,12 +937,10 @@ function ConsultarBloqueos() {
     $('#tabla-bloqueos tbody').empty();
 
      $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerBloqueos",
+        url: "/TirNoPerAdministrativo/ObtenerBloqueos",
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data){
             _data.forEach(element => {
                 let value_id = '<td>' + element.id + '</td>';
