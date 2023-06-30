@@ -38,7 +38,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var clienteResult = Post<ClienteInfoRequest, List<ClienteInfoResult>>(urlBase + "/api/v1/TirNoPer/ObtenerNombreClientes", clienteInfo, (string)Session["token"]);
+                var clienteResult = Post<ClienteInfoRequest, List<ClienteInfoResult>>(urlBase + "/api/v1/TirNoPer/ObtenerReporteClientesInfo", clienteInfo, (string)Session["token"]);
                 return Json(clienteResult, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -82,5 +82,108 @@ namespace WebFront.Controllers
                 return Json(ex);
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerNIPClientes(NombreClienteRequest nombreCliente)
+        {
+            try
+            {
+                var user = (UsuarioResult)Session["User"];
+                nombreCliente.Nombre = user.user;
+                nombreCliente.Rol = user.role;
+                var clienteResult = Post<NombreClienteRequest, List<NipClientesResult>>(urlBase + "/api/v1/TirNoPer/ObtenerNIPClientes", nombreCliente, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerCuentasPorCliente(CuentasPorClienteRequest cuentasPorCliente)
+        {
+            try
+            {
+                var user = (UsuarioResult)Session["User"];
+                var clienteResult = Post<CuentasPorClienteRequest, List<CuentasPorClienteResult>>(urlBase + "/api/v1/TirNoPer/ObtenerCuentasPorCliente", cuentasPorCliente, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerNombreGrupoEconomico(NombreGrupoEconomicoRequest nombreGrupoEconomico)
+        {
+            try
+            {
+                var clienteResult = Post<NombreGrupoEconomicoRequest, List<String>>(urlBase + "/api/v1/TirNoPer/ObtenerNombreGrupoEconomico", nombreGrupoEconomico, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerClientesPorGrupoEconomico(ClientesPorGrupoEconomicoRequest dataRequest)
+        {
+            try
+            {
+                var clienteResult = Post<ClientesPorGrupoEconomicoRequest, List<ClientesPorGrupoEconomicoResult>>(urlBase + "/api/v1/TirNoPer/ObtenerClientesPorGrupoEconomico", dataRequest, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerCuentasPorGrupoEconomico(CuentasPorGrupoEconomicosRequest dataRequest)
+        {
+            try
+            {
+                var clienteResult = Post<CuentasPorGrupoEconomicosRequest, List<CuentasPorGrupoEconomicosResult>>(urlBase + "/api/v1/TirNoPer/ObtenerCuentasPorGrupoEconomico", dataRequest, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerReporteGrupoEconomicoInfo(ClienteInfoRequest dataRequest)
+        {
+            try
+            {
+                var clienteResult = Post<ClienteInfoRequest, List<GrupoEconomicoInfoResult>>(urlBase + "/api/v1/TirNoPer/ObtenerReporteGrupoEconomicoInfo", dataRequest, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerReporteGrupoEconomicoMovimientos(ClienteInfoRequest dataRequest)
+        {
+            try
+            {
+                var clienteResult = Post<ClienteInfoRequest, List<GrupoEconomicoMovimientosResult>>(urlBase + "/api/v1/TirNoPer/ObtenerReporteGrupoEconomicoMovimientos", dataRequest, (string)Session["token"]);
+                return Json(clienteResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
     }
 }

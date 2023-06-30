@@ -200,7 +200,7 @@ $(document).ready(function () {
         }
     })
 
-    $("#autocomplete-nip").keyup(function () {
+    $("#autocomplete-nip").keyup(function (e) {
         console.log("preciona")
         if($("#autocomplete-nip").val().trim() != ''){
             if($("#autocomplete-nip").val().length % 5 == 0){
@@ -214,7 +214,7 @@ $(document).ready(function () {
         }
     })
 
-    $("#autocomplete-grupo-economico").keyup(function () {
+    $("#autocomplete-grupo-economico").keyup(function (e) {
         if($("#autocomplete-grupo-economico").val().trim() != ''){
             if($("#autocomplete-grupo-economico").val().length % 5 == 0){
                 autocomplete_obtener_grupo_economico();
