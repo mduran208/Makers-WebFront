@@ -218,5 +218,119 @@ namespace WebFront.Controllers
                 return Json(ex);
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult GuardarBloqueo(BloqueoRequest bloqueo)
+        {
+            try
+            {
+                var result = Post<BloqueoRequest, string>(urlBase + "/api/v1/TirNoPer/PA/GuardarBloqueo", bloqueo, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult VerificarBloqueo(BloqueoRequest bloqueo)
+        {
+            try
+            {
+                var result = Post<BloqueoRequest, string>(urlBase + "/api/v1/TirNoPer/PA/VerificarBloqueo", bloqueo, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult RemoverBloqueo(BloqueoEliminarRequest bloqueo)
+        {
+            try
+            {
+                var result = Post<BloqueoEliminarRequest, string>(urlBase + "/api/v1/TirNoPer/PA/RemoverBloqueo", bloqueo, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerCategoriasInformes()
+        {
+            try
+            {
+                var result = Post<string, string>(urlBase + "/api/v1/TirNoPer/PA/ObtenerCategoriasInformes", "", (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerInformesPorCategoria(InformePorCategoriaRequest informe)
+        {
+            try
+            {
+                var result = Post<InformePorCategoriaRequest, List<InformePorCategoriaResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerInformesPorCategoria", informe, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult autocomplete_buscar_clientes_informe(InformeBuscaClienteRequest informe)
+        {
+            try
+            {
+                InformeClienteRequest info = new InformeClienteRequest() { Term = informe.Term };
+                var result = Post<InformeClienteRequest, List<InformePorCategoriaResult>>(urlBase + informe.Url, info, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerDatosSaldos(DatosSaldosRequest datos)
+        {
+            try
+            {
+                var result = Post<DatosSaldosRequest, List<DatosSaldosResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerDatosSaldos", datos, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult autocomplete_buscar_cuentas_informe(InformeBuscaCuentaRequest informe)
+        {
+            try
+            {
+                InformeCuentaRequest info = new InformeCuentaRequest() { Nombre = informe.Nombre};
+                var result = Post<InformeCuentaRequest, List<InformePorCategoriaResult>>(urlBase + informe.Url, info, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
     }
 }

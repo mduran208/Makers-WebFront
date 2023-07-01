@@ -969,16 +969,14 @@ function ConsultarBloqueos() {
 function GuardarBloqueo(documento, observacion) {
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/GuardarBloqueo",
+        url: "/TirNoPerAdministrativo/GuardarBloqueo",
         data: JSON.stringify({ 
             "Documento": documento, 
             "Observacion": observacion 
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             console.log(data);
             if (data == "Correcto") {
@@ -1013,15 +1011,13 @@ function VerificarClienteExiste() {
     let observacion = $("#txtObservacionBloqueo").val();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/VerificarBloqueo",
+        url: "/TirNoPerAdministrativo/VerificarBloqueo",
         data: JSON.stringify({ 
             "Documento": documento
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             console.log(data);
             if (data) {
@@ -1045,15 +1041,13 @@ function EliminarBloqueo() {
     console.log(id);
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/RemoverBloqueo",
+        url: "/TirNoPerAdministrativo/RemoverBloqueo",
         data: JSON.stringify({ 
             "ID": id
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             console.log(data);
             if (data) {
@@ -1094,12 +1088,8 @@ function ObtenerCategoriaInformes(){
     $("#categoriaInforme").empty();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerCategoriasInformes",
+        url: "/TirNoPerAdministrativo/ObtenerCategoriasInformes",
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
         success: function (data) {
             $('#categoriaInforme').append($('<option>').text("Seleccione...").attr('value', ""));
             $.each(data.informes, function (index, value) {
@@ -1119,15 +1109,13 @@ function ObtenerListaInformes(){
     $("#listInformes").empty();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerInformesPorCategoria",
+        url: "/TirNoPerAdministrativo/ObtenerInformesPorCategoria",
         data: JSON.stringify({ 
             "CATEGORIA": $("#categoriaInforme").val() 
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (data) {
             $('#listInformes').append($('<option>').text("Seleccione...").attr('value', ""));
             $.each(data, function (index, value) {
@@ -1256,16 +1244,15 @@ function autocomplete_buscar_clientes_informe(tipo) {
         $(autocomplete).attr('maxlength', 0);
 
         $.ajax({
-            url: API_URL_BASE + url,
+            url: "/TirNoPerAdministrativo/autocomplete_buscar_clientes_informe",
             data: JSON.stringify({ 
-                "Term": term
+                "Term": term,
+                "Url": url
             }),
             type: "POST",
-            headers: {
-                "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                "Content-Type": "application/json"
-            },
-            success: function (_data){
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (_data) {
                 return success_autocomplete(_data, autocomplete);
             },
             error: function (xhr, status, error) {
@@ -1292,16 +1279,14 @@ function obtener_informe_DatosSaldos(){
     else {
 
         $.ajax({
-            url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerDatosSaldos",
+            url: API_URL_BASE + "/TirNoPerAdministrativo/ObtenerDatosSaldos",
             data: JSON.stringify({ 
                 "Fecha": _FECHA,
                 "Cliente": _CLIENTE_SELECTED
             }),
             type: "POST",
-            headers: {
-                "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                "Content-Type": "application/json"
-            },
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
             success: function (_data){
                 _data.forEach(element => {
                     let value_documento = '<td>' + element.documento + '</td>';
@@ -1370,15 +1355,14 @@ function autocomplete_buscar_cuentas_informe(tipo) {
         $(cuenta).attr('maxlength', 0);
 
         $.ajax({
-            url: API_URL_BASE + url,
+            url: "/TirNoPerAdministrativo/autocomplete_buscar_cuentas_informe",
             data: JSON.stringify({ 
-                "Nombre": Nombre
+                "Nombre": Nombre,
+                "Url": url
             }),
             type: "POST",
-            headers: {
-                "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                "Content-Type": "application/json"
-            },
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
             success: function (_data){
                 _data.forEach(element => {
                     _DATA_AUTOCOMPLETE[element] = null;
