@@ -1222,19 +1222,19 @@ function autocomplete_buscar_clientes_informe(tipo) {
     switch(tipo){
         case "DataSaldos":
             autocomplete = "#autocomplete-informe-DatosSaldos";
-            url = "/api/v1/TirNoPer/PA/ObtenerClienteDatosSaldos";
+            url = "/api/v1/Informes/PA/ObtenerClienteDatosSaldos";
             break;
         case "DataTB":
             autocomplete = "#autocomplete-cliente-informe-DatosTB";
-            url = "/api/v1/TirNoPer/PA/ObtenerClienteDatosTEB";
+            url = "/api/v1/Informes/PA/ObtenerClienteDatosTEB";
             break;
         case "DatosSifi":
             autocomplete = "#autocomplete-cliente-informe-DatosSifi";
-            url = "/api/v1/TirNoPer/PA/ObtenerClienteDatosSifi";
+            url = "/api/v1/Informes/PA/ObtenerClienteDatosSifi";
             break;
         case "DatosSif":
             autocomplete = "#autocomplete-cliente-informe-DatosSif";
-            url = "/api/v1/TirNoPer/PA/ObtenerClienteDatosSif";
+            url = "/api/v1/Informes/PA/ObtenerClienteDatosSif";
             break;
     }
 
@@ -1335,17 +1335,17 @@ function autocomplete_buscar_cuentas_informe(tipo) {
         case "DataTB":
             autocompletar = "#autocomplete-cliente-informe-DatosTB";
             cuenta = "#autocomplete-cuenta-informe-DatosTB";
-            url = "/api/v1/TirNoPer/PA/ObtenerCuentasDatosTEB";
+            url = "/api/v1/Informes/PA/ObtenerCuentasDatosTEB";
             break;
         case "DatosSifi":
             autocompletar = "#autocomplete-cliente-informe-DatosSifi";
             cuenta = "#autocomplete-cuenta-informe-DatosSifi";
-            url = "/api/v1/TirNoPer/PA/ObtenerCuentasDatosSifi";
+            url = "/api/v1/Informes/PA/ObtenerCuentasDatosSifi";
             break;
         case "DatosSif":
             autocompletar = "#autocomplete-cliente-informe-DatosSif";
             cuenta = "#autocomplete-cuenta-informe-DatosSif";
-            url = "/api/v1/TirNoPer/PA/ObtenerCuentasDatosSif";
+            url = "/api/v1/Informes/PA/ObtenerCuentasDatosSif";
             break;
     }
 
@@ -1517,7 +1517,7 @@ function obtener_informe(tipo) {
         autocliente = "#autocomplete-cliente-informe-DatosSifi";
         autocuenta = "#autocomplete-cuenta-informe-DatosSifi";
         tbody = '#table-data-Sifi tbody';
-        url = "/api/v1/TirNoPer/PA/ObtenerDatosSifi";
+        url = "/api/v1/Informes/PA/ObtenerDatosSifi";
         table = '#table-data-Sifi';
     }
     else {
@@ -1526,7 +1526,7 @@ function obtener_informe(tipo) {
         autocliente = "#autocomplete-cliente-informe-DatosSif";
         autocuenta = "#autocomplete-cuenta-informe-DatosSif";
         tbody = '#table-data-Sif tbody';
-        url = "/api/v1/TirNoPer/PA/ObtenerDatosSif";
+        url = "/api/v1/Informes/PA/ObtenerDatosSif";
         table = '#table-data-Sif';
     }
 
@@ -1698,22 +1698,22 @@ function obtener_informe_consolidado_procesos_detalle_unificado(tipo) {
         case "fics":
             tbody = '#table-data-resumen-detalle-fics tbody';
             tabla = "#table-data-resumen-detalle-fics";
-            url = "/api/v1/TirNoPer/PA/ObtenerDetalleFics";
+            url = "/api/v1/Informes/PA/ObtenerDetalleFics";
             break;
         case "titulos":
             tbody = '#table-data-resumen-detalle-titulos tbody';
             tabla = "#table-data-resumen-detalle-titulos";
-            url = "/api/v1/TirNoPer/PA/ObtenerDetalleTitulo";
+            url = "/api/v1/Informes/PA/ObtenerDetalleTitulo";
             break;
         case "inversion":
             tbody = '#table-data-resumen-detalle-ctaInversion tbody';
             tabla = "#table-data-resumen-detalle-ctaInversion";
-            url = "/api/v1/TirNoPer/PA/ObtenerDetalleCtaInversion";
+            url = "/api/v1/Informes/PA/ObtenerDetalleCtaInversion";
             break;
         case "saldos":
             tbody = '#table-data-resumen-detalle-saldos tbody';
             tabla = "#table-data-resumen-detalle-saldos";
-            url = "/api/v1/TirNoPer/PA/ObtenerDetalleSaldos";
+            url = "/api/v1/Informes/PA/ObtenerDetalleSaldos";
             break;
     }
 
@@ -1897,11 +1897,11 @@ function autocomplete_buscar_informe(tipo) {
     let url = "";
     if(tipo == "segmentos") {
         autocomplete = "#autocomplete-segmento-informe-tir-masiva";
-        url = "/api/v1/TirNoPer/PA/ObtenerSegmentos";
+        url = "/api/v1/Informes/PA/ObtenerSegmentos";
     }
     else {
         autocomplete = "#autocomplete-comercial-informe-tir-masiva";
-        url = "/api/v1/TirNoPer/PA/ObtenerComerciales";
+        url = "/api/v1/Informes/PA/ObtenerComerciales";
     }
 
     $(autocomplete).attr('maxlength', 0);

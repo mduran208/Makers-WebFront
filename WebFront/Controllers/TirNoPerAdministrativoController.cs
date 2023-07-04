@@ -30,7 +30,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var categoriaResult = Post<CategoriaRequest, List<CategoriaResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerCategorias", categoria, (string)Session["token"]);
+                var categoriaResult = Post<CategoriaRequest, List<CategoriaResult>>(urlBase + "/api/v1/Informes/PA/ObtenerCategorias", categoria, (string)Session["token"]);
                 return Json(categoriaResult, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -44,7 +44,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var loteResult = Post<FechaRequest, LoteResult>(urlBase + "/api/v1/TirNoPer/PA/ObtenerLotes", fecha, (string)Session["token"]);
+                var loteResult = Post<FechaRequest, LoteResult>(urlBase + "/api/v1/Cargas/PA/ObtenerLotes", fecha, (string)Session["token"]);
                 return Json(loteResult, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -58,7 +58,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var carga = Post<FechaRequest, EjecutaCargaResult>(urlBase + "/api/v1/TirNoPer/PA/EjecutarCargaTEB", fecha, (string)Session["token"]);
+                var carga = Post<FechaRequest, EjecutaCargaResult>(urlBase + "/api/v1/Cargas/PA/EjecutarCargaTEB", fecha, (string)Session["token"]);
                 Session["CargaTEB"] = carga.id_proceso;
                 return Json(carga, JsonRequestBehavior.AllowGet);
             }
@@ -73,7 +73,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var carga = Post<LoteRequest, EjecutaCargaResult>(urlBase + "/api/v1/TirNoPer/PA/ObtenerValoracionTEB", loteId, (string)Session["token"]);
+                var carga = Post<LoteRequest, EjecutaCargaResult>(urlBase + "/api/v1/Correcciones/PA/ObtenerValoracionTEB", loteId, (string)Session["token"]);
                 Session["ValoracionTEB"] = carga.id_proceso;
                 return Json(carga, JsonRequestBehavior.AllowGet);
             }
@@ -174,7 +174,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<CorreccionRequest, List<CorreccionResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerCorrecciones", correccionRequest, (string)Session["token"]);
+                var result = Post<CorreccionRequest, List<CorreccionResult>>(urlBase + "/api/v1/Correcciones/PA/ObtenerCorrecciones", correccionRequest, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -188,7 +188,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<CorreccionGuardarRequest, CorreccionGuardarResult>(urlBase + "/api/v1/TirNoPer/PA/GuardarCorrecciones", correccionRequest, (string)Session["token"]);
+                var result = Post<CorreccionGuardarRequest, CorreccionGuardarResult>(urlBase + "/api/v1/Correcciones/PA/GuardarCorrecciones", correccionRequest, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -202,7 +202,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<CorreccionGuardarRequest, CorreccionGuardarResult>(urlBase + "/api/v1/TirNoPer/PA/RemoverCorrecciones", correccionRequest, (string)Session["token"]);
+                var result = Post<CorreccionGuardarRequest, CorreccionGuardarResult>(urlBase + "/api/v1/Correcciones/PA/RemoverCorrecciones", correccionRequest, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -230,7 +230,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<BloqueoRequest, string>(urlBase + "/api/v1/TirNoPer/PA/GuardarBloqueo", bloqueo, (string)Session["token"]);
+                var result = Post<BloqueoRequest, string>(urlBase + "/api/v1/Bloqueos/PA/GuardarBloqueo", bloqueo, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -244,7 +244,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<BloqueoRequest, string>(urlBase + "/api/v1/TirNoPer/PA/VerificarBloqueo", bloqueo, (string)Session["token"]);
+                var result = Post<BloqueoRequest, string>(urlBase + "/api/v1/Bloqueos/PA/VerificarBloqueo", bloqueo, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -258,7 +258,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<BloqueoEliminarRequest, string>(urlBase + "/api/v1/TirNoPer/PA/RemoverBloqueo", bloqueo, (string)Session["token"]);
+                var result = Post<BloqueoEliminarRequest, string>(urlBase + "/api/v1/Bloqueos/PA/RemoverBloqueo", bloqueo, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -272,7 +272,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<string, string>(urlBase + "/api/v1/TirNoPer/PA/ObtenerCategoriasInformes", "", (string)Session["token"]);
+                var result = Post<string, string>(urlBase + "/api/v1/Informes/PA/ObtenerCategoriasInformes", "", (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -286,7 +286,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<InformePorCategoriaRequest, List<InformePorCategoriaResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerInformesPorCategoria", informe, (string)Session["token"]);
+                var result = Post<InformePorCategoriaRequest, List<InformePorCategoriaResult>>(urlBase + "/api/v1/Informes/PA/ObtenerInformesPorCategoria", informe, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -315,7 +315,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<DatosSaldosRequest, List<DatosSaldosResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerDatosSaldos", datos, (string)Session["token"]);
+                var result = Post<DatosSaldosRequest, List<DatosSaldosResult>>(urlBase + "/api/v1/Informes/PA/ObtenerDatosSaldos", datos, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -344,7 +344,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<DatosTebRequest, List<DatosTebResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerDatosTEB", informe, (string)Session["token"]);
+                var result = Post<DatosTebRequest, List<DatosTebResult>>(urlBase + "/api/v1/Informes/PA/ObtenerDatosTEB", informe, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -358,7 +358,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<DetalleProcesoRequest, List<DetalleTebResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerDetalleTEB", informe, (string)Session["token"]);
+                var result = Post<DetalleProcesoRequest, List<DetalleTebResult>>(urlBase + "/api/v1/Informes/PA/ObtenerDetalleTEB", informe, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -387,7 +387,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<FechaRequest, List<ConsolidadoResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerConsolidadoInformes", fecha, (string)Session["token"]);
+                var result = Post<FechaRequest, List<ConsolidadoResult>>(urlBase + "/api/v1/Informes/PA/ObtenerConsolidadoInformes", fecha, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -416,7 +416,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<ExtraccionRequest, List<DatosSaldosResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerExtraccionSaldos", extra, (string)Session["token"]);
+                var result = Post<ExtraccionRequest, List<DatosSaldosResult>>(urlBase + "/api/v1/Informes/PA/ObtenerExtraccionSaldos", extra, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -444,7 +444,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<TirMasivaRequest, List<TirMasivaResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerTirMasiva", tir, (string)Session["token"]);
+                var result = Post<TirMasivaRequest, List<TirMasivaResult>>(urlBase + "/api/v1/TirMasiva/PA/ObtenerTirMasiva", tir, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
