@@ -160,7 +160,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var sales = Post<DetalleProcesoRequest, EjecutaCargaResult>(urlBase + "/api/v1/Cargas/PA/ObtenerDetalleProceso", detalleProceso, (string)Session["token"]);
+                var sales = Post<DetalleProcesoRequest, DetalleProcesoResult>(urlBase + "/api/v1/Cargas/PA/ObtenerDetalleProceso", detalleProceso, (string)Session["token"]);
                 return Json(sales, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
