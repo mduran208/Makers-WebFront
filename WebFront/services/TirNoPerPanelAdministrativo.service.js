@@ -332,7 +332,7 @@ function CargarVarios(cuenta) {
         case "Fics":
             fecha = "#fechaCargaFics";
             mensaje = "Debe de ingresar la fecha de corte FIC's";
-            url = "/api/v1/TirNoPer/PA/EjecutarCargaFICS";
+            url = "/api/v1/Cargas/PA/EjecutarCargaFICS";
             idSession = "CargaFICS";
             estadosEjecucion = "#txtEstadoEjecucionCargaFics";
             detalle = "#txtDetallesCargaFics";
@@ -341,7 +341,7 @@ function CargarVarios(cuenta) {
         case "CuentaInv":
             fecha = "#fechaCargaCuentaInv";
             mensaje = "Debe de ingresar la fecha de corte Cuenta de Inversi&oacute;n";
-            url = "/api/v1/TirNoPer/PA/EjecutarCargaCTAINV";
+            url = "/api/v1/Cargas/PA/EjecutarCargaCTAINV";
             idSession = "CargaCTAINV";
             estadosEjecucion = "#txtEstadoEjecucionCargaCuentaInv";
             detalle = "#txtDetallesCargaCuentaInv";
@@ -350,7 +350,7 @@ function CargarVarios(cuenta) {
         case "Saldos":
             fecha = "#fechaCargaSaldos";
             mensaje = "Debe de ingresar la fecha de corte Saldos";
-            url = "/api/v1/TirNoPer/PA/EjecutarCargaSaldos";
+            url = "/api/v1/Cargas/PA/EjecutarCargaSaldos";
             idSession = "CargaSALDOS";
             estadosEjecucion = "#txtEstadoEjecucionCargaSaldos";
             detalle = "#txtDetallesCargaSaldos";
@@ -359,7 +359,7 @@ function CargarVarios(cuenta) {
         case "Completa":
             fecha = "#fechaCargaCompleta";
             mensaje = "Ingresa la fecha de corte solicitada";
-            url = "/api/v1/TirNoPer/PA/EjecutarCargaCompleta";
+            url = "/api/v1/Cargas/PA/EjecutarCargaCompleta";
             idSession = "CargaCOMPLETA";
             estadosEjecucion = "#txtEstadoEjecucionCargaCompleta";
             detalle = "#txtDetallesCargaCompleta";
@@ -505,32 +505,32 @@ function VerificarEstadoTarea(tipo)
     switch(tipo)
     {
         case "cargaTitulos":
-            url = "/api/v1/TirNoPer/PA/VerificarEstadoCargaTEB";
+            url = "/api/v1/Cargas/PA/VerificarEstadoCargaTEB";
             proceso = "#procesoFinalizadoTEB";
             interv = intervalo;
             break;
         case "valoracionTitulos":
-            url = "/api/v1/TirNoPer/PA/VerificarEstadoValoracionTEB";
+            url = "/api/v1/Cargas/PA/VerificarEstadoValoracionTEB";
             proceso = "#procesoFinalizado";
             interv = intervalo;
             break;
         case "CargaFics":
-            url = "/api/v1/TirNoPer/PA/VerificarEstadoCargaFics";
+            url = "/api/v1/Cargas/PA/VerificarEstadoCargaFics";
             proceso = "#procesoFinalizadoFics";
             interv = intervaloFics;
             break;
         case "CargaCtaInv":
-            url = "/api/v1/TirNoPer/PA/VerificarEstadoCargaCtaInv";
+            url = "/api/v1/Cargas/PA/VerificarEstadoCargaCtaInv";
             proceso = "#procesoFinalizadoCtaInv";
             interv = intervaloCtaInv;
             break;
         case "Saldos":
-            url = "/api/v1/TirNoPer/PA/VerificarEstadoCargaSaldos";
+            url = "/api/v1/Cargas/PA/VerificarEstadoCargaSaldos";
             proceso = "#procesoFinalizadoSaldos";
             interv = intervaloSaldos;
             break;
         case "CargaCompleta":
-            url = "/api/v1/TirNoPer/PA/VerificarEstadoCargaCompleta";
+            url = "/api/v1/Cargas/PA/VerificarEstadoCargaCompleta";
             proceso = "#procesoFinalizadoCargaCompleta";
             interv = intervaloCargaCompleta;
             break;
@@ -752,7 +752,7 @@ function ObtenerDetallesProceso(tipo, Finalizado) {
             break;
     }
 
-    if (Finalizado.GUID === null || Finalizado.GUID === undefined) {
+    if (Finalizado.GUID === null || Finalizado.GUID === "") {
         MensajeModal("<span style='font-weight:bold;'>Alerta</span>",mensaje);
         return;
     }

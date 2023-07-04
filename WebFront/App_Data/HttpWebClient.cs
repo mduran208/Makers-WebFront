@@ -61,6 +61,39 @@ namespace WebFront
             #endregion
         }
 
+        public static string Post(string uri, string token = "")
+        {
+            #region Implementacion
+
+            try
+            {
+                if (token != "")
+                {
+                    CreateHttpClient(token);
+                }
+
+                string serialized = JsonConvert.SerializeObject("", _serializerSettings);
+                HttpResponseMessage response = _httpClient.PostAsync(uri, new StringContent(serialized, Encoding.UTF8, "application/json")).Result;
+
+                string responseData = response.Content.ReadAsStringAsync().Result;
+
+                if (response.IsSuccessStatusCode)
+                    return responseData;
+                else
+                    throw HandleResponse(response, responseData);
+            }
+            catch (ApiException ex)
+            {
+                throw ex;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+
+            #endregion
+        }
+
         /// <summary>
         /// Metodo de inicializacion del canal http client
         /// </summary>

@@ -39,7 +39,7 @@ $(document).ready(function () {
     })
 
     $(".btnObtenerDetallesCargaCompleta").click(function () {
-        ObtenerDetallesProcesoCargaCompleta();
+        VerificarEstadoTareaCargaCompleta();
     })
 
     $(".btnProcesarCargaTEB").click(function () {
@@ -55,7 +55,7 @@ $(document).ready(function () {
     })
 
     $(".btnObtenerDetallesFics").click(function () {
-        ObtenerDetallesProcesoFics();
+        VerificarEstadoTareaCargaFics();
     })
 
     $(".btnProcesarCuentasInv").click(function () {
@@ -63,7 +63,7 @@ $(document).ready(function () {
     })
 
     $(".btnObtenerDetallesCuentasInv").click(function () {
-        ObtenerDetallesProcesoCtaInv();
+        VerificarEstadoTareaCargaCtaInv();
     })
 
     $(".btnProcesarSaldos").click(function () {
@@ -71,7 +71,7 @@ $(document).ready(function () {
     })
 
     $(".btnObtenerDetallesSaldos").click(function () {
-        ObtenerDetallesProcesoSaldos();
+        VerificarEstadoTareaSaldos();
     })
 
     $(".btnProcesarExtraccionSalesforce").click(function () {
@@ -85,7 +85,7 @@ $(document).ready(function () {
     $('#tab-bloqueos').click(function () {
         InteraccionesTabBloqueos();
         ConsultarBloqueos();
-        $('#tabla-bloqueos').DataTable();
+        //$('#tabla-bloqueos').DataTable();
     });
 
     $('#tab-procesamiento').click(function () {

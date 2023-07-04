@@ -18,10 +18,10 @@ class Report extends HTMLElement {
     let state = document.readyState
     if (state == 'complete') {
         
-      if(sessionStorage.getItem("access_token") != null || sessionStorage.getItem("access_token") != undefined){validate_token()} 
-      setTimeout(function(){
+      //if(sessionStorage.getItem("access_token") != null || sessionStorage.getItem("access_token") != undefined){validate_token()} 
+      //setTimeout(function(){
         document.getElementById('interactive');
         document.getElementById('load-main').style.visibility="hidden";
-      },100);
+      //},100);
     }
   }

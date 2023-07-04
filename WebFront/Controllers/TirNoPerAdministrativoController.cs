@@ -119,29 +119,35 @@ namespace WebFront.Controllers
         {
             try
             {
-                var carga = Post<FechaRequest, VerificarEstadoTareaResult>(urlBase + estadoTarea.Url, new FechaRequest() { }, (string)Session["token"]);
-                switch(estadoTarea.Tipo)
+                VerificarEstadoTareaResult estado = new VerificarEstadoTareaResult();
+                estado.GUID = "";
+                var carga = Post(urlBase + estadoTarea.Url, (string)Session["token"]);
+                if (Convert.ToBoolean(carga))
                 {
-                    case "cargaTitulos":
-                        carga.GUID = (string)Session["CargaTEB"];
-                        break;
-                    case "valoracionTitulos":
-                        carga.GUID = (string)Session["ValoracionTEB"];
-                        break;
-                    case "CargaFics":
-                        carga.GUID = (string)Session["CargaFICS"];
-                        break;
-                    case "CargaCtaInv":
-                        carga.GUID = (string)Session["CargaCTAINV"];
-                        break;
-                    case "Saldos":
-                        carga.GUID = (string)Session["CargaSALDOS"];
-                        break;
-                    case "CargaCompleta":
-                        carga.GUID = (string)Session["CargaCOMPLETA"];
-                        break;
+                    switch (estadoTarea.Tipo)
+                    {
+                        case "cargaTitulos":
+                            estado.GUID = (string)Session["CargaTEB"];
+                            break;
+                        case "valoracionTitulos":
+                            estado.GUID = (string)Session["ValoracionTEB"];
+                            break;
+                        case "CargaFics":
+                            estado.GUID = (string)Session["CargaFICS"];
+                            break;
+                        case "CargaCtaInv":
+                            estado.GUID = (string)Session["CargaCTAINV"];
+                            break;
+                        case "Saldos":
+                            estado.GUID = (string)Session["CargaSALDOS"];
+                            break;
+                        case "CargaCompleta":
+                            estado.GUID = (string)Session["CargaCOMPLETA"];
+                            break;
+                    }
                 }
-                return Json(carga, JsonRequestBehavior.AllowGet);
+                
+                return Json(estado, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
             {
@@ -210,7 +216,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<string, List<BloqueoResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerBloqueos", "", (string)Session["token"]);
+                var result = Post<string, List<BloqueoResult>>(urlBase + "/api/v1/Bloqueos/PA/ObtenerBloqueos", "", (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
