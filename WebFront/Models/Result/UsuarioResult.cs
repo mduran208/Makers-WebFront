@@ -13,5 +13,11 @@ namespace WebFront.Models.Result
 
         [JsonProperty("role")]
         public string role { get; set; }
+
+        [JsonProperty("Error")]
+        public string Error { get; set; }
+
+        [JsonProperty("Descripcion")]
+        public string Descripcion { get; set; }
     }
 }

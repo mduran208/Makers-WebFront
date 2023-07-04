@@ -332,5 +332,149 @@ namespace WebFront.Controllers
                 return Json(ex);
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerDatosTEB(DatosTebRequest informe)
+        {
+            try
+            {
+                var result = Post<DatosTebRequest, List<DatosTebResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerDatosTEB", informe, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerDetalleTEB(DetalleProcesoRequest informe)
+        {
+            try
+            {
+                var result = Post<DetalleProcesoRequest, List<DetalleTebResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerDetalleTEB", informe, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult InformeDatosSif(InformeDatosSif informe)
+        {
+            try
+            {
+                DatosSif info = new DatosSif() { FechaIni = informe.FechaIni, FechaFin = informe.FechaFin, Cliente = informe.Cliente, Cuenta = informe.Cuenta };
+                var result = Post<DatosSif, List<DatosTebResult>>(urlBase + informe.Url, info, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerConsolidadoInformes(FechaRequest fecha)
+        {
+            try
+            {
+                var result = Post<FechaRequest, List<ConsolidadoResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerConsolidadoInformes", fecha, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ConsolidadoDetalle(CargarVariosRequest informe)
+        {
+            try
+            {
+                FechaRequest info = new FechaRequest() { FECHA = informe.FECHA };
+                var result = Post<FechaRequest, List<DatosTebResult>>(urlBase + informe.Url, info, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerExtraccionSaldos(ExtraccionRequest extra)
+        {
+            try
+            {
+                var result = Post<ExtraccionRequest, List<DatosSaldosResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerExtraccionSaldos", extra, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult BuscarInforme(CargarVariosRequest informe)
+        {
+            try
+            {
+                var result = Post<string, List<string>>(urlBase + informe.Url, "", (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult ObtenerTirMasiva(TirMasivaRequest tir)
+        {
+            try
+            {
+                var result = Post<TirMasivaRequest, List<TirMasivaResult>>(urlBase + "/api/v1/TirNoPer/PA/ObtenerTirMasiva", tir, (string)Session["token"]);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (ApiException ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        public ActionResult DatosSaldos()
+        {
+            return PartialView();
+        }
+
+        public ActionResult DatosTitulosExtrabursatiles()
+        {
+            return PartialView();
+        }
+
+        public ActionResult DatosSifi()
+        {
+            return PartialView();
+        }
+
+        public ActionResult DatosSif()
+        {
+            return PartialView();
+        }
+
+        public ActionResult ConsolidadoProcesos()
+        {
+            return PartialView();
+        }
+
+        public ActionResult TirMasiva()
+        {
+            return PartialView();
+        }
     }
 }

@@ -118,6 +118,11 @@
                     $("#tirnoper-menu-pa").remove();
                 }
             }
+            if ('@User.Error' != '') {
+                $(".modal-title").text("Alerta");
+                $("#message").html("Usuario no permitido para el ingreso");
+                $('#modal-alert').modal("show");
+            }
         });
         window.PixelAdmin.start(init);
 

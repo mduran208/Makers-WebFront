@@ -1136,7 +1136,7 @@ function RenderReport(reporte){
     switch (reporte) {
         case "Datos Saldos":
             $("#divReportes").show();
-            $('#divReportes').load('reports/DatosSaldos.html', function() {
+            $('#divReportes').load('TirNoPerAdministrativo/DatosSaldos', function() {
                 $('#search-informe-DatosSaldos').on("click", function(){ 
                     autocomplete_buscar_clientes_informe_DataSaldos();
                 });
@@ -1147,7 +1147,7 @@ function RenderReport(reporte){
             break;
         case "Datos Titulos Extrabursátiles":
             $("#divReportes").show();
-            $('#divReportes').load('reports/DatosTitulosExtrabursatiles.html', function() {
+            $('#divReportes').load('TirNoPerAdministrativo/DatosTitulosExtrabursatiles', function() {
                 $('#search-cliente-informe-DatosTB').on("click", function(){ 
                     autocomplete_buscar_clientes_informe_DataTB();
                 });
@@ -1161,7 +1161,7 @@ function RenderReport(reporte){
             break;
         case "Datos Sifi":
             $("#divReportes").show();
-            $('#divReportes').load('reports/DatosSifi.html', function() {
+            $('#divReportes').load('TirNoPerAdministrativo/DatosSifi', function() {
                 $('#search-cliente-informe-DatosSifi').on("click", function(){ 
                     autocomplete_buscar_clientes_informe_DatosSifi();
                 });
@@ -1175,7 +1175,7 @@ function RenderReport(reporte){
             break;
         case "Datos Sif":
             $("#divReportes").show();
-            $('#divReportes').load('reports/DatosSif.html', function() {
+            $('#divReportes').load('TirNoPerAdministrativo/DatosSif', function() {
                 $('#search-cliente-informe-DatosSif').on("click", function(){ 
                     autocomplete_buscar_clientes_informe_DatosSif();
                 });
@@ -1189,7 +1189,7 @@ function RenderReport(reporte){
             break;
         case "Consolidado Procesos":
             $("#divReportes").show();
-            $('#divReportes').load('reports/ConsolidadoProcesos.html', function() {  
+            $('#divReportes').load('TirNoPerAdministrativo/ConsolidadoProcesos', function() {
                 $(".consultar-informe-consolidado").on("click",function(){
                     obtener_informe_ConsolidadoProcesos();
                 });
@@ -1197,7 +1197,7 @@ function RenderReport(reporte){
             break;
         case "Tir Masiva":
             $("#divReportes").show();
-            $('#divReportes').load('reports/TirMasiva.html', function() {  
+            $('#divReportes').load('TirNoPerAdministrativo/TirMasiva', function() {
                 $('#search-segmento-informe-tir-masiva').on("click", function(){ 
                     autocomplete_buscar_segmentos_informe_tir_masiva();
                 });
@@ -1401,17 +1401,15 @@ function obtener_informe_DatosTB(){
     else {
 
         $.ajax({
-            url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerDatosTEB",
+            url: "/TirNoPerAdministrativo/ObtenerDatosTEB",
             data: JSON.stringify({
                 "Fecha": _FECHA, 
                 "Nombre": _CLIENTE_SELECTED,
                 "Cuenta": _CUENTA_SELECTED
             }),
             type: "POST",
-            headers: {
-                "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                "Content-Type": "application/json"
-            },
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
             success: function (_data){
                 generacion_tabla(_data, '#table-data-TB');
 
@@ -1459,15 +1457,13 @@ function obtener_informe_DatosTB_Detalle(){
     $('#table-data-tb-detalle tbody').empty();
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerDetalleTEB",
+        url: "/TirNoPerAdministrativo/ObtenerDetalleTEB",
         data: JSON.stringify({
             "GUID": _ID
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data){
             _data.forEach(element => {
                 let date = new Date(element.fecha);
@@ -1547,18 +1543,17 @@ function obtener_informe(tipo) {
     else {
 
         $.ajax({
-            url: API_URL_BASE + url,
+            url: "/TirNoPerAdministrativo/ObtenerDetalleTEB",
             data: JSON.stringify({
                 "FechaIni": _FECHA_INI,
                 "FechaFin": _FECHA_FIN,
                 "Cliente": _CLIENTE_SELECTED,
-                "Cuenta": _CUENTA_SELECTED
+                "Cuenta": _CUENTA_SELECTED,
+                "Url": url
             }),
             type: "POST",
-            headers: {
-                "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                "Content-Type": "application/json"
-            },
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
             success: function (_data){
                 generacion_tabla(_data, table);
             },
@@ -1622,15 +1617,13 @@ function obtener_informe_ConsolidadoProcesos() {
     }
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerConsolidadoInformes",
+        url: "/TirNoPerAdministrativo/ObtenerConsolidadoInformes",
         data: JSON.stringify({
             "FECHA": formattedFechaCorte
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data) {
             _data.forEach(element => {
                 let value_producto = '<td>' + element.categoria + '</td>';
@@ -1680,8 +1673,6 @@ function obtener_informe_ConsolidadoProcesos() {
 
 function obtener_informe_consolidado_procesos_detalle(){
     let _CATEGORIA  = $(this).val();
-
-    console.log("CATEGORIA: " + _CATEGORIA);
 
     switch (_CATEGORIA) {
         case 'Fics':
@@ -1743,15 +1734,14 @@ function obtener_informe_consolidado_procesos_detalle_unificado(tipo) {
     $(tabla).removeClass("d-none");
 
     $.ajax({
-        url: API_URL_BASE + url,
+        url: "/TirNoPerAdministrativo/ConsolidadoDetalle",
         data: JSON.stringify({
-            "FECHA": _FECHA_CORTE
+            "FECHA": _FECHA_CORTE,
+            "Url": url
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data){
             dibujar_tabla(tipo, tabla, _data);
 
@@ -1867,16 +1857,14 @@ function obtener_informe_consolidado_procesos_detalle_saldos_more(){
     $("#table-data-resumen-detalle-saldos-more").removeClass("d-none");
 
     $.ajax({
-        url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerExtraccionSaldos",	
+        url: "/TirNoPerAdministrativo/ObtenerExtraccionSaldos",	
         data: JSON.stringify({
             "Fecha": _FECHA_CORTE,
             "Cuenta": _CUENTA
         }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data){
             _data.forEach(element => {
                 let _numero_Cuenta = '<td>' + element.cuenta + '</td>';
@@ -1919,12 +1907,13 @@ function autocomplete_buscar_informe(tipo) {
     $(autocomplete).attr('maxlength', 0);
 
     $.ajax({
-        url: API_URL_BASE + url,
+        url: "/TirNoPerAdministrativo/BuscarInforme",
+        data: JSON.stringify({
+            "Url": url
+        }),
         type: "POST",
-        headers: {
-            "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-            "Content-Type": "application/json"
-        },
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
         success: function (_data){
             return success_autocomplete(_data, autocomplete);
         },
@@ -1980,7 +1969,7 @@ function obtener_informe_tir_masiva(){
         }
         
         $.ajax({
-            url: API_URL_BASE + "/api/v1/TirNoPer/PA/ObtenerTirMasiva",
+            url: "/TirNoPerAdministrativo/ObtenerTirMasiva",
             data: JSON.stringify({
                 "FechaIni": _FECHA_INICIAL,
                 "FechaFin": _FECHA_FIN,
@@ -1988,10 +1977,8 @@ function obtener_informe_tir_masiva(){
                 "Comercial": _COMERCIAL
             }),
             type: "POST",
-            headers: {
-                "Authorization": "Bearer " + sessionStorage.getItem("access_token"),
-                "Content-Type": "application/json"
-            },
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
             success: function (_data){
                 _data.forEach(element => {
                     

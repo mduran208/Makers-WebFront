@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
+using static WebFront.HttpWebClient;
 
 namespace WebFront.Controllers
 {
@@ -28,10 +29,20 @@ namespace WebFront.Controllers
             user.role = "";
             if(token != null && token != "")
             {
-                user = HttpWebClient.Post<UsuarioRequest, UsuarioResult>(urlBase + "/api/auth/validate", new UsuarioRequest() { }, token);
+                try
+                {
+                    user = Post<UsuarioRequest, UsuarioResult>(urlBase + "/api/auth/validate", new UsuarioRequest() { }, token);
+                    user.Error = "";
+                    user.Descripcion = "";
+                    GetRoles();
+                }
+                catch (ApiException ex)
+                {
+                    user.Error = "1";
+                    user.Descripcion = ex.Content;
+                }
                 Session["User"] = user;
                 Session["Token"] = token;
-                GetRoles();
             }
             ViewBag.User = user;
             return View();

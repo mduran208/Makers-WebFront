@@ -1,0 +1,46 @@
+﻿<div class="card-panel no-top-margin">
+
+    <div class="input-field col s12">
+        <form>
+            <div class="row">
+                <div class="input-field col s12 m6 l6">
+                    <em class="material-icons prefix">date_range</em>
+                    <input type="date" id="filtro-fecha-inicial-cliente-DatosSifi">
+                    <label for="filtro-fecha-inicial-cliente-DatosSifi" class="up-label">Fecha Inicial:</label>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <em class="material-icons prefix">date_range</em>
+                    <input type="date" id="filtro-fecha-final-cliente-DatosSifi">
+                    <label for="filtro-fecha-final-cliente-DatosSifi" class="up-label">Fecha Fin:</label>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <em id='search-cliente-informe-DatosSifi' class="material-icons prefix">search</em>
+                    <input type="text" id="autocomplete-cliente-informe-DatosSifi" class="autocomplete" maxlength="30">
+                    <label for="autocomplete-cliente-informe-DatosSifi" class="up-label">Cliente:</label>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <em id='search-cuenta-informe-DatosSifi' class="material-icons prefix">search</em>
+                    <input type="text" id="autocomplete-cuenta-informe-DatosSifi" class="autocomplete" maxlength="30">
+                    <label for="autocomplete-cuenta-informe-DatosSifi" class="up-label">Cuenta:</label>
+                </div>
+            </div>
+            <a class="waves-effect waves-light btn consultar-informe-DatosSifi">CONSULTAR</a>
+        </form>
+    </div>
+
+    <table id="table-data-Sifi" class="table table-striped table-bordered table-cliente-tirnoper">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th scope="col">FECHA</th>
+                <th scope="col">TIPO</th>
+                <th scope="col">VALOR</th>
+                <th scope="col">TIR CLIENTE</th>
+                <th scope="col">TIR CUENTA</th>
+                <th scope="col">TIR EMPRESA</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>

@@ -153,15 +153,19 @@
     <Compile Include="Models\Request\CuentasPorClienteRequest.cs" />
     <Compile Include="Models\Request\CuentasPorGrupoEconomicosRequest.cs" />
     <Compile Include="Models\Request\DatosSaldosRequest.cs" />
+    <Compile Include="Models\Request\DatosTebRequest.cs" />
     <Compile Include="Models\Request\DetalleProcesoRequest.cs" />
+    <Compile Include="Models\Request\ExtraccionRequest.cs" />
     <Compile Include="Models\Request\FechaRequest.cs" />
     <Compile Include="Models\Request\InformeBuscaClienteRequest.cs" />
     <Compile Include="Models\Request\InformeBuscaCuentaRequest.cs" />
+    <Compile Include="Models\Request\InformeDatosSif.cs" />
     <Compile Include="Models\Request\InformePorCategoriaRequest.cs" />
     <Compile Include="Models\Request\LoteRequest.cs" />
     <Compile Include="Models\Request\NIPClientesRequest.cs" />
     <Compile Include="Models\Request\NombreClienteRequest.cs" />
     <Compile Include="Models\Request\NombreGrupoEconomicoRequest.cs" />
+    <Compile Include="Models\Request\TirMasivaRequest.cs" />
     <Compile Include="Models\Request\UsuarioRequest.cs" />
     <Compile Include="Models\Result\BloqueoResult.cs" />
     <Compile Include="Models\Result\CategoriaInformeResult.cs" />
@@ -169,12 +173,15 @@
     <Compile Include="Models\Result\ClienteInfoResult.cs" />
     <Compile Include="Models\Result\ClienteMovimientoResult.cs" />
     <Compile Include="Models\Result\ClientesPorGrupoEconomicoResult.cs" />
+    <Compile Include="Models\Result\ConsolidadoResult.cs" />
     <Compile Include="Models\Result\CorreccionGuardarResult.cs" />
     <Compile Include="Models\Result\CorreccionResult.cs" />
     <Compile Include="Models\Result\CuentasPorClienteResult.cs" />
     <Compile Include="Models\Result\CuentasPorGrupoEconomicosResult.cs" />
     <Compile Include="Models\Result\DatosSaldosResult.cs" />
+    <Compile Include="Models\Result\DatosTebResult.cs" />
     <Compile Include="Models\Result\DetalleProcesoResult.cs" />
+    <Compile Include="Models\Result\DetalleTebResult.cs" />
     <Compile Include="Models\Result\EjecutaCargaResult.cs" />
     <Compile Include="Models\Result\GrupoEconomicoInfoResult.cs" />
     <Compile Include="Models\Result\GrupoEconomicoMovimientosResult.cs" />
@@ -183,6 +190,7 @@
     <Compile Include="Models\Result\NipClientesResult.cs" />
     <Compile Include="Models\Result\NombreGrupoEconomicoResult.cs" />
     <Compile Include="Models\Result\RolesResult.cs" />
+    <Compile Include="Models\Result\TirMasivaResult.cs" />
     <Compile Include="Models\Result\UsuarioResult.cs" />
     <Compile Include="Models\Result\VerificarEstadoTareaResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1755,6 +1763,12 @@
     <Content Include="styles\fonts\TypeType - TT Jenevers Regular.otf" />
     <Content Include="Views\TirNoPer\TirNoPer.cshtml" />
     <Content Include="Views\TirNoPerAdministrativo\TirNoPerAdministrativo.cshtml" />
+    <Content Include="Views\TirNoPerAdministrativo\DatosSaldos.cshtml" />
+    <Content Include="Views\TirNoPerAdministrativo\DatosTitulosExtrabursatiles.cshtml" />
+    <Content Include="Views\TirNoPerAdministrativo\DatosSifi.cshtml" />
+    <Content Include="Views\TirNoPerAdministrativo\DatosSif.cshtml" />
+    <Content Include="Views\TirNoPerAdministrativo\ConsolidadoProcesos.cshtml" />
+    <Content Include="Views\TirNoPerAdministrativo\TirMasiva.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
