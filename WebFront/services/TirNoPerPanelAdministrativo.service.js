@@ -1563,7 +1563,7 @@ function obtener_informe(tipo) {
             }
         });
 
-        $(table).DataTable();
+        //$(table).DataTable();
         $('.dataTables_length').addClass('bs-select');
     }
 }
@@ -1590,7 +1590,6 @@ function obtener_informe_DatosSif(){
 
 function obtener_informe_ConsolidadoProcesos() {
     const fechaCorteInput = $("#filtro-fecha-corte-consolidado");
-    let _FECHA = $("#filtro-fecha-corte-consolidado").val().replace(/\-/g, '');
     const modalTitle = $(".modal-title");
     const message = $("#message");
     const modalAlert = $('#modal-alert');
@@ -1620,8 +1619,7 @@ function obtener_informe_ConsolidadoProcesos() {
     $.ajax({
         url: "/TirNoPerAdministrativo/ObtenerConsolidadoInformes",
         data: JSON.stringify({
-            "FECHA": _FECHA,
-            "Url": ""
+            "FECHA": formattedFechaCorte
         }),
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -1633,16 +1631,16 @@ function obtener_informe_ConsolidadoProcesos() {
                 let value_detalle_key = '';
 
 				switch(element.categoria) {
-					case "FICS":
+                    case "Total registros FICS":
 						value_detalle_key = 'Fics';
 						break;
-					case "títulos":
+                    case "Total registros títulos extrabursátiles":
 						value_detalle_key = 'TEB';
 						break;
-					case "cuentas":
+                    case "Total registros cuentas de inversión":
 						value_detalle_key = 'CTV';
 						break;
-					case "saldos":
+                    case "Total registros saldos":
 						value_detalle_key = 'Saldos';
 						break;
 				}
@@ -1650,7 +1648,7 @@ function obtener_informe_ConsolidadoProcesos() {
                 let value_detalle = '';
 
                 if (element.registros !== 0) {
-                    value_detalle = "<td> <button type='button' class='btn btn-default consolidado-detalle' value=" + value_detalle_key + ">Detalle</button></td>";
+                    value_detalle = "<td> <button type='button' class='btn btn-default consolidado-detalle' value='" + value_detalle_key + "'>Detalle</button></td>";
                 } else {
                     value_detalle = "<td> <button type='button'>Ver Detalle</button> </td>";
                 }
@@ -1719,7 +1717,7 @@ function obtener_informe_consolidado_procesos_detalle_unificado(tipo) {
             break;
     }
 
-    let _FECHA_CORTE = $("#filtro-fecha-corte-consolidado").val().replace(/\-/g, '' );
+    let _FECHA_CORTE = $("#filtro-fecha-corte-consolidado").val();
 
     $(tbody).empty();
 
@@ -1760,7 +1758,7 @@ function obtener_informe_consolidado_procesos_detalle_unificado(tipo) {
         }
     });
 
-    $(tabla).DataTable();
+    //$(tabla).DataTable();
     $('.dataTables_length').addClass('bs-select');
 }
 

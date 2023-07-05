@@ -40,10 +40,11 @@ namespace WebFront.Controllers
         }
 
         [AllowAnonymous]
-        public JsonResult ObtenerLotes(FechaRequest fecha)
+        public JsonResult ObtenerLotes(CargarVariosRequest request)
         {
             try
             {
+                FechaRequest fecha = new FechaRequest() { FECHA = request.FECHA };
                 var loteResult = Post<FechaRequest, LoteResult>(urlBase + "/api/v1/Cargas/PA/ObtenerLotes", fecha, (string)Session["token"]);
                 return Json(loteResult, JsonRequestBehavior.AllowGet);
             }
@@ -54,10 +55,11 @@ namespace WebFront.Controllers
         }
 
         [AllowAnonymous]
-        public JsonResult EjecutarCargaTEB(FechaRequest fecha)
+        public JsonResult EjecutarCargaTEB(CargarVariosRequest request)
         {
             try
             {
+                FechaRequest fecha = new FechaRequest() { FECHA = request.FECHA };
                 var carga = Post<FechaRequest, EjecutaCargaResult>(urlBase + "/api/v1/Cargas/PA/EjecutarCargaTEB", fecha, (string)Session["token"]);
                 Session["CargaTEB"] = carga.id_proceso;
                 return Json(carga, JsonRequestBehavior.AllowGet);
@@ -383,10 +385,11 @@ namespace WebFront.Controllers
         }
 
         [AllowAnonymous]
-        public JsonResult ObtenerConsolidadoInformes(FechaRequest fecha)
+        public JsonResult ObtenerConsolidadoInformes(CargarVariosRequest request)
         {
             try
             {
+                FechaRequest fecha = new FechaRequest() { FECHA = request.FECHA };
                 var result = Post<FechaRequest, List<ConsolidadoResult>>(urlBase + "/api/v1/Informes/PA/ObtenerConsolidadoInformes", fecha, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
