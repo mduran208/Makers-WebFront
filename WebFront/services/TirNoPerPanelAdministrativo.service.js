@@ -1279,7 +1279,7 @@ function obtener_informe_DatosSaldos(){
     else {
 
         $.ajax({
-            url: API_URL_BASE + "/TirNoPerAdministrativo/ObtenerDatosSaldos",
+            url: "/TirNoPerAdministrativo/ObtenerDatosSaldos",
             data: JSON.stringify({ 
                 "Fecha": _FECHA,
                 "Cliente": _CLIENTE_SELECTED
@@ -1425,7 +1425,7 @@ function obtener_informe_DatosTB(){
             }
         });
 
-        $('#table-data-TB').DataTable();
+        //$('#table-data-TB').DataTable();
         $('.dataTables_length').addClass('bs-select');
     }
 }
@@ -1590,6 +1590,7 @@ function obtener_informe_DatosSif(){
 
 function obtener_informe_ConsolidadoProcesos() {
     const fechaCorteInput = $("#filtro-fecha-corte-consolidado");
+    let _FECHA = $("#filtro-fecha-corte-consolidado").val().replace(/\-/g, '');
     const modalTitle = $(".modal-title");
     const message = $("#message");
     const modalAlert = $('#modal-alert');
@@ -1619,7 +1620,8 @@ function obtener_informe_ConsolidadoProcesos() {
     $.ajax({
         url: "/TirNoPerAdministrativo/ObtenerConsolidadoInformes",
         data: JSON.stringify({
-            "FECHA": formattedFechaCorte
+            "FECHA": _FECHA,
+            "Url": ""
         }),
         type: "POST",
         contentType: "application/json; charset=utf-8",

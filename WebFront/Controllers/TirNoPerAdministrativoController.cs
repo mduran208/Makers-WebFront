@@ -301,7 +301,7 @@ namespace WebFront.Controllers
             try
             {
                 InformeClienteRequest info = new InformeClienteRequest() { Term = informe.Term };
-                var result = Post<InformeClienteRequest, List<InformePorCategoriaResult>>(urlBase + informe.Url, info, (string)Session["token"]);
+                var result = Post<InformeClienteRequest, List<string>>(urlBase + informe.Url, info, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
