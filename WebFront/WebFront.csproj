@@ -811,6 +811,12 @@
     <Content Include="resource\img\TirNoPer_PA\refresh.png" />
     <Content Include="resource\img\TirNoPer_PA\search.png" />
     <Content Include="resource\img\welcome.gif" />
+    <Content Include="resource\reports\ConsolidadoProcesos.html" />
+    <Content Include="resource\reports\DatosSaldos.html" />
+    <Content Include="resource\reports\DatosSif.html" />
+    <Content Include="resource\reports\DatosSifi.html" />
+    <Content Include="resource\reports\DatosTitulosExtrabursatiles.html" />
+    <Content Include="resource\reports\TirMasiva.html" />
     <Content Include="Scripts\assets\demo\avatars\1.jpg" />
     <Content Include="Scripts\assets\demo\avatars\2.jpg" />
     <Content Include="Scripts\assets\demo\avatars\3.jpg" />
@@ -1763,12 +1769,6 @@
     <Content Include="styles\fonts\TypeType - TT Jenevers Regular.otf" />
     <Content Include="Views\TirNoPer\TirNoPer.cshtml" />
     <Content Include="Views\TirNoPerAdministrativo\TirNoPerAdministrativo.cshtml" />
-    <Content Include="Views\TirNoPerAdministrativo\DatosSaldos.cshtml" />
-    <Content Include="Views\TirNoPerAdministrativo\DatosTitulosExtrabursatiles.cshtml" />
-    <Content Include="Views\TirNoPerAdministrativo\DatosSifi.cshtml" />
-    <Content Include="Views\TirNoPerAdministrativo\DatosSif.cshtml" />
-    <Content Include="Views\TirNoPerAdministrativo\ConsolidadoProcesos.cshtml" />
-    <Content Include="Views\TirNoPerAdministrativo\TirMasiva.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

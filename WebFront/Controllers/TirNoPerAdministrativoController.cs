@@ -272,7 +272,7 @@ namespace WebFront.Controllers
         {
             try
             {
-                var result = Post<string, string>(urlBase + "/api/v1/Informes/PA/ObtenerCategoriasInformes", "", (string)Session["token"]);
+                var result = Post<string, CategoriaInformeResult>(urlBase + "/api/v1/Informes/PA/ObtenerCategoriasInformes", "", (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
@@ -453,34 +453,5 @@ namespace WebFront.Controllers
             }
         }
 
-        public ActionResult DatosSaldos()
-        {
-            return PartialView();
-        }
-
-        public ActionResult DatosTitulosExtrabursatiles()
-        {
-            return PartialView();
-        }
-
-        public ActionResult DatosSifi()
-        {
-            return PartialView();
-        }
-
-        public ActionResult DatosSif()
-        {
-            return PartialView();
-        }
-
-        public ActionResult ConsolidadoProcesos()
-        {
-            return PartialView();
-        }
-
-        public ActionResult TirMasiva()
-        {
-            return PartialView();
-        }
     }
 }

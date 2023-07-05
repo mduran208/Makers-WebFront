@@ -1136,7 +1136,7 @@ function RenderReport(reporte){
     switch (reporte) {
         case "Datos Saldos":
             $("#divReportes").show();
-            $('#divReportes').load('TirNoPerAdministrativo/DatosSaldos', function() {
+            $('#divReportes').load('../resource/reports/DatosSaldos.html', function() {
                 $('#search-informe-DatosSaldos').on("click", function(){ 
                     autocomplete_buscar_clientes_informe_DataSaldos();
                 });
@@ -1147,7 +1147,7 @@ function RenderReport(reporte){
             break;
         case "Datos Titulos Extrabursátiles":
             $("#divReportes").show();
-            $('#divReportes').load('TirNoPerAdministrativo/DatosTitulosExtrabursatiles', function() {
+            $('#divReportes').load('../resource/reports/DatosTitulosExtrabursatiles.html', function() {
                 $('#search-cliente-informe-DatosTB').on("click", function(){ 
                     autocomplete_buscar_clientes_informe_DataTB();
                 });
@@ -1161,7 +1161,7 @@ function RenderReport(reporte){
             break;
         case "Datos Sifi":
             $("#divReportes").show();
-            $('#divReportes').load('TirNoPerAdministrativo/DatosSifi', function() {
+            $('#divReportes').load('../resource/reports/DatosSifi.html', function() {
                 $('#search-cliente-informe-DatosSifi').on("click", function(){ 
                     autocomplete_buscar_clientes_informe_DatosSifi();
                 });
@@ -1175,7 +1175,7 @@ function RenderReport(reporte){
             break;
         case "Datos Sif":
             $("#divReportes").show();
-            $('#divReportes').load('TirNoPerAdministrativo/DatosSif', function() {
+            $('#divReportes').load('../resource/reports/DatosSif.html', function() {
                 $('#search-cliente-informe-DatosSif').on("click", function(){ 
                     autocomplete_buscar_clientes_informe_DatosSif();
                 });
@@ -1189,7 +1189,7 @@ function RenderReport(reporte){
             break;
         case "Consolidado Procesos":
             $("#divReportes").show();
-            $('#divReportes').load('TirNoPerAdministrativo/ConsolidadoProcesos', function() {
+            $('#divReportes').load('../resource/reports/ConsolidadoProcesos.html', function() {
                 $(".consultar-informe-consolidado").on("click",function(){
                     obtener_informe_ConsolidadoProcesos();
                 });
@@ -1197,7 +1197,7 @@ function RenderReport(reporte){
             break;
         case "Tir Masiva":
             $("#divReportes").show();
-            $('#divReportes').load('TirNoPerAdministrativo/TirMasiva', function() {
+            $('#divReportes').load('../resource/reports/TirMasiva.html', function() {
                 $('#search-segmento-informe-tir-masiva').on("click", function(){ 
                     autocomplete_buscar_segmentos_informe_tir_masiva();
                 });
@@ -1897,11 +1897,11 @@ function autocomplete_buscar_informe(tipo) {
     let url = "";
     if(tipo == "segmentos") {
         autocomplete = "#autocomplete-segmento-informe-tir-masiva";
-        url = "/api/v1/Informes/PA/ObtenerSegmentos";
+        url = "/api/v1/TirMasiva/PA/ObtenerSegmentos";
     }
     else {
         autocomplete = "#autocomplete-comercial-informe-tir-masiva";
-        url = "/api/v1/Informes/PA/ObtenerComerciales";
+        url = "/api/v1/TirMasiva/PA/ObtenerComerciales";
     }
 
     $(autocomplete).attr('maxlength', 0);
