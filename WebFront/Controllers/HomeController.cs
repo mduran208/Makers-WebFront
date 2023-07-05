@@ -34,36 +34,43 @@ namespace WebFront.Controllers
                     user = Post<UsuarioRequest, UsuarioResult>(urlBase + "/api/auth/validate", new UsuarioRequest() { }, token);
                     user.Error = "";
                     user.Descripcion = "";
-                    GetRoles();
+                    Session["User"] = user;
+                    GetRoles(token);
                 }
                 catch (ApiException ex)
                 {
                     user.Error = "1";
                     user.Descripcion = ex.Content;
                 }
-                Session["User"] = user;
                 Session["Token"] = token;
             }
             ViewBag.User = user;
             return View();
         }
 
-        public void GetRoles()
+        public void GetRoles(string token)
         {
-            var panel = false;
-            var roles = HttpWebClient.Post<UsuarioRequest, List<RolesResult>>(urlBase + "/api/v1/TirNoPer/ObtenerPARoles", new UsuarioRequest() { }, (string)Session["Token"]);
-            var acceso = HttpWebClient.Post<UsuarioRequest, string>(urlBase + "/api/auth/validate-access", new UsuarioRequest() { }, (string)Session["Token"]);
-            if(Convert.ToBoolean(acceso))
+            try
             {
-                var user = (UsuarioResult)Session["User"];
-                roles.ForEach(r =>
+                var panel = false;
+                var roles = Post<UsuarioRequest, List<RolesResult>>(urlBase + "/api/v1/TirNoPer/ObtenerPARoles", new UsuarioRequest() { }, token);
+                var acceso = Post<UsuarioRequest, string>(urlBase + "/api/auth/validate-access", new UsuarioRequest() { }, token);
+                if (Convert.ToBoolean(acceso))
                 {
-                    if (r.rol == user.role)
-                        panel = true;
-                });
+                    var user = (UsuarioResult)Session["User"];
+                    roles.ForEach(r =>
+                    {
+                        if (r.rol == user.role)
+                            panel = true;
+                    });
+                }
+                Session["Panel"] = panel;
+                ViewBag.Panel = panel;
             }
-            Session["Panel"] = panel;
-            ViewBag.Panel = panel;
+            catch (ApiException ex)
+            {
+                throw ex;
+            }
         }
     }
 }
