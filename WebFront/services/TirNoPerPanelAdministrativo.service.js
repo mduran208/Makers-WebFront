@@ -17,8 +17,9 @@
 
 
 
-function separar_numero_en_comas(val){
-    val = val.toFixed(2);
+function separar_numero_en_comas(val) {
+    var numero = parseFloat(val);
+    val = numero.toFixed(2);
     while (/(\d+)(\d{3})/.test(val.toString())){
         val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
     }
@@ -1488,7 +1489,7 @@ function obtener_informe_DatosTB_Detalle(){
         }
     });
 
-    $('#table-data-tb-detalle').DataTable();
+    //$('#table-data-tb-detalle').DataTable();
     $('.dataTables_length').addClass('bs-select');
     
 }
@@ -1530,8 +1531,8 @@ function obtener_informe(tipo) {
         table = '#table-data-Sif';
     }
 
-    let _FECHA_INI = $(fechaInicial).val().replace(/\-/g, '' );
-    let _FECHA_FIN = $(fechaFin).val().replace(/\-/g, '' );
+    let _FECHA_INI = $(fechaInicial).val();//.replace(/\-/g, '' );
+    let _FECHA_FIN = $(fechaFin).val();//.replace(/\-/g, '' );
     let _CLIENTE_SELECTED = $(autocliente).val();
     let _CUENTA_SELECTED = $(autocuenta).val();
 
@@ -1543,7 +1544,7 @@ function obtener_informe(tipo) {
     else {
 
         $.ajax({
-            url: "/TirNoPerAdministrativo/ObtenerDetalleTEB",
+            url: "/TirNoPerAdministrativo/InformeDatosSif",
             data: JSON.stringify({
                 "FechaIni": _FECHA_INI,
                 "FechaFin": _FECHA_FIN,

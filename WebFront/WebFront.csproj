@@ -217,7 +217,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="modules\Auth.js" />
     <Content Include="modules\index.js" />
-    <Content Include="modules\lib.js" />
     <Content Include="modules\node_modules\accepts\index.js" />
     <Content Include="modules\node_modules\anymatch\index.js" />
     <Content Include="modules\node_modules\anymatch\node_modules\normalize-path\index.js" />
