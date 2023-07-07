@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
 
 <body id="body-main" class="vertical-layout page-header-light vertical-menu-collapsible preload-transitions 2-columns" data-open="click" data-menu="vertical-menu-nav-dark" data-col="2-columns">
@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="input-field col-md-6">
                                             @*<input type="text" id="autocomplete-cliente" class="autocomplete" autocomplete="off">*@
-                                            <input type="search" id="autocomplete-cliente"   list="lista-clientes" autocomplete="off" placeholder="">
+                                            <input type="search" id="autocomplete-cliente" list="lista-clientes" autocomplete="off" placeholder="">
                                             <datalist id="lista-clientes">
                                             </datalist>
                                             <label for="autocomplete-cliente" class="up-label">Cliente:</label>
@@ -259,7 +259,10 @@
                                             <label for="filtro-fecha-final-grupo-economico" class="up-label" style="font-size: 1rem;">Fecha Final:</label>
                                         </div>
                                         <div class="input-field col-md-6">
-                                            <input type="text" id="autocomplete-grupo-economico" class="autocomplete" autocomplete="off">
+                                            @*<input type="text" id="autocomplete-grupo-economico" class="autocomplete" autocomplete="off">*@
+                                            <input type="search" id="autocomplete-grupo-economico" list="lista-grupo-economico" onchange="funcionChangeGe()" autocomplete="off" placeholder="">
+                                            <datalist id="lista-grupo-economico">
+                                            </datalist>
                                             <label for="autocomplete-grupo-economico" class="up-label">Grupo:</label>
                                             <span id="help2" class="helper-text" data-error="wrong" data-success="right" style="font-size: 1rem;">M&iacutenimo 5 carecteres</span>
                                         </div>
@@ -453,11 +456,11 @@
     </div>
 </body>
 
-    @section scripts{
-        <script src="~/modules/TirNoPer.js"></script>
-        <script src="~/services/TirNoPer.service.js"></script>
-
-        <script>
+@section scripts{
+    <script src="~/modules/TirNoPer.js"></script>
+    <script src="~/services/TirNoPer.service.js"></script>
+    
+    <script>
             @*var urlObtenerNombreClientes = "@Url.Action("ObtenerNombreClientes", "TirNoPer")";*@
 
         //init.push(function () {
@@ -503,5 +506,5 @@
         //        });
         //    }
         //}
-        </script>
-    }
+    </script>
+}

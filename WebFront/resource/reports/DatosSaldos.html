@@ -10,7 +10,10 @@
                 </div>
                 <div class="input-field col s12 m6 16">
                     <em id='search-informe-DatosSaldos' class="material-icons prefix">search</em>
-                    <input type="text" id="autocomplete-informe-DatosSaldos" class="autocomplete" maxlength="30">
+                    <!--<input type="text" id="autocomplete-informe-DatosSaldos" class="autocomplete" maxlength="30">-->
+                    <input type="search" id="autocomplete-informe-DatosSaldos" list="lista-clientes-datos-saldos" onchange="funcionNombreDatosSaldos()" autocomplete="off" placeholder="">
+                    <datalist id="lista-clientes-datos-saldos">
+                    </datalist>
                     <label for="autocomplete-informe-DatosSaldos" class="up-label">Nombre de cliente:</label>
                 </div>
             </div>
