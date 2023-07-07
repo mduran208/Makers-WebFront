@@ -25,6 +25,7 @@ namespace WebFront.Controllers
         public ActionResult TirNoPer()
         {
             ViewBag.User = (UsuarioResult)Session["User"];
+            ViewBag.Panel = Session["Panel"];
             return View();
         }
 

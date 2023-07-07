@@ -11,8 +11,7 @@ class Sidebar extends HTMLElement {
             <ul id="menu-content" class="menu-content collapse out">
                 
                 <li>
-                    <!--<a href="/mdk/sic-visualizacion/index.html">-->
-                    <a href="index.html">
+                    <a href="/Home/Index">
                         <i class="fa fa-bank fa-fw"></i> Inicio
                     </a>
                 </li>
@@ -26,35 +25,6 @@ class Sidebar extends HTMLElement {
                     <a href="/TirNoPer/TirNoPer")">Herramienta</a>
                     </li>                    
                 </ul>
-
-                <!--<li>
-                    <a href="login.html"><i class="fa fa-arrow-left fa-fw"></i> Cerrar Sesi&oacute;n</a>
-                </li>-->
-                
-                    
-                    <!--
-                    <li class="static">
-                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                            Renta Fija
-                        </button>
-                        <div class="collapse" id="dashboard-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-                            <li><a href="HRF.html" class="link-dark rounded">Herramienta</a></li>
-                        </ul>
-                        </div>
-                    </li>
-                    -->
-                    <!--
-                    <li class="static selected">
-                        
-                        <ul id="tirnoper-menu" class="btn-toggle-nav list-unstyled fw-normal pb-1">
-                            <li><a href="TirNoPer.html" class="link-dark rounded">Herramienta</a></li>
-                        </ul>
-                        </div>
-                    </li>
-                    -->
-                    
-                
             </ul>
             </div>
         </div>

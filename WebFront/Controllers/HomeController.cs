@@ -25,9 +25,7 @@ namespace WebFront.Controllers
         public ActionResult Index(string token)
         {
             var user = new UsuarioResult();
-            user.user = "";
-            user.role = "";
-            if(token != null && token != "")
+            if (token != null && token != "")
             {
                 try
                 {
@@ -44,7 +42,18 @@ namespace WebFront.Controllers
                 }
                 Session["Token"] = token;
             }
+            else
+            {
+                if (Session["User"] == null)
+                {
+                    user.user = "";
+                    user.role = "";
+                }
+                else
+                    user = (UsuarioResult)Session["User"];
+            }
             ViewBag.User = user;
+            ViewBag.Panel = Session["Panel"];
             return View();
         }
 
@@ -65,7 +74,7 @@ namespace WebFront.Controllers
                     });
                 }
                 Session["Panel"] = panel;
-                ViewBag.Panel = panel;
+                
             }
             catch (ApiException ex)
             {
