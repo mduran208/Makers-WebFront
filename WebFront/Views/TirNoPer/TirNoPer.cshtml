@@ -71,7 +71,10 @@
                                             <label for="filtro-fecha-final-cliente" class="up-label">Fecha Final:</label>
                                         </div>
                                         <div class="input-field col-md-6">
-                                            <input type="text" id="autocomplete-cliente" class="autocomplete" autocomplete="off">
+                                            @*<input type="text" id="autocomplete-cliente" class="autocomplete" autocomplete="off">*@
+                                            <input type="search" id="autocomplete-cliente"   list="lista-clientes" autocomplete="off" placeholder="">
+                                            <datalist id="lista-clientes">
+                                            </datalist>
                                             <label for="autocomplete-cliente" class="up-label">Cliente:</label>
                                             <span id="help" class="helper-text" data-error="wrong" data-success="right" style="font-size: 1rem;">M&iacutenimo 5 carecteres</span>
                                         </div>

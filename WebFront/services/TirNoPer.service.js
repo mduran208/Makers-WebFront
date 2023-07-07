@@ -56,6 +56,8 @@ function autocompletado_obtener_clientes() {
 
     let term = $("#autocomplete-cliente").val();
     let _CLIENTE_AUTOCOMPLETE = [];
+    const datalist = $("#lista-clientes");
+    let options = '';
 
     if (term.length > 2) {
         $.ajax({
@@ -68,12 +70,18 @@ function autocompletado_obtener_clientes() {
             dataType: 'json',
             success: function (_data) {
                 _data.forEach(element => {
-                    _CLIENTE_AUTOCOMPLETE[element] = null;
+                    options += '<option value="' + element + '"/>';
                 });
-                $("#autocomplete-cliente").autocomplete({
-                    data: _CLIENTE_AUTOCOMPLETE,
-                    limit: 50
-                });
+
+                document.getElementById('lista-clientes').innerHTML = options;
+
+                //_data.forEach(element => {
+                //    _CLIENTE_AUTOCOMPLETE[element] = null;
+                //});
+                //$("#autocomplete-cliente").autocomplete({
+                //    data: _CLIENTE_AUTOCOMPLETE,
+                //    limit: 50
+                //});
                 $("#autocomplete-nip").prop("disabled", true);
                 return _data;
             },
