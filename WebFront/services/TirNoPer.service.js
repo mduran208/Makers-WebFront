@@ -15,7 +15,9 @@
 ---------------------------------------------------------------------------------------- 
 */
 
-
+function funcionChangeGe() {
+    autocomplete_obtener_clientes_grupo_economico($("#autocomplete-grupo-economico").val());
+}
 
 function separar_numero_en_comas(_VAL){
     _VAL = parseFloat(_VAL).toFixed(2);
@@ -367,7 +369,9 @@ function autocomplete_obtener_grupo_economico() {
 
     let term = $("#autocomplete-grupo-economico").val();
     let _CLIENTE_AUTOCOMPLETE = [];
-
+    const datalist = $("#lista-grupo-economico");
+    let options = '';
+    $("#autocomplete-grupo-economico")
     if (term.length > 2) {
 
         $.ajax({
@@ -380,14 +384,11 @@ function autocomplete_obtener_grupo_economico() {
             dataType: 'json',
             success: function (_data) {
                 _data.forEach(element => {
-                    _CLIENTE_AUTOCOMPLETE[element] = null;
+                    options += '<option value="' + element + '"/>';
                 });
-                $("#autocomplete-grupo-economico").autocomplete({
-                    data: _CLIENTE_AUTOCOMPLETE,
-                    onAutocomplete: function (val) {
-                        autocomplete_obtener_clientes_grupo_economico(val);
-                    }
-                });
+
+                document.getElementById('lista-grupo-economico').innerHTML = options;
+
                 return _data;
             },
             error: function (xhr, status, error) {
