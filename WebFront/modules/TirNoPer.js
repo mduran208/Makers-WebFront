@@ -191,14 +191,15 @@ $(document).ready(function () {
     $("#autocomplete-cliente").keyup(function (e) {
         if($("#autocomplete-cliente").val().trim() != ''){
             if($("#autocomplete-cliente").val().length % 5 == 0){
-                autocompletado_obtener_clientes();
+                autocompletado_obtener_clientes("#autocomplete-cliente","lista-clientes");
             }else {
                 if (e.keyCode == ctrlKey){
-                    autocompletado_obtener_clientes();
+                    autocompletado_obtener_clientes("#autocomplete-cliente","lista-clientes");
                 } 
             }
         }
     })
+
 
     $("#autocomplete-nip").keyup(function (e) {
         console.log("preciona")

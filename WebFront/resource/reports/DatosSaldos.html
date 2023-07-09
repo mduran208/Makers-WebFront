@@ -43,3 +43,19 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    let ctrlKey = 17;
+
+    $("#autocomplete-informe-DatosSaldos").keyup(function (e) {
+        if ($("#autocomplete-informe-DatosSaldos").val().trim() != '') {
+            if ($("#autocomplete-informe-DatosSaldos").val().length % 5 == 0) {
+                autocompletado_obtener_clientes("#autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
+            } else {
+                if (e.keyCode == ctrlKey) {
+                    autocompletado_obtener_clientes("#autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
+                }
+            }
+        }
+    })
+</script>

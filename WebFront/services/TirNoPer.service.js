@@ -54,11 +54,11 @@ function ExceptionHandler(xhr){
 ---------------------------------------------------------------------------------------- 
 */
 
-function autocompletado_obtener_clientes() {
+function autocompletado_obtener_clientes(inputField, dataList) {
 
-    let term = $("#autocomplete-cliente").val();
+    let term = $(inputField).val();
     let _CLIENTE_AUTOCOMPLETE = [];
-    const datalist = $("#lista-clientes");
+    const datalist = $(dataList);
     let options = '';
 
     if (term.length > 2) {
@@ -75,16 +75,12 @@ function autocompletado_obtener_clientes() {
                     options += '<option value="' + element + '"/>';
                 });
 
-                document.getElementById('lista-clientes').innerHTML = options;
+                document.getElementById(dataList).innerHTML = options;
 
-                //_data.forEach(element => {
-                //    _CLIENTE_AUTOCOMPLETE[element] = null;
-                //});
-                //$("#autocomplete-cliente").autocomplete({
-                //    data: _CLIENTE_AUTOCOMPLETE,
-                //    limit: 50
-                //});
-                $("#autocomplete-nip").prop("disabled", true);
+                if (inputField == "#autocomplete-cliente") {
+                    $("#autocomplete-nip").prop("disabled", true);
+                }
+               
                 return _data;
             },
             error: function (xhr, status, error) {
