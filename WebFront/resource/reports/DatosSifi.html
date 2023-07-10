@@ -15,7 +15,12 @@
                 </div>
                 <div class="input-field col s12 m6 l6">
                     <em id='search-cliente-informe-DatosSifi' class="material-icons prefix">search</em>
-                    <input type="text" id="autocomplete-cliente-informe-DatosSifi" class="autocomplete" maxlength="30">
+                    <input type="search" id="autocomplete-cliente-informe-DatosSifi"
+                           list="lista-clientes-datos-sifi"
+                           class="autocomplete"
+                           maxlength="30">
+                    <datalist id="lista-clientes-datos-sifi">
+                    </datalist>
                     <label for="autocomplete-cliente-informe-DatosSifi" class="up-label">Cliente:</label>
                 </div>
                 <div class="input-field col s12 m6 l6">
@@ -44,3 +49,19 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    let ctrlKey = 17;
+
+    $("#autocomplete-cuenta-informe-DatosSifi").keyup(function (e) {
+        if ($("#autocomplete-cuenta-informe-DatosSifi").val().trim() != '') {
+            if ($("#autocomplete-cuenta-informe-DatosSifi").val().length % 5 == 0) {
+                autocompletado_obtener_clientes("#autocomplete-cuenta-informe-DatosSifi", "#lista-clientes-datos-sifi);
+            } else {
+                if (e.keyCode == ctrlKey) {
+                    autocompletado_obtener_clientes("#autocomplete-cuenta-informe-DatosSifi", "#lista-clientes-datos-sifi");
+                }
+            }
+        }
+    })
+</script>

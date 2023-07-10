@@ -51,10 +51,10 @@
     $("#autocomplete-informe-DatosSaldos").keyup(function (e) {
         if ($("#autocomplete-informe-DatosSaldos").val().trim() != '') {
             if ($("#autocomplete-informe-DatosSaldos").val().length % 5 == 0) {
-                autocompletado_obtener_clientes("#autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
+                autocompletado_obtener_clientes_informes("#autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
             } else {
                 if (e.keyCode == 17) {
-                    autocompletado_obtener_clientes("#autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
+                    autocompletado_obtener_clientes_informes("#autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
                 }
             }
         }

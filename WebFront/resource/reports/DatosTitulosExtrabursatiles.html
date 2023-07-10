@@ -10,7 +10,10 @@
                 </div>
                 <div class="input-field col s12 m6 l6">
                     <em id='search-cliente-informe-DatosTB' class="material-icons prefix">search</em>
-                    <input type="text" id="autocomplete-cliente-informe-DatosTB" class="autocomplete" maxlength="30">
+                    <input type="search" id="autocomplete-cliente-informe-DatosTB" class="autocomplete"
+                           list="lista-clientes-datos-teb" maxlength="30">
+                    <datalist id="lista-clientes-datos-teb">
+                    </datalist>
                     <label for="autocomplete-cliente-informe-DatosTB" class="up-label">Nombre de cliente</label>
                 </div>
                 <div class="input-field col s12 m6 l6">
@@ -58,3 +61,19 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    let ctrlKey = 17;
+
+    $("#autocomplete-cliente-informe-DatosTB").keyup(function (e) {
+        if ($("#autocomplete-cliente-informe-DatosTB").val().trim() != '') {
+            if ($("#autocomplete-cliente-informe-DatosTB").val().length % 5 == 0) {
+                autocompletado_obtener_clientes("#autocomplete-cliente-informe-DatosTB", "#lista-clientes-datos-teb");
+            } else {
+                if (e.keyCode == ctrlKey) {
+                    autocompletado_obtener_clientes("#autocomplete-cliente-informe-DatosTB", "#lista-clientes-datos-teb");
+                }
+            }
+        }
+    })
+</script>

@@ -58,7 +58,7 @@ function autocompletado_obtener_clientes(inputField, dataList) {
 
     let term = $(inputField).val();
     let _CLIENTE_AUTOCOMPLETE = [];
-    const datalist = $(dataList);
+    //const datalist = $(dataList);
     let options = '';
 
     if (term.length > 2) {
@@ -365,7 +365,6 @@ function autocomplete_obtener_grupo_economico() {
 
     let term = $("#autocomplete-grupo-economico").val();
     let _CLIENTE_AUTOCOMPLETE = [];
-    const datalist = $("#lista-grupo-economico");
     let options = '';
     $("#autocomplete-grupo-economico")
     if (term.length > 2) {

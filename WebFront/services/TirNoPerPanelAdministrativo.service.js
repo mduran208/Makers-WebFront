@@ -22,7 +22,7 @@ function autocompletado_obtener_clientes_informes(inputField, dataList) {
 
     let term = $(inputField).val();
     let _CLIENTE_AUTOCOMPLETE = [];
-    const datalist = $(dataList);
+    const dataList = $(dataList);
     let options = '';
 
     if (term.length > 2) {
