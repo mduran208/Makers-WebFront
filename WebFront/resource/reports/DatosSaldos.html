@@ -11,7 +11,8 @@
                 <div class="input-field col s12 m6 16">
                     <em id='search-informe-DatosSaldos' class="material-icons prefix">search</em>
                     <!--<input type="text" id="autocomplete-informe-DatosSaldos" class="autocomplete" maxlength="30">-->
-                    <input type="search" id="autocomplete-informe-DatosSaldos" list="lista-clientes-datos-saldos" onchange="funcionNombreDatosSaldos()" autocomplete="off" placeholder="">
+                    <input type="search" id="autocomplete-informe-DatosSaldos" list="lista-clientes-datos-saldos" 
+                           autocomplete="off" placeholder="">
                     <datalist id="lista-clientes-datos-saldos">
                     </datalist>
                     <label for="autocomplete-informe-DatosSaldos" class="up-label">Nombre de cliente:</label>
@@ -45,14 +46,14 @@
 </div>
 
 <script>
-    let ctrlKey = 17;
+
 
     $("#autocomplete-informe-DatosSaldos").keyup(function (e) {
         if ($("#autocomplete-informe-DatosSaldos").val().trim() != '') {
             if ($("#autocomplete-informe-DatosSaldos").val().length % 5 == 0) {
                 autocompletado_obtener_clientes("#autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
             } else {
-                if (e.keyCode == ctrlKey) {
+                if (e.keyCode == 17) {
                     autocompletado_obtener_clientes("#autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
                 }
             }

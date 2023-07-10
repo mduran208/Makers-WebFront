@@ -15,9 +15,6 @@
 ---------------------------------------------------------------------------------------- 
 */
 
-function funcionNombreDatosSaldos() {
-    autocompletado_obtener_clientes_informes("autocomplete-informe-DatosSaldos", "lista-clientes-datos-saldos");
-}
 
 function autocompletado_obtener_clientes_informes(inputField, dataList) {
 
@@ -1364,9 +1361,9 @@ function obtener_informe_DatosSaldos(){
                 ExceptionHandler(xhr);
             }
         });
-
         $('#table-data-saldos').DataTable();
         $('.dataTables_length').addClass('bs-select');
+        
     }
 }
 
