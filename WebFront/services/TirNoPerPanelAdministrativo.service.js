@@ -22,7 +22,6 @@ function autocompletado_obtener_clientes_informes(inputField, dataList) {
 
     let term = $(inputField).val();
     let _CLIENTE_AUTOCOMPLETE = [];
-    const dataList = $(dataList);
     let options = '';
 
     if (term.length > 2) {
@@ -1361,7 +1360,7 @@ function obtener_informe_DatosSaldos(){
                 ExceptionHandler(xhr);
             }
         });
-        $('#table-data-saldos').DataTable();
+        //$('#table-data-saldos').DataTable();
         $('.dataTables_length').addClass('bs-select');
         
     }

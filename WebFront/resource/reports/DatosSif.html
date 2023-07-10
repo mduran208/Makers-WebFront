@@ -54,10 +54,10 @@
     $("#autocomplete-cliente-informe-DatosSif").keyup(function (e) {
         if ($("#autocomplete-cliente-informe-DatosSif").val().trim() != '') {
             if ($("#autocomplete-cliente-informe-DatosSif").val().length % 5 == 0) {
-                autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosSif", "#lista-clientes-datos-sif");
+                autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosSif", "lista-clientes-datos-sif");
             } else {
                 if (e.keyCode == 17) {
-                    autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosSif", "#lista-clientes-datos-sif");
+                    autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosSif", "lista-clientes-datos-sif");
                 }
             }
         }

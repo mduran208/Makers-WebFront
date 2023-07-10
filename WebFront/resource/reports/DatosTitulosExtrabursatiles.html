@@ -68,10 +68,10 @@
     $("#autocomplete-cliente-informe-DatosTB").keyup(function (e) {
         if ($("#autocomplete-cliente-informe-DatosTB").val().trim() != '') {
             if ($("#autocomplete-cliente-informe-DatosTB").val().length % 5 == 0) {
-                autocompletado_obtener_clientes("#autocomplete-cliente-informe-DatosTB", "#lista-clientes-datos-teb");
+                autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosTB", "lista-clientes-datos-teb");
             } else {
                 if (e.keyCode == ctrlKey) {
-                    autocompletado_obtener_clientes("#autocomplete-cliente-informe-DatosTB", "#lista-clientes-datos-teb");
+                    autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosTB", "lista-clientes-datos-teb");
                 }
             }
         }

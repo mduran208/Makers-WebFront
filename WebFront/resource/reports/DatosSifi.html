@@ -51,15 +51,14 @@
 </div>
 
 <script>
-    let ctrlKey = 17;
 
-    $("#autocomplete-cuenta-informe-DatosSifi").keyup(function (e) {
-        if ($("#autocomplete-cuenta-informe-DatosSifi").val().trim() != '') {
-            if ($("#autocomplete-cuenta-informe-DatosSifi").val().length % 5 == 0) {
-                autocompletado_obtener_clientes("#autocomplete-cuenta-informe-DatosSifi", "#lista-clientes-datos-sifi);
+    $("#autocomplete-cliente-informe-DatosSifi").keyup(function (e) {
+        if ($("#autocomplete-cliente-informe-DatosSifi").val().trim() != '') {
+            if ($("#autocomplete-cliente-informe-DatosSifi").val().length % 5 == 0) {
+                autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosSifi", "lista-clientes-datos-sifi");
             } else {
-                if (e.keyCode == ctrlKey) {
-                    autocompletado_obtener_clientes("#autocomplete-cuenta-informe-DatosSifi", "#lista-clientes-datos-sifi");
+                if (e.keyCode == 17) {
+                    autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosSifi", "lista-clientes-datos-sifi");
                 }
             }
         }
