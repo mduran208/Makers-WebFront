@@ -1052,6 +1052,11 @@ function VerificarClienteExiste() {
         return;
     }
 
+    if ($("#txtObservacionBloqueo").val() == "") {
+        MensajeModal("Aviso", "El campo Observaci&oacute;n es obligatorio");
+        return;
+    }
+
     let documento = $("#txtIdClienteBloqueo").val();
     let observacion = $("#txtObservacionBloqueo").val();
 
