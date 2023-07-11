@@ -16,6 +16,50 @@
 */
 
 
+function autocompletado_obtener_clientes_informes(inputField, dataList) {
+
+    console.log(inputField);
+
+    let term = $(inputField).val();
+    let _CLIENTE_AUTOCOMPLETE = [];
+    let options = '';
+
+    if (term.length > 2) {
+        $.ajax({
+            url: "/TirNoPer/ObtenerNombreClientes",
+            data: JSON.stringify({
+                "Key": term
+            }),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (_data) {
+                _data.forEach(element => {
+                    options += '<option value="' + element + '"/>';
+                });
+
+                document.getElementById(dataList).innerHTML = options;
+
+                //_data.forEach(element => {
+                //    _CLIENTE_AUTOCOMPLETE[element] = null;
+                //});
+                //$("#autocomplete-cliente").autocomplete({
+                //    data: _CLIENTE_AUTOCOMPLETE,
+                //    limit: 50
+                //});
+                if (inputField == "autocomplete-cliente") {
+                    $("#autocomplete-nip").prop("disabled", true);
+                }
+
+                return _data;
+            },
+            error: function (xhr, status, error) {
+                console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                ExceptionHandler(xhr);
+            }
+        });
+    }
+}
 
 function separar_numero_en_comas(val) {
     var numero = parseFloat(val);
@@ -1008,6 +1052,11 @@ function VerificarClienteExiste() {
         return;
     }
 
+    if ($("#txtObservacionBloqueo").val() == "") {
+        MensajeModal("Aviso", "El campo Observaci&oacute;n es obligatorio");
+        return;
+    }
+
     let documento = $("#txtIdClienteBloqueo").val();
     let observacion = $("#txtObservacionBloqueo").val();
 
@@ -1316,9 +1365,9 @@ function obtener_informe_DatosSaldos(){
                 ExceptionHandler(xhr);
             }
         });
-
-        $('#table-data-saldos').DataTable();
+        //$('#table-data-saldos').DataTable();
         $('.dataTables_length').addClass('bs-select');
+        
     }
 }
 

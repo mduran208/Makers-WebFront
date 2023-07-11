@@ -15,12 +15,15 @@
                 </div>
                 <div class="input-field col s12 m6 l6">
                     <em id='search-cliente-informe-DatosSif' class="material-icons prefix">search</em>
-                    <input type="text" id="autocomplete-cliente-informe-DatosSif" class="autocomplete" maxlength="30">
+                    <!--<input type="text" id="autocomplete-cliente-informe-DatosSif" class="autocomplete" maxlength="30">-->
+                    <input type="search" id="autocomplete-cliente-informe-DatosSif" list="lista-clientes-datos-sif"  class="autocomplete">
+                    <datalist id="lista-clientes-datos-sif">
+                    </datalist>
                     <label for="autocomplete-cliente-informe-DatosSif" class="up-label">Cliente:</label>
                 </div>
-                <div class="input-field col s12 m6 l6">
+                <div class="input-field col s12 m6 l6" style="display:none">
                     <em id='search-cuenta-informe-DatosSif' class="material-icons prefix">search</em>
-                    <input type="text" id="autocomplete-cuenta-informe-DatosSif" class="autocomplete" maxlength="30">
+                    <input type="text" id="autocomplete-cuenta-informe-DatosSif" class="autocomplete" maxlength="30" value="-1">
                     <label for="autocomplete-cuenta-informe-DatosSif" class="up-label">Cuenta:</label>
                 </div>
             </div>
@@ -44,3 +47,19 @@
         </tbody>
     </table>
 </div>
+
+<script>
+
+
+    $("#autocomplete-cliente-informe-DatosSif").keyup(function (e) {
+        if ($("#autocomplete-cliente-informe-DatosSif").val().trim() != '') {
+            if ($("#autocomplete-cliente-informe-DatosSif").val().length % 5 == 0) {
+                autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosSif", "lista-clientes-datos-sif");
+            } else {
+                if (e.keyCode == 17) {
+                    autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosSif", "lista-clientes-datos-sif");
+                }
+            }
+        }
+    })
+</script>

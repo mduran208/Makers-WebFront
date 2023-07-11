@@ -175,4 +175,6 @@ $(document).ready(function () {
         $("#bloqueos").show(500);
         $("#divReportes").hide();
     }
+
+
 });
