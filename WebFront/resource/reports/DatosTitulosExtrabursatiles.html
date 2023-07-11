@@ -16,9 +16,9 @@
                     </datalist>
                     <label for="autocomplete-cliente-informe-DatosTB" class="up-label">Nombre de cliente</label>
                 </div>
-                <div class="input-field col s12 m6 l6">
+                <div class="input-field col s12 m6 l6" style="display: none">
                     <em id='search-cuenta-informe-DatosTB' class="material-icons prefix">search</em>
-                    <input type="text" id="autocomplete-cuenta-informe-DatosTB" class="autocomplete" maxlength="30">
+                    <input type="text" id="autocomplete-cuenta-informe-DatosTB" class="autocomplete" maxlength="30" value="-1">
                     <label for="autocomplete-cuenta-informe-DatosTB" class="up-label">N&uacute;mero de cuenta</label>
                 </div>
             </div>
@@ -63,14 +63,13 @@
 </div>
 
 <script>
-    let ctrlKey = 17;
 
     $("#autocomplete-cliente-informe-DatosTB").keyup(function (e) {
         if ($("#autocomplete-cliente-informe-DatosTB").val().trim() != '') {
             if ($("#autocomplete-cliente-informe-DatosTB").val().length % 5 == 0) {
                 autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosTB", "lista-clientes-datos-teb");
             } else {
-                if (e.keyCode == ctrlKey) {
+                if (e.keyCode == 17) {
                     autocompletado_obtener_clientes_informes("#autocomplete-cliente-informe-DatosTB", "lista-clientes-datos-teb");
                 }
             }
