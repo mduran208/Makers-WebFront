@@ -1657,7 +1657,9 @@
     <Content Include="Scripts\assets\fonts\font-awesome\fontawesome-webfont.ttf" />
     <Content Include="Scripts\assets\fonts\font-awesome\fontawesome-webfont.woff" />
     <Content Include="Scripts\assets\fonts\font-awesome\FontAwesome.otf" />
+    <Content Include="Scripts\es-CO.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\es-CO.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />

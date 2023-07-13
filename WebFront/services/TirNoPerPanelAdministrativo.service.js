@@ -1288,7 +1288,25 @@ function obtener_informe_DatosSaldos(){
             type: "POST",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
-            success: function (_data){
+            success: function (_data) {
+                let tabla = '<table id="table-data-saldos" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+                    tabla += '<thead>';
+                    tabla += '  <tr>';
+                    tabla += '    <th>DOCUMENTO</th>';
+                    tabla += '    <th>TIPO OPERACI&Oacute;N</th>';
+                    tabla += '    <th>TIPO IDENTIFICACI&Oacute;N</th>';
+                    tabla += '    <th>CUENTA</th>';
+                    tabla += '    <th>FECHA</th>';
+                    tabla += '    <th>TIPO</th>';
+                    tabla += '    <th>OPERACI&Oacute;N</th>';
+                    tabla += '    <th>FUENTE</th>';
+                    tabla += '    <th>VPN</th>';
+                    tabla += '    <th>VPL</th>';
+                    tabla += '    <th>ESPECIES</th>';
+                    tabla += '    <th>LOTE</th>';
+                    tabla += '  </tr>';
+                    tabla += '</thead>';
+                    tabla += '<tbody>';
                 _data.forEach(element => {
                     let value_documento = '<td>' + element.documento + '</td>';
                     let value_tipo_operacion = '<td>' + element.tipo_Operacion + '</td>';
@@ -1304,12 +1322,24 @@ function obtener_informe_DatosSaldos(){
                     let value_especies = '<td>' + element.especies + '</td>';
                     let value_lote = '<td>' + element.lote + '</td>';
             
-                    let item = '<tr>' + value_documento + value_tipo_operacion + value_tipo_Identificacion + value_cuenta + value_fecha 
+                    tabla += '<tr>' + value_documento + value_tipo_operacion + value_tipo_Identificacion + value_cuenta + value_fecha
                             + value_tipo + value_operacion + value_fuente + value_vpn + value_vpl + value_especies + value_lote + '</tr>';
 
-                    $('#table-data-saldos').append(item);
+                    
                 });
-
+                tabla += '</tbody></table>';
+                $('#table-saldos').html(tabla);
+                //$('#table-saldos').style.display = "visible";
+                $('#table-data-saldos').DataTable({
+                    "scrollX": true,
+                    "scrollY": '550px',
+                    searching: false,
+                    language: {
+                        url: '../Scripts/es-CO.json'
+                    },
+                    pageLength: 20,
+                    lengthChange: false
+                });
             },
             error: function (xhr, status, error) {
                 console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
@@ -1317,8 +1347,8 @@ function obtener_informe_DatosSaldos(){
             }
         });
 
-        $('#table-data-saldos').DataTable();
-        $('.dataTables_length').addClass('bs-select');
+        //$('#table-data-saldos').DataTable();
+       // $('.dataTables_length').addClass('bs-select');
     }
 }
 
