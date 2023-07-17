@@ -1467,13 +1467,13 @@ function obtener_informe_DatosTB(){
     let _CLIENTE_SELECTED = $("#autocomplete-cliente-informe-DatosTB").val();
     let _CUENTA_SELECTED = $("#autocomplete-cuenta-informe-DatosTB").val();
 
-    $("#table-data-tb-detalle").hide(500);
-    $("#table-data-TB").show(500);
+    $("#table-tb_detalle").hide(500);
+    $("#table-tb").show(500);
 
-    $('#table-data-TB tbody').empty();
+    $('#table-data-TB').empty();
 
     if (_FECHA == '' || _CLIENTE_SELECTED == '' || _CUENTA_SELECTED == '') { 
-        MensajeModal("<span style='font-weight:bold;'>Alerta</span>","Datos incompletos");
+        MensajeModal("Alerta","Datos incompletos");
     }
     else {
 
@@ -1487,8 +1487,46 @@ function obtener_informe_DatosTB(){
             type: "POST",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
-            success: function (_data){
-                generacion_tabla(_data, '#table-data-TB');
+            success: function (_data) {
+                let tabla = '<table id="table-data-TB" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+                tabla += '<thead>';
+                tabla += '  <tr>';
+                tabla += '    <th>FECHA</th>';
+                tabla += '    <th>TIPO</th>';
+                tabla += '    <th>VALOR</th>';
+                tabla += '    <th>TIR CLIENTE</th>';
+                tabla += '    <th>TIR CUENTA</th>';
+                tabla += '    <th>TIR EMPRESA</th>';
+                tabla += '    <th>DETALLE</th>';
+                tabla += '  </tr>';
+                tabla += '</thead>';
+                tabla += '<tbody>';
+
+                _data.forEach(element => {
+                    let date = new Date(element.fecha);
+                    let value_fecha = '<td>' + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + '</td>';
+                    let value_tipo = '<td>' + element.tipo_Transaccion + '</td>';
+                    let value_valor = '<td> $' + separar_numero_en_comas(element.valor) + '</td>';
+                    let value_clasificacion_Cliente = '<td>' + element.clasificacion_Cliente + '</td>';
+                    let value_clasificacion_Cuenta = '<td>' + element.clasificacion_Cuenta + '</td>';
+                    let value_clasificacion_Empresa = '<td>' + element.clasificacion_Empresa + '</td>';
+                    let value_detalle = "<td> <button type='button' class='btn btn-default datos-tb-detalle' value=" + element.id + ">Detalle</button></td>";
+
+                    tabla += '<tr>' + value_fecha + value_tipo + value_valor + value_clasificacion_Cliente
+                        + value_clasificacion_Cuenta + value_clasificacion_Empresa + value_detalle + '</tr>';
+                });
+
+                tabla += '</tbody></table>';
+                $('#table-tb').html(tabla);
+                $('#table-data-TB').DataTable({
+                    "scrollY": '550px',
+                    searching: false,
+                    language: {
+                        url: '../Scripts/es-CO.json'
+                    },
+                    pageLength: 20,
+                    lengthChange: false
+                });
 
                 let elementsShowDetalail = document.getElementsByClassName("datos-tb-detalle");
                 for (let value of elementsShowDetalail) {
@@ -1502,36 +1540,17 @@ function obtener_informe_DatosTB(){
             }
         });
 
-        //$('#table-data-TB').DataTable();
         $('.dataTables_length').addClass('bs-select');
     }
-}
-
-function generacion_tabla(data, tabla) {
-    data.forEach(element => {
-        let date = new Date(element.fecha);
-        let value_fecha = '<td>' +  date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + '</td>';
-        let value_tipo = '<td>' + element.tipo_Transaccion + '</td>';
-        let value_valor = '<td> $' + separar_numero_en_comas(element.valor) + '</td>';
-        let value_clasificacion_Cliente = '<td>' + element.clasificacion_Cliente + '</td>';
-        let value_clasificacion_Cuenta = '<td>' + element.clasificacion_Cuenta + '</td>';
-        let value_clasificacion_Empresa = '<td>' + element.clasificacion_Empresa + '</td>';
-        let value_detalle = "<td> <button type='button' class='btn btn-default datos-tb-detalle' value="+ element.id +">Detalle</button></td>";
-
-        let item = '<tr>' + value_fecha + value_tipo + value_valor + value_clasificacion_Cliente 
-                + value_clasificacion_Cuenta + value_clasificacion_Empresa + value_detalle + '</tr>';
-
-        $(tabla).append(item);
-    });
 }
 
 function obtener_informe_DatosTB_Detalle(){
     let _ID  = $(this).val();
 
-    $("#table-data-tb-detalle").show(500);
-    $("#table-data-TB").hide(500);
+    $("#table-tb_detalle").show(500);
+    $("#table-tb").hide(500);
 
-    $('#table-data-tb-detalle tbody').empty();
+    $('#table-data-tb-detalle').empty();
 
     $.ajax({
         url: "/TirNoPerAdministrativo/ObtenerDetalleTEB",
@@ -1541,7 +1560,22 @@ function obtener_informe_DatosTB_Detalle(){
         type: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        success: function (_data){
+        success: function (_data) {
+            let tabla = '<table id="table-data-tb-detalle" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+            tabla += '<thead>';
+            tabla += '  <tr>';
+            tabla += '    <th>Fecha</th>';
+            tabla += '    <th>Estado Entrada</th>';
+            tabla += '    <th>Estado Salida</th>';
+            tabla += '    <th>Nombre</th>';
+            tabla += '    <th>Especie</th>';
+            tabla += '    <th>ISIN</th>';
+            tabla += '    <th>Cantidad</th>';
+            tabla += '    <th>Detalle</th>';
+            tabla += '  </tr>';
+            tabla += '</thead>';
+            tabla += '<tbody>';
+
             _data.forEach(element => {
                 let date = new Date(element.fecha);
                 let _fecha = '<td>' +  date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + '</td>';
@@ -1553,9 +1587,20 @@ function obtener_informe_DatosTB_Detalle(){
                 let _cantidad = '<td>' + separar_numero_en_comas(element.cantidad) + '</td>';
                 let _detalle = '<td>' + element.detalle + '</td>';
         
-                let item = '<tr>' + _fecha + _estado_entrada + _estado_salida + _nombre + _especie + _isin + _cantidad + _detalle + '</tr>';
+                tabla += '<tr>' + _fecha + _estado_entrada + _estado_salida + _nombre + _especie + _isin + _cantidad + _detalle + '</tr>';
+            });
 
-                $('#table-data-tb-detalle').append(item);
+            tabla += '</tbody></table>';
+            $('#table-tb_detalle').html(tabla);
+            $('#table-data-tb-detalle').DataTable({
+                "scrollX": true,
+                "scrollY": '550px',
+                searching: false,
+                language: {
+                    url: '../Scripts/es-CO.json'
+                },
+                pageLength: 20,
+                lengthChange: false
             });
 
         },
@@ -1564,8 +1609,6 @@ function obtener_informe_DatosTB_Detalle(){
             ExceptionHandler(xhr);
         }
     });
-
-    //$('#table-data-tb-detalle').DataTable();
     $('.dataTables_length').addClass('bs-select');
     
 }
@@ -1615,7 +1658,7 @@ function obtener_informe(tipo) {
     $(tbody).empty();
 
     if (_FECHA_INI == '' || _FECHA_FIN == '' || _CLIENTE_SELECTED == '' || _CUENTA_SELECTED == '') { 
-        MensajeModal("<span style='font-weight:bold;'>Alerta</span>","Datos incompletos");
+        MensajeModal("Alerta","Datos incompletos");
     }
     else {
 
@@ -1631,8 +1674,45 @@ function obtener_informe(tipo) {
             type: "POST",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
-            success: function (_data){
-                generacion_tabla(_data, table);
+            success: function (_data) {
+                let tabla = '<table id="table-data-DatosSif" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+                tabla += '<thead>';
+                tabla += '  <tr>';
+                tabla += '    <th>FECHA</th>';
+                tabla += '    <th>TIPO</th>';
+                tabla += '    <th>VALOR</th>';
+                tabla += '    <th>TIR CLIENTE</th>';
+                tabla += '    <th>TIR CUENTA</th>';
+                tabla += '    <th>TIR EMPRESA</th>';
+                tabla += '  </tr>';
+                tabla += '</thead>';
+                tabla += '<tbody>';
+
+                _data.forEach(element => {
+                    let date = new Date(element.fecha);
+                    let value_fecha = '<td>' + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + '</td>';
+                    let value_tipo = '<td>' + element.tipo_Transaccion + '</td>';
+                    let value_valor = '<td> $' + separar_numero_en_comas(element.valor) + '</td>';
+                    let value_clasificacion_Cliente = '<td>' + element.clasificacion_Cliente + '</td>';
+                    let value_clasificacion_Cuenta = '<td>' + element.clasificacion_Cuenta + '</td>';
+                    let value_clasificacion_Empresa = '<td>' + element.clasificacion_Empresa + '</td>';
+                    let value_detalle = "<td> <button type='button' class='btn btn-default datos-tb-detalle' value=" + element.id + ">Detalle</button></td>";
+
+                    tabla += '<tr>' + value_fecha + value_tipo + value_valor + value_clasificacion_Cliente
+                        + value_clasificacion_Cuenta + value_clasificacion_Empresa + value_detalle + '</tr>';
+                });
+
+                tabla += '</tbody></table>';
+                $('#table-Sif').html(tabla);
+                $('#table-data-DatosSif').DataTable({
+                    "scrollY": '550px',
+                    searching: false,
+                    language: {
+                        url: '../Scripts/es-CO.json'
+                    },
+                    pageLength: 20,
+                    lengthChange: false
+                });
             },
             error: function (xhr, status, error) {
                 console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
@@ -1671,8 +1751,8 @@ function obtener_informe_ConsolidadoProcesos() {
     const message = $("#message");
     const modalAlert = $('#modal-alert');
     const fechaCorte = fechaCorteInput.val();
-    const tableDataConsolidado = $('#table-data-consolidado');
-    const tableDataResumenDetalle = $("#table-data-resumen-detalle-fics, #table-data-resumen-detalle-titulos, #table-data-resumen-detalle-ctaInversion, #table-data-resumen-detalle-saldos, #table-data-resumen-detalle-saldos-more");
+    const tableDataConsolidado = $('#table-consolidado');
+    const tableDataResumenDetalle = $("#table-resumen-detalle-fics, #table-resumen-detalle-titulos, #table-resumen-detalle-ctaInversion, #table-resumen-detalle-saldos, #table-resumen-detalle-saldos-more");
 
     if (fechaCorte === "") {
         modalTitle.html('El campo de fecha de corte se encuentra vacio');
@@ -1683,7 +1763,6 @@ function obtener_informe_ConsolidadoProcesos() {
 
     const formattedFechaCorte = fechaCorte.replace(/\-/g, '-');
 
-    tableDataConsolidado.find('tbody').empty();
     tableDataConsolidado.removeClass("d-none");
     tableDataResumenDetalle.addClass("d-none");
 
@@ -1702,6 +1781,16 @@ function obtener_informe_ConsolidadoProcesos() {
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
         success: function (_data) {
+            let tabla = '<table id="table-data-consolidado" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+            tabla += '<thead>';
+            tabla += '  <tr>';
+            tabla += '    <th>PRODUCTO</th>';
+            tabla += '    <th>CANTIDAD DE REGISTROS</th>';
+            tabla += '    <th>DETALLE</th>';
+            tabla += '  </tr>';
+            tabla += '</thead>';
+            tabla += '<tbody>';
+
             _data.forEach(element => {
                 let value_producto = '<td>' + element.categoria + '</td>';
                 let value_cantidad = '<td>' + element.registros + '</td>';
@@ -1725,14 +1814,23 @@ function obtener_informe_ConsolidadoProcesos() {
                 let value_detalle = '';
 
                 if (element.registros !== 0) {
-                    value_detalle = "<td> <button type='button' class='btn btn-default consolidado-detalle' value='" + value_detalle_key + "'>Detalle</button></td>";
+                    value_detalle = "<td> <button type='button' class='btn btn-default consolidado-detalle' value='" + value_detalle_key + "' style= 'width: 80% !important;'>Detalle</button></td>";
                 } else {
                     value_detalle = "<td> <button type='button'>Ver Detalle</button> </td>";
                 }
 
-                let item = '<tr>' + value_producto + value_cantidad + value_detalle + '</tr>';
+                tabla += '<tr>' + value_producto + value_cantidad + value_detalle + '</tr>';
+            });
 
-                tableDataConsolidado.append(item);
+            tabla += '</tbody></table>';
+            $('#table-consolidado').html(tabla);
+            $('#table-data-consolidado').DataTable({
+                searching: false,
+                language: {
+                    url: '../Scripts/es-CO.json'
+                },
+                pageLength: 10,
+                lengthChange: false
             });
 
             let elementsShowDetail = document.getElementsByClassName("consolidado-detalle");
@@ -1773,22 +1871,22 @@ function obtener_informe_consolidado_procesos_detalle_unificado(tipo) {
     let url = "";
     switch(tipo) {
         case "fics":
-            tbody = '#table-data-resumen-detalle-fics tbody';
+            tbody = '#table-resumen-detalle-fics';
             tabla = "#table-data-resumen-detalle-fics";
             url = "/api/v1/Informes/PA/ObtenerDetalleFics";
             break;
         case "titulos":
-            tbody = '#table-data-resumen-detalle-titulos tbody';
+            tbody = '#table-resumen-detalle-titulos';
             tabla = "#table-data-resumen-detalle-titulos";
             url = "/api/v1/Informes/PA/ObtenerDetalleTitulo";
             break;
         case "inversion":
-            tbody = '#table-data-resumen-detalle-ctaInversion tbody';
+            tbody = '#table-resumen-detalle-ctaInversion';
             tabla = "#table-data-resumen-detalle-ctaInversion";
             url = "/api/v1/Informes/PA/ObtenerDetalleCtaInversion";
             break;
         case "saldos":
-            tbody = '#table-data-resumen-detalle-saldos tbody';
+            tbody = '#table-resumen-detalle-saldos';
             tabla = "#table-data-resumen-detalle-saldos";
             url = "/api/v1/Informes/PA/ObtenerDetalleSaldos";
             break;
@@ -1807,8 +1905,8 @@ function obtener_informe_consolidado_procesos_detalle_unificado(tipo) {
         _FECHA_CORTE = today.getFullYear() + '-' + ((''+month).length<2 ? '0' : '') + '' + month + '-' + ((''+day).length<2 ? '0' : '') + day;
     }
            
-    $("#table-data-consolidado").addClass("d-none");
-    $(tabla).removeClass("d-none");
+    $("#table-consolidado").addClass("d-none");
+    $(tbody).removeClass("d-none");
 
     $.ajax({
         url: "/TirNoPerAdministrativo/ConsolidadoDetalle",
@@ -1820,7 +1918,7 @@ function obtener_informe_consolidado_procesos_detalle_unificado(tipo) {
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
         success: function (_data){
-            dibujar_tabla(tipo, tabla, _data);
+            dibujar_tabla(tipo, tabla, _data, tbody);
 
             if(tipo == "saldos") {
                 let elementsShowDetalail = document.getElementsByClassName("consolidado-detalle-saldos");
@@ -1835,18 +1933,87 @@ function obtener_informe_consolidado_procesos_detalle_unificado(tipo) {
         }
     });
 
-    //$(tabla).DataTable();
     $('.dataTables_length').addClass('bs-select');
 }
 
-function dibujar_tabla(tipo, tabla, data) {
+function dibujar_tabla(tipo, tabla, data, division) {
+    let dtabla = '';
+    switch (tipo) {
+        case "fics":
+            dtabla = '<table id="table-data-resumen-detalle-fics" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+            dtabla += '<thead>';
+            dtabla += '  <tr>';
+            dtabla += '    <th>DOCUMENTO</th>';
+            dtabla += '    <th>NOMBRE</th>';
+            dtabla += '    <th>TRANSACCI&Oacute;N</th>';
+            dtabla += '    <th>CUENTA</th>';
+            dtabla += '    <th>VALOR</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N CLIENTE</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N CUENTA</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N EMPRESA</th>';
+            dtabla += '    <th>DETALLE</th>';
+            dtabla += '  </tr>';
+            dtabla += '</thead>';
+            dtabla += '<tbody>';
+            break;
+        case "titulos":
+            dtabla = '<table id="table-data-resumen-detalle-titulos" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+            dtabla += '<thead>';
+            dtabla += '  <tr>';
+            dtabla += '    <th>DOCUMENTO</th>';
+            dtabla += '    <th>NOMBRE</th>';
+            dtabla += '    <th>TRANSACCI&Oacute;N</th>';
+            dtabla += '    <th>CUENTA</th>';
+            dtabla += '    <th>CANTIDAD</th>';
+            dtabla += '    <th>VALOR</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N CLIENTE</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N CUENTA</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N EMPRESA</th>';
+            dtabla += '    <th>ESPECIE</th>';
+            dtabla += '    <th>ISIN</th>';
+            dtabla += '    <th>DETALLE</th>';
+            dtabla += '  </tr>';
+            dtabla += '</thead>';
+            dtabla += '<tbody>';
+            break;
+        case "inversion":
+            dtabla = '<table id="table-data-resumen-detalle-ctaInversion" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+            dtabla += '<thead>';
+            dtabla += '  <tr>';
+            dtabla += '    <th>DOCUMENTO</th>';
+            dtabla += '    <th>NOMBRE</th>';
+            dtabla += '    <th>TRANSACCI&Oacute;N</th>';
+            dtabla += '    <th>CUENTA</th>';
+            dtabla += '    <th>CANTIDAD</th>';
+            dtabla += '    <th>VALOR</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N CLIENTE</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N CUENTA</th>';
+            dtabla += '    <th>CLASIFICACI&Oacute;N EMPRESA</th>';
+            dtabla += '    <th>DETALLE</th>';
+            dtabla += '  </tr>';
+            dtabla += '</thead>';
+            dtabla += '<tbody>';
+            break;
+        case "saldos":
+            dtabla = '<table id="table-data-resumen-detalle-saldos" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+            dtabla += '<thead>';
+            dtabla += '  <tr>';
+            dtabla += '    <th>DOCUMENTO</th>';
+            dtabla += '    <th>CUENTA</th>';
+            dtabla += '    <th>VALOR</th>';
+            dtabla += '    <th>DETALLE</th>';
+            dtabla += '  </tr>';
+            dtabla += '</thead>';
+            dtabla += '<tbody>';
+            break;
+    }
+
     data.forEach(element => {
         let _tipo_Transaccion;
         let _cliente;
         let _clasificacion_Cliente;
         let _clasificacion_Cuenta;
         let _clasificacion_Empresa
-        let item;
         let _cantidad;
         let _detalle;
 
@@ -1863,13 +2030,13 @@ function dibujar_tabla(tipo, tabla, data) {
             _detalle = '<td>' + element.detalle + '</td>';
         }
         else {
-            _detalle = "<td> <button type='button' class='btn btn-default consolidado-detalle-saldos' value="+ element.numero_Cuenta +">Detalle</button></td>";
+            _detalle = "<td> <button type='button' class='btn btn-default consolidado-detalle-saldos' value=" + element.numero_Cuenta +" style= 'width: 80% !important;'>Detalle</button></td>";
         }
         
 
         switch(tipo) {
             case "fics":
-                item = '<tr>' + _id_Cliente + _cliente + _tipo_Transaccion + _numero_Cuenta +  _valor + _clasificacion_Cliente + 
+                dtabla += '<tr>' + _id_Cliente + _cliente + _tipo_Transaccion + _numero_Cuenta +  _valor + _clasificacion_Cliente +
                     _clasificacion_Cuenta + _clasificacion_Empresa + _detalle + '</tr>';
                 break;
             case "titulos":
@@ -1877,23 +2044,31 @@ function dibujar_tabla(tipo, tabla, data) {
                 _cantidad = '<td>' + element.cantidad + '</td>';
                 let _isin = '<td>' + element.isin + '</td>';
 
-                item = '<tr>' + _id_Cliente + _cliente + _tipo_Transaccion + _numero_Cuenta + _cantidad +  _valor + _clasificacion_Cliente + 
+                dtabla += '<tr>' + _id_Cliente + _cliente + _tipo_Transaccion + _numero_Cuenta + _cantidad +  _valor + _clasificacion_Cliente +
                         _clasificacion_Cuenta + _clasificacion_Empresa + _especie  + _isin + _detalle + '</tr>';
                 break;
             case "inversion":
                 _cantidad = '<td>' + element.cantidad + '</td>';
 
-                item = '<tr>' + _id_Cliente + _cliente + _tipo_Transaccion + _numero_Cuenta + _cantidad +  _valor + _clasificacion_Cliente + 
+                dtabla += '<tr>' + _id_Cliente + _cliente + _tipo_Transaccion + _numero_Cuenta + _cantidad +  _valor + _clasificacion_Cliente +
                     _clasificacion_Cuenta + _clasificacion_Empresa + _detalle + '</tr>';
                 break;
             case "saldos":
-
-                item = '<tr>' + _id_Cliente +_numero_Cuenta +  _valor + _detalle + '</tr>';
+                dtabla += '<tr>' + _id_Cliente +_numero_Cuenta +  _valor + _detalle + '</tr>';
                 break;
         }
+    });
 
-        $(tabla).append(item);
-
+    dtabla += '</tbody></table>';
+    $(division).html(dtabla);
+    $(tabla).DataTable({
+        "scrollY": '550px',
+        searching: false,
+        language: {
+            url: '../Scripts/es-CO.json'
+        },
+        pageLength: 20,
+        lengthChange: false
     });
 }
 
@@ -1919,7 +2094,7 @@ function obtener_informe_consolidado_procesos_detalle_saldos_more(){
     let _FECHA_CORTE = $("#filtro-fecha-corte-consolidado").val().replace(/\-/g, '' );
     let _CUENTA  = $(this).val();
 
-    $('#table-data-resumen-detalle-saldos-more tbody').empty();
+    $('#table-resumen-detalle-saldos-more').empty();
     
     if (_FECHA_CORTE == '') { 
         let today = new Date();
@@ -1930,8 +2105,8 @@ function obtener_informe_consolidado_procesos_detalle_saldos_more(){
         _FECHA_CORTE = today.getFullYear() + '-' + ((''+month).length<2 ? '0' : '') + '' + month + '-' + ((''+day).length<2 ? '0' : '') + day;
     }
    
-    $("#table-data-resumen-detalle-saldos").addClass("d-none");
-    $("#table-data-resumen-detalle-saldos-more").removeClass("d-none");
+    $("#table-resumen-detalle-saldos").addClass("d-none");
+    $("#table-resumen-detalle-saldos-more").removeClass("d-none");
 
     $.ajax({
         url: "/TirNoPerAdministrativo/ObtenerExtraccionSaldos",	
@@ -1942,7 +2117,20 @@ function obtener_informe_consolidado_procesos_detalle_saldos_more(){
         type: "POST",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        success: function (_data){
+        success: function (_data) {
+            let tabla = '<table id="table-data-resumen-detalle-saldos-more" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+            tabla += '<thead>';
+            tabla += '  <tr>';
+            tabla += '    <th>CUENTA</th>';
+            tabla += '    <th>TIPO</th>';
+            tabla += '    <th>OPERACI&Oacute;N</th>';
+            tabla += '    <th>FUENTE</th>';
+            tabla += '    <th>VPN</th>';
+            tabla += '    <th>LOTE</th>';
+            tabla += '  </tr>';
+            tabla += '</thead>';
+            tabla += '<tbody>';
+
             _data.forEach(element => {
                 let _numero_Cuenta = '<td>' + element.cuenta + '</td>';
                 let _tipo = '<td>' + element.tipo + '</td>';
@@ -1951,12 +2139,20 @@ function obtener_informe_consolidado_procesos_detalle_saldos_more(){
                 let _vpn = '<td>' + element.vpn + '</td>';
                 let _lote = '<td>' + element.lote + '</td>';
 
-                let item = '<tr>' + _numero_Cuenta +_tipo +  _operacion + _fuente + _vpn + _lote + '</tr>';
-
-                $('#table-data-resumen-detalle-saldos-more').append(item);
+                tabla += '<tr>' + _numero_Cuenta +_tipo +  _operacion + _fuente + _vpn + _lote + '</tr>';
             });
 
-
+            tabla += '</tbody></table>';
+            $('#table-resumen-detalle-saldos-more').html(tabla);
+            $('#table-data-resumen-detalle-saldos-more').DataTable({
+                "scrollY": '550px',
+                searching: false,
+                language: {
+                    url: '../Scripts/es-CO.json'
+                },
+                pageLength: 10,
+                lengthChange: false
+            });
         },
         error: function (xhr, status, error) {
             console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
@@ -1964,7 +2160,6 @@ function obtener_informe_consolidado_procesos_detalle_saldos_more(){
         }
     });
 
-    $('#table-data-resumen-detalle-saldos-more').DataTable();
     $('.dataTables_length').addClass('bs-select');
 
 }

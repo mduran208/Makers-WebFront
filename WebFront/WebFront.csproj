@@ -173,6 +173,7 @@
     <Compile Include="Models\Result\ClienteInfoResult.cs" />
     <Compile Include="Models\Result\ClienteMovimientoResult.cs" />
     <Compile Include="Models\Result\ClientesPorGrupoEconomicoResult.cs" />
+    <Compile Include="Models\Result\ConsolidadoDetalleResult.cs" />
     <Compile Include="Models\Result\ConsolidadoResult.cs" />
     <Compile Include="Models\Result\CorreccionGuardarResult.cs" />
     <Compile Include="Models\Result\CorreccionResult.cs" />

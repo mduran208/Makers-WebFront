@@ -405,7 +405,7 @@ namespace WebFront.Controllers
             try
             {
                 FechaRequest info = new FechaRequest() { FECHA = informe.FECHA };
-                var result = Post<FechaRequest, List<DatosTebResult>>(urlBase + informe.Url, info, (string)Session["token"]);
+                var result = Post<FechaRequest, List<ConsolidadoDetalleResult>>(urlBase + informe.Url, info, (string)Session["token"]);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (ApiException ex)
